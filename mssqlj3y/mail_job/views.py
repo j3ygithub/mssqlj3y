@@ -43,7 +43,7 @@ def index(request):
         try:
             response = exec_sp(
                 driver='{SQL Server}',
-                server='tcp:150.117.123.35',
+                server='tcp:10.210.31.15',
                 database='mail_job',
                 uid='jimmy_lin',
                 pwd='Chief+26576688@',
@@ -61,7 +61,7 @@ def index(request):
     """
     response = exec_sp(
         driver='{SQL Server}',
-        server='tcp:150.117.123.35',
+        server='tcp:10.210.31.15',
         database='mail_job',
         uid='jimmy_lin',
         pwd='Chief+26576688@',
