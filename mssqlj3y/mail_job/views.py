@@ -17,10 +17,41 @@ def index(request):
         context['form'] = form
         if form.is_valid():
             department = form.cleaned_data['department']
+            event_class = form.cleaned_data['event_class']
             event = form.cleaned_data['event']
+            note_date = form.cleaned_data['note_date']
+            period = form.cleaned_data['period']
+            weekend_flag = form.cleaned_data['weekend_flag']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            recipient = form.cleaned_data['recipient']
+            create_by = form.cleaned_data['create_by']
+            query_string = f"""
+            exec mail_job.dbo.insert_mail_job 
+            @department='{department}',
+            @event_class='{event_class}',
+            @event='{event}',
+            @note_date='{note_date}',
+            @period='{period}',
+            @weekend_flag='{weekend_flag}',
+            @subject='{subject}',
+            @body='{body}',
+            @recipient='{recipient}',
+            @create_by='{create_by}'
+            ;
+            """
         try:
+            response = exec_sp(
+                driver='{SQL Server}',
+                server='tcp:150.117.123.35',
+                database='mail_job',
+                uid='jimmy_lin',
+                pwd='Chief+26576688@',
+                query_header='set nocount on;',
+                query_string=query_string,
+            )
             # do script here
-            context['message'] = 'Finished.'
+            context['message'] = str(response)
         except:
             context['message'] = 'Failed.'
     # a query-all script

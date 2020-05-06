@@ -94,7 +94,7 @@ class MailJobForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Jimmy_lin@chief.com.tw;',
+                'placeholder': 'jimmy_lin@chief.com.tw;',
             },
         ),
         label='收件人',
