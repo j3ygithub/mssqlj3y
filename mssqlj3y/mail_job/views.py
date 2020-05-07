@@ -52,7 +52,7 @@ def index(request):
                 query_string=query_string,
             )
             # do script here
-            context['message'] = str(response)
+            context['message'] = response[0][0]
         except:
             context['message'] = 'Failed.'
     # a query-all script

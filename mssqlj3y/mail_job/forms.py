@@ -9,6 +9,11 @@ class MailJobForm(forms.Form):
         ),
         label='部門',
         choices=(
+            ('D11', 'D11'),
+            ('D21', 'D21'),
+            ('D31', 'D31'),
+            ('T11', 'T11'),
+            ('T12', 'T12'),
             ('T21', 'T21'),
             ('T22', 'T22'),
             ('T31', 'T31'),
@@ -42,6 +47,9 @@ class MailJobForm(forms.Form):
             attrs={
                 'class': 'form-control'
             },
+            empty_label=(
+                'Choose Year', 'Choose Month', 'Choose Day'
+            ),
         ),
         label='日期',
     )
