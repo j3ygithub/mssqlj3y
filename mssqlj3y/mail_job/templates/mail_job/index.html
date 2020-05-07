@@ -2,10 +2,12 @@
 <html>
 
 <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'mail_job/css/dataframe.css' %}">
     <title>Lookup And Setup | Mail Job</title>
 </head>
 
@@ -35,10 +37,7 @@
         </div>
         {% if result %}
         {% for key, value in result.items %}
-        <div class="row justify-content-start" style="padding-top: 2em;">
-            <h2>{{ key }}</h2>
-        </div>
-        <div class="row justify-content-start">
+        <div class="row justify-content-center" style="padding-top: 2em">
             {{ value|safe }}
         </div>
         {% endfor %}
