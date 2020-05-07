@@ -126,4 +126,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 
 MEDIA_URL = '/uploads/'
 
+# build-in auth system
 LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
