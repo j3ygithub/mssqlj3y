@@ -36,7 +36,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'im.chiefcall.com.tw憑證於2021/6/6到期通知',
+                'placeholder': '如: jimmylin.chief.net.tw 憑證於2021/6/6到期通知',
             },
         ),
         label='事件',
@@ -47,11 +47,8 @@ class MailJobForm(forms.Form):
             attrs={
                 'class': 'form-control'
             },
-            empty_label=(
-                'Choose Year', 'Choose Month', 'Choose Day'
-            ),
         ),
-        label='日期',
+        label='到期日',
     )
     period = forms.ChoiceField(
         widget=forms.Select(
@@ -62,8 +59,9 @@ class MailJobForm(forms.Form):
         label='週期',
         choices=(
             ('每日', '每日'),
-            ('每周一', '每周一'),
+            ('每週一', '每週一'),
             ('每月1號', '每月1號'),
+            ('單次', '單次'),
         ),
     )
     weekend_flag = forms.ChoiceField(
@@ -72,7 +70,7 @@ class MailJobForm(forms.Form):
                 'class': 'form-control',
             },
         ),
-        label='假日例外',
+        label='假日不發信',
         choices=(
             ('T', '是'),
             ('F', '否'),
@@ -85,7 +83,7 @@ class MailJobForm(forms.Form):
                 'placeholder': 'im.chiefcall.com.tw憑證於到期通知',
             },
         ),
-        label='標題',
+        label='郵件主旨',
         max_length=64,
     )
     body = forms.CharField(
@@ -95,7 +93,7 @@ class MailJobForm(forms.Form):
                 'placeholder': 'im.chiefcall.com.tw憑證將於2020/6/6到期，請辦理更換新憑證',
             },
         ),
-        label='內容',
+        label='郵件內容',
         max_length=256,
     )
     recipient = forms.EmailField(

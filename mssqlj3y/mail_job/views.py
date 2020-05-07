@@ -72,7 +72,7 @@ def index(request):
     df = pandas.DataFrame(tuple(row) for row in response)
     df.columns = ['查詢結果', '項次', '部門', '類型', '事件', '日期', '週期', '假日例外', '標題', '內容', '收件人', '起始日期', '終止日期', '建立人', '修改者', '修改日期', ]
     df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
-    df = df[['部門', '日期', '週期', '假日例外', '標題', '內容', '收件人', '建立人']]
+    df = df[['部門', '類型', '日期', '週期', '假日例外', '標題', '內容', '收件人', '建立人']]
     df_html = df.to_html(justify='left')
     context['result']['目前設置'] = df_html
     return render(request, 'mail_job/index.html', context)
