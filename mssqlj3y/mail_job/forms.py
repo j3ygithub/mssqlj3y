@@ -36,7 +36,7 @@ class MailJobForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': '如: jimmylin.chief.net.tw 憑證到期',
+                'placeholder': 'jimmylin.chief.net.tw 憑證到期',
             },
         ),
         label='事件',
