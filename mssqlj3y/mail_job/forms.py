@@ -33,14 +33,14 @@ class MailJobForm(forms.Form):
         ),
     )
     event = forms.CharField(
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
                 'placeholder': '如: jimmylin.chief.net.tw 憑證到期',
             },
         ),
         label='事件',
-        max_length=64,
+        max_length=32,
     )
     note_date = forms.DateField(
         widget=forms.SelectDateWidget(
@@ -48,7 +48,7 @@ class MailJobForm(forms.Form):
                 'class': 'form-control'
             },
         ),
-        label='到期日',
+        label='起始日',
     )
     period = forms.ChoiceField(
         widget=forms.Select(
