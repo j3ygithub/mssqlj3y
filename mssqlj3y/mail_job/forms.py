@@ -90,7 +90,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex. jimmylin.chief.net.tw 憑證將於 2020/6/6 到期，請辦理更換新憑證',
+                'placeholder': 'ex.\njimmylin.chief.net.tw 憑證將於 2020/6/6 到期，請辦理更換新憑證',
             },
         ),
         label='郵件內容',
@@ -100,7 +100,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex. jimmy_lin@chief.com.tw;t32@chief.com.tw;cathy_sung@;',
+                'placeholder': 'ex.\njimmy_lin@chief.com.tw;\nt32@chief.com.tw;\ncathy_sung@chief.com.tw;',
             },
         ),
         label='收件人',
