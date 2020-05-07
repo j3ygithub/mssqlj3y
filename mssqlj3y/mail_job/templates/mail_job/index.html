@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extracss %}
-<link rel="stylesheet" type="text/css" href="{% static '/mail_job/css/dataframe.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mail_job/css/dataframe.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -11,17 +11,44 @@
 
 {% block content %}
 <div class="container-fluid"
-    style="padding-top: 2em; padding-bottom: 2em; padding-left: 4em; padding-right: 4em; font-family: Georgia, 'Times New Roman', Times, serif;">
-<div class="row justify-content-end">
-    {% if user.is_authenticated %}
-    <p>Hi, {{ user.username }}.&nbsp;</p><a href="{% url 'logout' %}">logout</a>
-    {% else %}
-    <p>You are not logged in.&nbsp;</p><a href="{% url 'login' %}">login</a>
-    {% endif %}
-</div>
-<div class="row justify-content-center" style="padding-bottom: 1em;">
-    <h1>Lookup And Setup | Mail Job</h1>
-</div>
+    style="font-family: Georgia, 'Times New Roman', Times, serif;">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
 <div class="row justify-content-center" style="font-size: larger;">
     <div class="col-auto"
         style="border-width:2px; border-style:solid; border-color:rgb(150, 150, 150); padding-left:2.5em; padding-right:2.5em; padding-top:1.5em; padding-bottom:0.5em;">
