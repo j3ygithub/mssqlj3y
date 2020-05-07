@@ -61,11 +61,11 @@ def index(request):
     ;
     """
     response = exec_sp(
-        driver='{SQL Server}',
-        server='tcp:10.210.31.15',
-        database='mail_job',
-        uid='jimmy_lin',
-        pwd='Chief+26576688@',
+        driver=login_info['driver'],
+        server=login_info['server'],
+        database=login_info['database'],
+        uid=login_info['uid'],
+        pwd=login_info['pwd'],
         query_header='set nocount on;',
         query_string=query_string,
     )
