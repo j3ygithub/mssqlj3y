@@ -22,11 +22,15 @@ def index(request):
             event = form.cleaned_data['event']
             note_date = form.cleaned_data['note_date']
             period = form.cleaned_data['period']
-            weekend_flag = form.cleaned_data['weekend_flag']
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
             recipient = form.cleaned_data['recipient']
             create_by = request.META.get('REMOTE_ADDR')
+            if period == '每日(假日除外)':
+                period = '每日'
+                weekend_flag = 'T'
+            else:
+                weekend_flag = 'F'
             query_string = f"""
             exec mail_job.dbo.insert_mail_job 
             @department='{department}',
@@ -70,9 +74,9 @@ def index(request):
         query_string=query_string,
     )
     df = pandas.DataFrame(tuple(row) for row in response)
-    df.columns = ['查詢結果', '項次', '部門', '類型', '事件', '通知起始日', '週期', '假日例外', '郵件主旨', '郵件內容', '收件人', '規則建立日', '規則終止日', '建立者', '修改者', '修改日期', ]
-    df = df[['部門', '類型', '通知起始日', '週期', '假日例外', '郵件主旨', '郵件內容', '收件人', '建立者', '規則建立日']]
-    df = df.sort_values(by=['規則建立日'], ascending=False)
+    df.columns = ['查詢結果', '項次', '部門', '類型', '事件', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+    df = df[['部門', '類型', '事件', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+    df = df.sort_values(by=['建立時間'], ascending=False)
     df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
     df_html = df.to_html(justify='left')
     context['result']['目前設置'] = df_html

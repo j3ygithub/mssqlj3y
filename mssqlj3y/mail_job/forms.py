@@ -1,4 +1,7 @@
 from django import forms
+from django.utils.timezone import now
+from django.contrib.admin.widgets import AdminDateWidget
+
 
 class MailJobForm(forms.Form):
     department = forms.ChoiceField(
@@ -20,17 +23,15 @@ class MailJobForm(forms.Form):
             ('T32', 'T32'),
         ),
     )
-    event_class = forms.ChoiceField(
-        widget=forms.Select(
+    event_class = forms.CharField(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': 'ex. 憑證到期',
             },
         ),
         label='類型',
-        choices=(
-            ('憑證到期', '憑證到期'),
-            ('其他', '其他'),
-        ),
+        initial='憑證到期',
     )
     event = forms.CharField(
         widget=forms.TextInput(
@@ -43,13 +44,28 @@ class MailJobForm(forms.Form):
         max_length=32,
     )
     note_date = forms.DateField(
-        widget=forms.SelectDateWidget(
+        widget=forms.DateInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'type':'date',
             },
         ),
-        label='起始日',
+        label='通知起始日',
+        initial=now,
     )
+    choices_period = [
+        ('單次', '單次'),
+        ('每日', '每日'),
+        ('每日(假日除外)', '每日(假日除外)'),
+        ('每週一', '每週一'),
+        ('每週二', '每週二'),
+        ('每週三', '每週三'),
+        ('每週四', '每週四'),
+        ('每週五', '每週五'),
+        ('每週六', '每週六'),
+        ('每週日', '每週日'),
+    ]
+    choices_period += [(f'每月{n}號', f'每月{n}號') for n in range(1, 32)]
     period = forms.ChoiceField(
         widget=forms.Select(
             attrs={
@@ -57,24 +73,8 @@ class MailJobForm(forms.Form):
             },
         ),
         label='週期',
-        choices=(
-            ('每日', '每日'),
-            ('每週一', '每週一'),
-            ('每月1號', '每月1號'),
-            ('單次', '單次'),
-        ),
-    )
-    weekend_flag = forms.ChoiceField(
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
-        label='假日不發信',
-        choices=(
-            ('T', '是'),
-            ('F', '否'),
-        ),
+        choices=choices_period,
+        initial='每日',
     )
     subject = forms.CharField(
         widget=forms.TextInput(
@@ -90,7 +90,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex.\njimmylin.chief.net.tw 憑證將於 2020/6/6 到期，請辦理更換新憑證',
+                'placeholder': 'ex.\njimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。',
             },
         ),
         label='郵件內容',
