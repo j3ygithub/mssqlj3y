@@ -2,6 +2,7 @@ from django.shortcuts import render
 import pyodbc
 import pandas
 from .forms import MailJobForm
+from .database import login_info
 # Create your views here.
 
 
@@ -25,7 +26,7 @@ def index(request):
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
             recipient = form.cleaned_data['recipient']
-            create_by = form.cleaned_data['create_by']
+            create_by = request.META.get('REMOTE_ADDR')
             query_string = f"""
             exec mail_job.dbo.insert_mail_job 
             @department='{department}',
@@ -42,11 +43,11 @@ def index(request):
             """
         try:
             response = exec_sp(
-                driver='{SQL Server}',
-                server='tcp:10.210.31.15',
-                database='mail_job',
-                uid='jimmy_lin',
-                pwd='Chief+26576688@',
+                driver=login_info['driver'],
+                server=login_info['server'],
+                database=login_info['database'],
+                uid=login_info['uid'],
+                pwd=login_info['pwd'],
                 query_header='set nocount on;',
                 query_string=query_string,
             )

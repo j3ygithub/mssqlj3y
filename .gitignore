@@ -18,7 +18,7 @@ __pycache__/
 db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
-my_databases.py
+database.py
 
 # VSCode things
 .vscode/settings.json

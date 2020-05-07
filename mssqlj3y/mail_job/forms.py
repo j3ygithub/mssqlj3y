@@ -99,14 +99,3 @@ class MailJobForm(forms.Form):
         ),
         label='收件人',
     )
-    create_by = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Jimmy Lin',
-            }
-        ),
-        label='建立人',
-        max_length=64,
-    )
-
