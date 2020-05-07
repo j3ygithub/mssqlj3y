@@ -36,7 +36,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': '如: jimmylin.chief.net.tw 憑證於2021/6/6到期通知',
+                'placeholder': '如: jimmylin.chief.net.tw 憑證到期',
             },
         ),
         label='事件',
@@ -80,7 +80,7 @@ class MailJobForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'im.chiefcall.com.tw憑證於到期通知',
+                'placeholder': 'jimmylin.chief.net.tw 憑證到期通知',
             },
         ),
         label='郵件主旨',
@@ -90,7 +90,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'im.chiefcall.com.tw憑證將於2020/6/6到期，請辦理更換新憑證',
+                'placeholder': 'jimmylin.chief.net.tw 憑證將於 2020/6/6 到期，請辦理更換新憑證',
             },
         ),
         label='郵件內容',
