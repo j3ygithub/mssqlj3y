@@ -30,7 +30,7 @@ class MailJobForm(forms.Form):
                 'placeholder': 'ex. 憑證到期',
             },
         ),
-        label='類型',
+        label='事件類型',
         initial='憑證到期',
     )
     event = forms.CharField(
@@ -40,7 +40,7 @@ class MailJobForm(forms.Form):
                 'placeholder': 'ex. jimmylin.chief.net.tw 憑證到期',
             },
         ),
-        label='事件',
+        label='事件描述',
         max_length=32,
     )
     note_date = forms.DateField(
@@ -105,4 +105,17 @@ class MailJobForm(forms.Form):
         ),
         label='收件人',
         max_length=256,
+    )
+    followed_action = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            },
+        ),
+        label='後續動作',
+        choices=(
+            ('立即發出一封測試信件', '立即發出一封測試信件'),
+            ('不動作', '不動作'),
+        ),
+        initial='立即發出一封測試信件',
     )

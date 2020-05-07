@@ -25,12 +25,15 @@ def index(request):
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
             recipient = form.cleaned_data['recipient']
+            followed_action = form.cleaned_data['followed_action']
             create_by = request.META.get('REMOTE_ADDR')
             if period == '每日(假日除外)':
                 period = '每日'
                 weekend_flag = 'T'
             else:
                 weekend_flag = 'F'
+        try:
+            # call insert sp
             query_string = f"""
             exec mail_job.dbo.insert_mail_job 
             @department='{department}',
@@ -45,8 +48,7 @@ def index(request):
             @create_by='{create_by}'
             ;
             """
-        try:
-            response = exec_sp(
+            response_insert = exec_sp(
                 driver=login_info['driver'],
                 server=login_info['server'],
                 database=login_info['database'],
@@ -55,16 +57,39 @@ def index(request):
                 query_header='set nocount on;',
                 query_string=query_string,
             )
-            # do script here
-            context['message'] = response[0][0]
+            # end
+            context['message'] = response_insert[0][0]
         except:
             context['message'] = 'Failed.'
-    # a query-all script
+        try:
+            # call do-test sp
+            if followed_action == '立即發出一封測試信件' and response_insert[0][0] == '新增成功':
+                seq = response_insert[0][1]
+                query_string = f"""
+                exec mail_job.dbo.do_mail_job_onetime
+                @seq_action='{seq}'
+                ;
+                """
+                response_do_test = exec_sp(
+                    driver=login_info['driver'],
+                    server=login_info['server'],
+                    database=login_info['database'],
+                    uid=login_info['uid'],
+                    pwd=login_info['pwd'],
+                    query_header='set nocount on;',
+                    query_string=query_string,
+                )
+            # end
+            if response_do_test:
+                context['message'] += f'\n{response_do_test}'
+        except:
+            pass
+    # call query sp
     query_string = """
     exec mail_job.dbo.show_mail_job '',''
     ;
     """
-    response = exec_sp(
+    response_query_all = exec_sp(
         driver=login_info['driver'],
         server=login_info['server'],
         database=login_info['database'],
@@ -73,9 +98,10 @@ def index(request):
         query_header='set nocount on;',
         query_string=query_string,
     )
-    df = pandas.DataFrame(tuple(row) for row in response)
-    df.columns = ['查詢結果', '項次', '部門', '類型', '事件', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
-    df = df[['部門', '類型', '事件', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+    # end
+    df = pandas.DataFrame(tuple(row) for row in response_query_all)
+    df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+    df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
     df = df.sort_values(by=['建立時間'], ascending=False)
     df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
     df_html = df.to_html(justify='left')
