@@ -73,6 +73,7 @@ def index(request):
     df.columns = ['查詢結果', '項次', '部門', '類型', '事件', '通知起始日', '週期', '假日例外', '郵件主旨', '郵件內容', '收件人', '規則建立日', '規則終止日', '建立者', '修改者', '修改日期', ]
     df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
     df = df[['部門', '類型', '通知起始日', '週期', '假日例外', '郵件主旨', '郵件內容', '收件人', '建立者', '規則建立日']]
+    df = df.sort_values(by=['規則建立日'], ascending=False)
     df_html = df.to_html(justify='left')
     context['result']['目前設置'] = df_html
     return render(request, 'mail_job/index.html', context)

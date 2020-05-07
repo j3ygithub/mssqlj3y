@@ -36,7 +36,7 @@ class MailJobForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'jimmylin.chief.net.tw 憑證到期',
+                'placeholder': 'ex. jimmylin.chief.net.tw 憑證到期',
             },
         ),
         label='事件',
@@ -80,7 +80,7 @@ class MailJobForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'jimmylin.chief.net.tw 憑證到期通知',
+                'placeholder': 'ex. jimmylin.chief.net.tw 憑證到期通知',
             },
         ),
         label='郵件主旨',
@@ -90,18 +90,19 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'jimmylin.chief.net.tw 憑證將於 2020/6/6 到期，請辦理更換新憑證',
+                'placeholder': 'ex. jimmylin.chief.net.tw 憑證將於 2020/6/6 到期，請辦理更換新憑證',
             },
         ),
         label='郵件內容',
         max_length=256,
     )
-    recipient = forms.EmailField(
-        widget=forms.EmailInput(
+    recipient = forms.CharField(
+        widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'jimmy_lin@chief.com.tw;',
+                'placeholder': 'ex. jimmy_lin@chief.com.tw;t32@chief.com.tw;cathy_sung@;',
             },
         ),
         label='收件人',
+        max_length=256,
     )
