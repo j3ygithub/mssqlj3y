@@ -19,7 +19,7 @@
             </form>
         </div>
     </div>
-    <div class="row justify-content-center" style="padding-top: 2em">
+    <div class="row justify-content-center">
         {% if message %}
         <br>
         <h4>{{ message }}</h4>
@@ -27,7 +27,7 @@
     </div>
     {% if result %}
     {% for key, value in result.items %}
-    <div class="row justify-content-center" style="padding-top: 2em">
+    <div class="row justify-content-center">
         {{ value|safe }}
     </div>
     {% endfor %}
