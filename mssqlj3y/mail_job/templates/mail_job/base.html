@@ -21,14 +21,17 @@
 
 <body>
     {% block nav %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Mail Job</a>    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">J3Y.code()</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Action
+                        more
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/mail_job/setup/">Setup</a>
@@ -39,7 +42,7 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-1 my-lg-0">
+            <form class="form-inline my-1 my-lg-0" style="color: #fff;">
                 {% if user.is_authenticated %}
                 <a class="navbar-nav">Hi, {{ user.username }}.&nbsp;&nbsp;</a><a class="navbar-nav" href="{% url 'logout' %}">Logout</a>
                 {% else %}
