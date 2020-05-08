@@ -9,25 +9,18 @@
 <title>Sign Up | Accounts</title>
 {% endblock title %}
 
-{% block nav %}
-{% endblock %}
-
 {% block content %}
-
 <div class="container-fluid">
-    <div class="div-center">
-        <div class="col-auto"
-            style="border-width:2px; border-style:solid; border-color:rgb(150, 150, 150); padding-left:2.5em; padding-right:2.5em; padding-top:1.5em; padding-bottom:0.5em;">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Sign up</button>
-            </form>
+    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
+        <div class="card card-center" style="width: 15em;">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
-
-
-
 {% endblock %}

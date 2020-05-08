@@ -7,27 +7,27 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-auto border-width"
-            style="border-width:2px; border-style:solid; border-color:rgb(150, 150, 150); padding-left:2.5em; padding-right:2.5em; padding-top:1.5em; padding-bottom:0.5em;">
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <div style="padding-top: 1em;padding-bottom: 1em;">
-                    <input type="submit" class="btn btn-secondary" value="Submit">
-                </div>
-            </form>
+    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div style="padding-top: 1em;padding-bottom: 1em;">
+                        <input type="submit" class="btn btn-secondary" value="Submit">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center" style="padding-top: 2em">
-        {% if message %}
-        <br>
+    {% if message %}
+    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
         <h4>{{ message }}</h4>
-        {% endif %}
     </div>
+    {% endif %}
     {% if result %}
     {% for key, value in result.items %}
-    <div class="row justify-content-center" style="padding-top: 2em">
+    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
         {{ value|safe }}
     </div>
     {% endfor %}
