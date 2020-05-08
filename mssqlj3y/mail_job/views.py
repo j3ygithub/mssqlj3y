@@ -6,7 +6,7 @@ from secret.database import login_info
 # Create your views here.
 
 
-def index(request):
+def setup(request):
     context = {
         'query_param_cookie': {},
         'message': '',
@@ -106,7 +106,7 @@ def index(request):
     df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
     df_html = df.to_html(justify='left')
     context['result']['目前設置'] = df_html
-    return render(request, 'mail_job/index.html', context)
+    return render(request, 'mail_job/setup.html', context)
 
 
 def exec_sp(driver, server, database, uid, pwd, query_header, query_string):
