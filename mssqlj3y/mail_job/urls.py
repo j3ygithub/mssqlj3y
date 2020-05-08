@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.views.generic import RedirectView
-from .views import setup
+from .views import setup, lookup
 
+
+app_name = 'mail_job'
 
 urlpatterns = [
     path('setup/', setup, name='setup'),
+    path('lookup/', lookup, name='lookup'),
     path('', RedirectView.as_view(url='setup/')),
 ]
