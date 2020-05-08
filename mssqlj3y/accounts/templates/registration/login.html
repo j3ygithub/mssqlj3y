@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block title %}
-<title>Login | Mail Job</title>
+<title>Login</title>
 {% endblock title %}
 
 {% block content %}
@@ -14,12 +14,14 @@
     <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
         <div class="card card-center" style="width: 15em;">
             <div class="card-body">
-            <h1 style="padding-bottom: 1em;">Login</h1>
+                <h1 style="padding-bottom: 1em;">Login</h1>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Login</button>
-                    <input type="button" value="Sign up" onclick="location.href='/accounts/sign_up/'">
+                    {{ form }}
+                    <div style="padding-top: 1em;padding-bottom: 1em;">
+                        <button type="submit">Login</button>
+                        <input type="button" value="Sign up" onclick="location.href='/accounts/sign_up/'">
+                    </div>
                 </form>
             </div>
         </div>

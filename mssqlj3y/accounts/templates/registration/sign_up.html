@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block title %}
-<title>Sign Up | Accounts</title>
+<title>Sign Up</title>
 {% endblock title %}
 
 {% block content %}
@@ -14,10 +14,10 @@
     <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
         <div class="card card-center" style="width: 15em;">
             <div class="card-body">
-                <h1 style="padding-bottom: 1em;">Sign Up</h1>
+                <h2 style="padding-bottom: 1em;">Sign Up</h2>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form }}
                     <button type="submit">Sign up</button>
                 </form>
             </div>
