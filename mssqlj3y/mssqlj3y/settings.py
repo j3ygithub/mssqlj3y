@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
     'mail_job.apps.MailJobConfig',
 ]
 
@@ -100,6 +101,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# disable the AUTH_PASSWORD_VALIDATORS
+AUTH_PASSWORD_VALIDATORS = []
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -128,5 +132,4 @@ MEDIA_URL = '/uploads/'
 
 # build-in auth system
 LOGIN_REDIRECT_URL = '/'
-
 LOGOUT_REDIRECT_URL = '/'
