@@ -1,6 +1,10 @@
 {% extends 'registration/base.html' %}
 {% load static %}
 
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/sign_up.css' %}">
+{% endblock %}
+
 {% block title %}
 <title>Sign Up | Accounts</title>
 {% endblock title %}
@@ -11,16 +15,19 @@
 {% block content %}
 
 <div class="container-fluid">
-
-<div class="row justify-content-center">
-    <div class="col-auto"
-        style="border-width:2px; border-style:solid; border-color:rgb(150, 150, 150); padding-left:2.5em; padding-right:2.5em; padding-top:1.5em; padding-bottom:0.5em;">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Sign up</button>
-        </form>
+    <div class="div-center">
+        <div class="col-auto"
+            style="border-width:2px; border-style:solid; border-color:rgb(150, 150, 150); padding-left:2.5em; padding-right:2.5em; padding-top:1.5em; padding-bottom:0.5em;">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
     </div>
 </div>
+
+
+
 
 {% endblock %}
