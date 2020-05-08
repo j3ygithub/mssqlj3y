@@ -8,6 +8,8 @@ from secret.database import login_info
 
 def setup(request):
     context = {
+        'view_name': 'setup',
+        'verbose_name': 'Setup',
         'query_param_cookie': {},
         'message': '',
         'result': {},
@@ -111,6 +113,8 @@ def setup(request):
 
 def lookup(request):
     context = {
+        'view_name': 'lookup',
+        'verbose_name': 'Lookup',
         'query_param_cookie': {},
         'message': '',
         'result': {},
