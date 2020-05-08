@@ -18,7 +18,13 @@ __pycache__/
 db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
-database.py
 
 # VSCode things
 .vscode/settings.json
+
+# IIS things
+web.config
+
+# for this project only
+/mssqlj3y/secret/
+/mssqlj3y/static/

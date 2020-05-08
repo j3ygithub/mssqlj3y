@@ -2,7 +2,7 @@ from django.shortcuts import render
 import pyodbc
 import pandas
 from .forms import MailJobForm
-from .database import login_info
+from secret.database import login_info
 # Create your views here.
 
 
