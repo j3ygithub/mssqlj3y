@@ -7,7 +7,7 @@
 
 .dataframe td, th {
     padding: 5px;
-    max-width: 300px;
+    max-width: 200px;
     word-wrap: break-word;
 }
 

@@ -32,6 +32,7 @@ class SetupForm(forms.Form):
         ),
         label='事件類型',
         initial='憑證到期',
+        max_length=16
     )
     event = forms.CharField(
         widget=forms.TextInput(
@@ -77,10 +78,11 @@ class SetupForm(forms.Form):
         initial='每日',
     )
     subject = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
                 'placeholder': 'ex. jimmylin.chief.net.tw 憑證到期通知',
+                'rows':2,
             },
         ),
         label='郵件主旨',
@@ -91,16 +93,18 @@ class SetupForm(forms.Form):
             attrs={
                 'class': 'form-control',
                 'placeholder': 'ex.\njimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。',
+                'rows':16,
             },
         ),
         label='郵件內容',
-        max_length=256,
+        max_length=512,
     )
     recipient = forms.CharField(
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
                 'placeholder': 'ex.\njimmy_lin@chief.com.tw;\nt32@chief.com.tw;\ncathy_sung@chief.com.tw;',
+                'rows':8,
             },
         ),
         label='收件人',
