@@ -130,8 +130,8 @@ def lookup(request):
             )
             # end
             df = pandas.DataFrame(tuple(row) for row in response_query_all)
-            df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
-            df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '假日', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+            df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+            df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
             df = df.sort_values(by=['建立時間'], ascending=False)
             df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
             df_html = df.to_html(justify='left')
