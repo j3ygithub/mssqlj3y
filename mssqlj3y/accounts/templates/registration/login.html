@@ -22,15 +22,27 @@
             <h2><br></h2>
             <form method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                    {% for field in form %}
-                    {{ field.label_tag }}
-                    {% render_field field class+='form-control' %}
-                    {{ field.errors }}
-                    {% endfor %}
+                {% for field in form %}
+                <div class="form-row">
+                    <div class="form-group col">                        
+                        {% render_field field class+='form-control' placeholder=field.label %}
+                        {{ field.errors }}                        
+                    </div>
                 </div>
-                {{ form.non_field_errors }}
-                <button type="submit" class="btn btn-secondary">Submit</button>
+                {% endfor %}
+                <div class="form-row">
+                    <div class="form-group col">
+                        {{ form.non_field_errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <button type="submit" class="btn btn-primary btn-block" style="display: block;">登入</button>
+                    </div>
+                    <div class="form-group col">
+                        <button type="button" class="btn btn-link btn-block" onclick="location.href='/accounts/sign_up'" style="border: 1px solid #0078FF;">建立帳號</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
