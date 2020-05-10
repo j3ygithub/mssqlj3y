@@ -1,12 +1,15 @@
 .dataframe {
-    font-size: 11pt; 
-    border-collapse: collapse; 
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0,0,0,.25);
+}
+
+.dataframe table {
+    margin-left:auto; 
+    margin-right:auto;
 }
 
 .dataframe td, th {
-    padding: 5px;
-    max-width: 200px;
+    padding: .5rem;
+    max-width: 10rem;
     word-wrap: break-word;
 }
 
