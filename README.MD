@@ -1,4 +1,9 @@
 # A project about MSSQL
-# TODO:
+# using:
 
+Django
+Bootstrap
+django-widget-tweaks
+
+# TODO:
 make sure the login, sign up form are the center of any browser
