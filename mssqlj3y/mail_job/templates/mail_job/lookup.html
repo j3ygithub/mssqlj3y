@@ -1,37 +1,55 @@
 {% extends 'mail_job/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block extracss %}
 <link rel="stylesheet" type="text/css" href="{% static 'mail_job/css/dataframe.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mail_job/css/lookup.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
-        <div class="card">
-            <div class="card-body">
-                <h2 style="padding-bottom: 1em;">Lookup</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form }}
-                    <div style="padding-top: 1em;padding-bottom: 1em;">
-                        <input type="submit" class="btn btn-secondary" value="Submit">
-                    </div>
-                </form>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
+            <h2>Lookup</h2>
+            <h2><br></h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in form %}
+                    {{ field.label_tag }}
+                    {% render_field field class+='form-control' %}
+                    {{ field.errors }}
+                    {% endfor %}
+                </div>
+                {{ form.non_field_errors }}
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
         </div>
     </div>
     {% if message %}
-    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
+    <div class="row justify-content-center">
         <h4>{{ message }}</h4>
     </div>
     {% endif %}
     {% if result %}
     {% for key, value in result.items %}
-    <div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
+    <div class="row justify-content-center">
         {{ value|safe }}
     </div>
     {% endfor %}
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-<title>Sign Up</title>
+<title>Sign up</title>
 {% endblock title %}
 
 {% block content %}
@@ -23,23 +23,19 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    {{ form.username.label_tag }}
-                    {% render_field form.username class+='form-control' %}
-                    {{ form.username.errors }}
-                </div>
-                <div class="form-group">
-                    {{ form.password1.label_tag }}
-                    {% render_field form.password1 class+='form-control' %}
-                    {{ form.password1.errors }}
-                </div>
-                <div class="form-group">
-                    {{ form.password2.label_tag }}
-                    {% render_field form.password2 class+='form-control' %}
-                    {{ form.password2.errors }}
+                    {% for field in form %}
+                    {{ field.label_tag }}
+                    {% render_field field class+='form-control' %}
+                    {{ field.errors }}
+                    {% endfor %}
                 </div>
                 {{ form.non_field_errors }}
-                <input type="submit" class="btn btn-secondary" value="Submit">
+                <button type="submit" class="btn btn-secondary">Submit</button>
             </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
         </div>
     </div>
 </div>
