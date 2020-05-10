@@ -125,17 +125,20 @@ def lookup(request):
                 query_header='set nocount on;',
                 query_string=query_string,
             )
-            # end
-            df = pandas.DataFrame(tuple(row) for row in response_query_all)
-            df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
-            for index, row in df.iterrows():
-                if row['週期'] == '每日' and row['假日除外'] == 'T':
-                    df.loc[index, '週期'] = '每日(假日除外)'
-            df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
-            df = df.sort_values(by=['建立時間'], ascending=False)
-            df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
-            df_html = df.to_html(justify='left', classes='j3y-df table table-responsive')
-            context['result_html']['目前設置'] = df_html
+            if response_query_all[0][0] == '查詢成功':
+                df = pandas.DataFrame(tuple(row) for row in response_query_all)
+                df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+                for index, row in df.iterrows():
+                    if row['週期'] == '每日' and row['假日除外'] == 'T':
+                        df.loc[index, '週期'] = '每日(假日除外)'
+                df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+                df = df.sort_values(by=['建立時間'], ascending=False)
+                df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
+                df_html = df.to_html(justify='left', classes='j3y-df table table-responsive')
+                context['result_html']['目前設置'] = df_html
+            else:
+                pass
+            context['message'] = response_query_all[0][0]
         except:
             context['message'] = 'Failed.'
     return render(request, 'mail_job/lookup.html', context)
