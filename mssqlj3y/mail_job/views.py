@@ -12,7 +12,6 @@ def setup(request):
         'verbose_name': 'Setup',
         'form': None,
         'message': '',
-        'result': {},
     }
     if request.method != 'POST':
         form = SetupForm()
@@ -99,7 +98,7 @@ def lookup(request):
         'view_name': 'lookup',
         'verbose_name': 'Lookup',
         'message': '',
-        'result': {},
+        'result_html': {},
         'form': LookupForm(),
     }
     if request.method == 'POST':
@@ -136,7 +135,7 @@ def lookup(request):
             df = df.sort_values(by=['建立時間'], ascending=False)
             df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
             df_html = df.to_html(justify='left')
-            context['result']['目前設置'] = df_html
+            context['result_html']['目前設置'] = df_html
         except:
             context['message'] = 'Failed.'
     return render(request, 'mail_job/lookup.html', context)

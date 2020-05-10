@@ -10,7 +10,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        <div class="col-10" style="padding: 1.5rem;">
         </div>
     </div>
     <div class="row justify-content-center">
@@ -32,24 +32,29 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        <div class="col-10" style="padding: 1.5rem;">
         </div>
     </div>
     {% if message %}
     <div class="row justify-content-center">
-        <h4>{{ message }}</h4>
-    </div>
-    {% endif %}
-    {% if result %}
-    {% for key, value in result.items %}
-    <div class="row justify-content-center">
-        {{ value|safe }}
-    </div>
-    {% endfor %}
-    <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem; text-align: center;">
+            <h4>{{ message }}</h4>
         </div>
     </div>
     {% endif %}
+    {% if result_html %}
+    {% for key, value in result_html.items %}
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+            <h4>{{ key }}</h4>
+            {{ value|safe }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
 </div>
 {% endblock %}

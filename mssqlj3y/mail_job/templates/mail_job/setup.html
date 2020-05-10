@@ -10,7 +10,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        <div class="col-10" style="padding: 1.5rem;">
         </div>
     </div>
     <div class="row justify-content-center">
@@ -32,21 +32,19 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
+        <div class="col-10" style="padding: 1.5rem;">
         </div>
     </div>
-</div>
-{% if message %}
-<div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
-    <h4>{{ message }}</h4>
-</div>
-{% endif %}
-{% if result %}
-{% for key, value in result.items %}
-<div class="row justify-content-center" style="padding-top: 1em;padding-bottom: 1em;">
-    {{ value|safe }}
-</div>
-{% endfor %}
-{% endif %}
+    {% if message %}
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem; text-align: center;">
+            <h4>{{ message }}</h4>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
 </div>
 {% endblock %}
