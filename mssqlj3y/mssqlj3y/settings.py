@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks', # this package makes it easier to integrate django templates with bootstrap
     'accounts.apps.AccountsConfig',
     'mail_job.apps.MailJobConfig',
 ]
@@ -131,5 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/uploads/'
 
 # build-in auth system
+
 LOGIN_REDIRECT_URL = '/'
+
 LOGOUT_REDIRECT_URL = '/'

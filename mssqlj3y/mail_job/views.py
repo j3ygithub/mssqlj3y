@@ -8,12 +8,11 @@ from secret.database import login_info
 
 def setup(request):
     context = {
-        'view_name': 'setup',
+        'name': 'setup',
         'verbose_name': 'Setup',
-        'query_param_cookie': {},
+        'form': None,
         'message': '',
         'result': {},
-        'form': None,
     }
     if request.method != 'POST':
         form = SetupForm()
@@ -99,7 +98,6 @@ def lookup(request):
     context = {
         'view_name': 'lookup',
         'verbose_name': 'Lookup',
-        'query_param_cookie': {},
         'message': '',
         'result': {},
         'form': LookupForm(),
