@@ -1,18 +1,13 @@
-.dataframe {
-    border: 1px solid rgba(0,0,0,.25);
+.j3y-df {
+    border: 1px solid rgba(0, 0, 0, .25);
 }
 
-.dataframe table {
-    margin-left:auto; 
-    margin-right:auto;
-}
-
-.dataframe td, th {
+.j3y-df td, th {
     padding: .5rem;
     max-width: 10rem;
     word-wrap: break-word;
 }
 
-.dataframe tr:nth-child(even) {
-    background: rgba(0,0,0,.125);
+.j3y-df tr:nth-child(even) {
+    background: rgba(75, 75, 150, .125);
 }

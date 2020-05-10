@@ -134,7 +134,7 @@ def lookup(request):
             df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
             df = df.sort_values(by=['建立時間'], ascending=False)
             df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
-            df_html = df.to_html(justify='left')
+            df_html = df.to_html(justify='left', classes='j3y-df table table-responsive')
             context['result_html']['目前設置'] = df_html
         except:
             context['message'] = 'Failed.'
