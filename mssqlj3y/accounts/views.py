@@ -5,22 +5,31 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ChiefUserSignUpForm
+import uuid
 
 
 def sign_up_with_chief_email(request): 
     if request.method == 'POST': 
         form = ChiefUserSignUpForm(request.POST) 
         if form.is_valid():
-            chief_user = form.save(commit=False)
-            chief_email = form.cleaned_data.get('email')
-            chief_user.username = chief_email[0:chief_email.index('@')]
+            user = form.save(commit=False)
+            email = form.cleaned_data.get('email')
+            username = email[0:email.index('@')]
+            chief_user.username = username
             random_uuid_password = uuid.uuid4().hex[0:6]
             chief_user.set_password(random_uuid_password)
             chief_user.save()
             # send a random uuid password email
-            recipient = f'{chief_email}'
-            subject = '您在 Mail Job 上建立了一個新帳號'
-            message = f'Hi {chief_user.username},\n\n您在 Mail Job 上註冊了一個新帳號，您的密碼是 {random_uuid_password}，您可以稍後在 Mail Job 上登入並更改這個密碼。\n\nMail Job'
+            recipient = f'{email}'
+            subject = "[Mail Job] You have created an account on Mail Job."
+            try:
+                if '_' in username:
+                    username_readable = ' '.join([ word[0:].upper() + word[1:] for word in username.split('_') ])
+                else:
+                    username_readable = username
+            except:
+                username_readable = username
+            message = f'Hi {username_readable},\n\nYou have created a new account on Mail Job. Your password is {random_uuid_password}, you could login and change it on Mail Job later.\n\nSincerely,\nMail Job'
             send_password_email(
                 subject=subject,
                 message=message,

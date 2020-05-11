@@ -77,8 +77,9 @@ WSGI_APPLICATION = 'mssqlj3y.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-from secret.mssqlj3y.settings import DATABASES
-DATABASES = DATABASES
+from secret.mssqlj3y.settings import (
+    DATABASES,
+)
 
 
 # Password validation
@@ -135,16 +136,11 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # SMTP things
-from secret import smtp_info
-
-EMAIL_BACKEND = smtp_info.EMAIL_BACKEND
-
-EMAIL_HOST = smtp_info.EMAIL_HOST
-
-EMAIL_USE_TLS = smtp_info.EMAIL_USE_TLS
-
-EMAIL_PORT = smtp_info.EMAIL_PORT
-
-EMAIL_HOST_USER = smtp_info.EMAIL_HOST_USER
-
-EMAIL_HOST_PASSWORD = smtp_info.EMAIL_HOST_PASSWORD
+from secret.mssqlj3y.settings import (
+    EMAIL_BACKEND,
+    EMAIL_HOST,
+    EMAIL_USE_TLS,
+    EMAIL_PORT,
+    EMAIL_HOST_USER,
+    EMAIL_HOST_PASSWORD,
+)
