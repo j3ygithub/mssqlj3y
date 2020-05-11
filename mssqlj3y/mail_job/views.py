@@ -3,7 +3,7 @@ import pyodbc
 import pandas
 from .forms import SetupForm, LookupForm, MailJobForm
 from secret.database import login_info
-from django.utils.timezone import now
+from django.utils import timezone
 # Create your views here.
 
 
@@ -265,7 +265,6 @@ def delete(request, seq):
     }
     if request.method == 'POST':
         try:
-            print(now().date())
             # call update sp
             query_string = f"""
             exec mail_job.dbo.update_mail_job
@@ -279,7 +278,7 @@ def delete(request, seq):
             @subject='',
             @body='',
             @recipient='',
-            @stop_date='{now().date()}',
+            @stop_date='{timezone.localtime(timezone.now()).date()}',
             @update_by=''
             ;
             """
