@@ -4,19 +4,69 @@ import pandas
 from .forms import SetupForm, LookupForm, MailJobForm
 from secret.database import login_info
 from django.utils import timezone
+from django.shortcuts import redirect
 # Create your views here.
 
 
-def setup(request):
+def change_list(request, message=None):
     context = {
-        'name': 'setup',
-        'verbose_name': 'Setup',
+        'view_name': 'change_list',
+        'verbose_name': 'Change_list',
+        'message': '',
+        'result_html': {},
+    }
+    department = ''
+    try:
+        # call query sp
+        query_string = f"""
+        exec mail_job.dbo.show_mail_job
+        @seq='',
+        @department='{department}'
+        ;
+        """
+        response_query_all = exec_sp(
+            driver=login_info['driver'],
+            server=login_info['server'],
+            database=login_info['database'],
+            uid=login_info['uid'],
+            pwd=login_info['pwd'],
+            query_header='set nocount on;',
+            query_string=query_string,
+        )
+        if response_query_all[0][0] == '查詢成功':
+            df = pandas.DataFrame(tuple(row) for row in response_query_all)
+            df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+            for index, row in df.iterrows():
+                # added a href
+                df.loc[index, '動作'] = f'<a href="/mail_job/{row["項次"]}/change/">修改</a>/<a href="/mail_job/{row["項次"]}/delete/">註銷</a>'
+                # merge the period and the weekend flag
+                if row['週期'] == '每日' and row['假日除外'] == 'T':
+                    df.loc[index, '週期'] = '每日(假日除外)'
+            df = df[['動作', '部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+
+            df = df.sort_values(by=['建立時間'], ascending=False)
+            df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
+            df_html = df.to_html(justify='left', classes='j3y-df table table-responsive', escape=False)
+            context['result_html']['目前設置'] = df_html
+        else:
+            pass
+    except:
+        context['message'] = '未知的錯誤，無法返回資料。'
+    return render(request, 'mail_job/change_list.html', context)
+
+
+
+def add(request):
+    context = {
+        'name': 'add',
+        'verbose_name': 'Add',
         'form': None,
         'message': '',
     }
     if request.method != 'POST':
         form = SetupForm()
         context['form'] = form
+        return render(request, 'mail_job/add.html', context)
     else:
         form = SetupForm(request.POST)
         context['form'] = form
@@ -91,62 +141,7 @@ def setup(request):
                 context['message'] += f'\n{response_do_test}'
         except:
             pass
-    return render(request, 'mail_job/setup.html', context)
-
-
-def lookup(request):
-    context = {
-        'view_name': 'lookup',
-        'verbose_name': 'Lookup',
-        'message': '',
-        'result_html': {},
-        'form': LookupForm(),
-    }
-    if request.method == 'POST':
-        form = LookupForm(request.POST)
-        context['form'] = form
-        if form.is_valid():
-            department = form.cleaned_data['department']
-        try:
-            if department == 'all':
-                department = ''            
-            # call query sp
-            query_string = f"""
-            exec mail_job.dbo.show_mail_job
-            @seq='',
-            @department='{department}'
-            ;
-            """
-            response_query_all = exec_sp(
-                driver=login_info['driver'],
-                server=login_info['server'],
-                database=login_info['database'],
-                uid=login_info['uid'],
-                pwd=login_info['pwd'],
-                query_header='set nocount on;',
-                query_string=query_string,
-            )
-            if response_query_all[0][0] == '查詢成功':
-                df = pandas.DataFrame(tuple(row) for row in response_query_all)
-                df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
-                for index, row in df.iterrows():
-                    # added a href
-                    df.loc[index, '動作'] = f'<a href="/mail_job/{row["項次"]}/change/">修改</a>/<a href="/mail_job/{row["項次"]}/delete/">註銷</a>'
-                    # merge the period and the weekend flag
-                    if row['週期'] == '每日' and row['假日除外'] == 'T':
-                        df.loc[index, '週期'] = '每日(假日除外)'
-                df = df[['動作', '部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
-
-                df = df.sort_values(by=['建立時間'], ascending=False)
-                df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
-                df_html = df.to_html(justify='left', classes='j3y-df table table-responsive', escape=False)
-                context['result_html']['目前設置'] = df_html
-            else:
-                pass
-            context['message'] = response_query_all[0][0]
-        except:
-            context['message'] = 'Failed.'
-    return render(request, 'mail_job/lookup.html', context)
+        return redirect('/')
 
 
 def change(request, seq):
@@ -259,11 +254,13 @@ def change(request, seq):
 
 def delete(request, seq):
     context = {
+        'method': 'GET',
         'view_name': 'delete',
         'verbose_name': 'Delete',
         'message': '',
     }
     if request.method == 'POST':
+        context['method'] = 'POST'
         try:
             # call update sp
             query_string = f"""
@@ -291,9 +288,13 @@ def delete(request, seq):
                 query_header='set nocount on;',
                 query_string=query_string,
             )
-            context['message'] = response_query_all[0][0]
+            print(response_query_all)
+            if response_query_all[0][0] == '修改成功':
+                context['message'] = '已註銷成功。'
+            else:
+                context['message'] = '註銷失敗，該資料可能已不存在。'
         except:
-            context['message'] = 'Failed.'
+            context['message'] = '未知的錯誤，無法返回資料。'
     else:
         pass
     return render(request, 'mail_job/delete.html', context)

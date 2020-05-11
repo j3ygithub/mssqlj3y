@@ -22,6 +22,7 @@
         </div>
     </div>
     {% endif %}
+    {% if method == 'GET' %}
     <div class="row justify-content-center">
         <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
             <h2>您確定嗎？</h2>
@@ -41,5 +42,6 @@
         <div class="col-10" style="padding: 1.5rem;">
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

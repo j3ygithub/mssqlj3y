@@ -1,6 +1,11 @@
 from django import forms
-from django.utils.timezone import now
+from django.utils import timezone
 from django.contrib.admin.widgets import AdminDateWidget
+
+
+def today():
+    return timezone.localtime(timezone.now()).date()
+
 
 
 class SetupForm(forms.Form):
@@ -52,7 +57,7 @@ class SetupForm(forms.Form):
             },
         ),
         label='通知起始日',
-        initial=now,
+        initial=today,
     )
     choices_period = [
         ('單次', '單次'),
@@ -197,7 +202,7 @@ class MailJobForm(forms.Form):
             },
         ),
         label='通知起始日',
-        initial=now,
+        initial=today,
     )
     choices_period = [
         ('單次', '單次'),
