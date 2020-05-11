@@ -18,17 +18,27 @@
             <h2><br></h2>
             <form method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                    {% for field in form %}
-                    {{ field.label_tag }}
-                    {% render_field field class+='form-control' %}
-                    {% if field.errors %}
-                    <p>{{ field.errors }}</p>
-                    {% endif %}
-                    {% endfor %}
+                {% for field in form %}
+                <div class="form-row">
+                    <div class="form-group col">
+                        {{ field.label_tag }}
+                        {% render_field field class+='form-control' %}
+                        {% if field.errors %}
+                        <p>{{ field.errors }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-                {{ form.non_field_errors }}
-                <button type="submit" class="btn btn-secondary">送出</button>
+                {% endfor %}
+                <div class="form-row">
+                    <div class="form-group col">
+                        {{ form.non_field_errors }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <button type="submit" class="btn btn-primary btn-block">送出</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
