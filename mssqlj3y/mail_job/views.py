@@ -3,6 +3,7 @@ import pyodbc
 import pandas
 from .forms import SetupForm, LookupForm, MailJobForm
 from secret.database import login_info
+from django.utils.timezone import now
 # Create your views here.
 
 
@@ -262,6 +263,40 @@ def delete(request, seq):
         'verbose_name': 'Delete',
         'message': '',
     }
+    if request.method == 'POST':
+        try:
+            print(now().date())
+            # call update sp
+            query_string = f"""
+            exec mail_job.dbo.update_mail_job
+            @seq='{seq}',
+            @department='',
+            @event_class='',
+            @event='',
+            @note_date='',
+            @period='',
+            @weekend_flag='',
+            @subject='',
+            @body='',
+            @recipient='',
+            @stop_date='{now().date()}',
+            @update_by=''
+            ;
+            """
+            response_query_all = exec_sp(
+                driver=login_info['driver'],
+                server=login_info['server'],
+                database=login_info['database'],
+                uid=login_info['uid'],
+                pwd=login_info['pwd'],
+                query_header='set nocount on;',
+                query_string=query_string,
+            )
+            context['message'] = response_query_all[0][0]
+        except:
+            context['message'] = 'Failed.'
+    else:
+        pass
     return render(request, 'mail_job/delete.html', context)
 
 
