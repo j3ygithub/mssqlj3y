@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.views.generic import RedirectView
-from .views import setup, lookup, change
+from .views import setup, lookup, change, delete
 
 
 app_name = 'mail_job'
@@ -25,4 +25,5 @@ urlpatterns = [
     path('lookup/', lookup, name='lookup'),
     path('setup/', setup, name='setup'),
     path('<int:seq>/change/', change, name='change'),
+    path('<int:seq>/delete/', delete, name='delete'),
 ]

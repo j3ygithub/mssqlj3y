@@ -1,0 +1,45 @@
+{% extends 'mail_job/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extracss %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+    {% if message %}
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
+            <h6>{{ message }}</h6>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
+            <h2>您確定嗎？</h2>
+            <h2><br></h2>
+            <p>確定要註銷這筆 Mail Job 嗎？</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col">
+                        <button type="submit" class="btn btn-danger btn-block">註銷</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+</div>
+{% endblock %}

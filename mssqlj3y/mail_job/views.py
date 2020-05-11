@@ -256,6 +256,15 @@ def change(request, seq):
     return render(request, 'mail_job/change.html', context)
 
 
+def delete(request, seq):
+    context = {
+        'view_name': 'delete',
+        'verbose_name': 'Delete',
+        'message': '',
+    }
+    return render(request, 'mail_job/delete.html', context)
+
+
 def exec_sp(driver, server, database, uid, pwd, query_header, query_string):
     driver= driver
     server = server
