@@ -34,7 +34,7 @@
                 <li class="nav-item{% if request.path == '/mail_job/lookup/' %} active{% endif %}">
                     <a class="nav-link" href="/mail_job/lookup/">Lookup</a>
                 </li>
-                <li class="nav-item dropdown{% if request.path == '/accounts/login/' or request.path == '/accounts/sign_up/' %} active{% endif %}">
+                <li class="nav-item dropdown{% if request.path|slice:":9" == '/accounts' %} active{% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Accounts
@@ -42,6 +42,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/accounts/login/">Login</a>
                         <a class="dropdown-item" href="/accounts/sign_up/">Sign up</a>
+                        <a class="dropdown-item" href="/accounts/password_reset/">Password reset</a>
                     </div>
                 </li>
             </ul>
