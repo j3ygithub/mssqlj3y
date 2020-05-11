@@ -153,8 +153,8 @@ def change(request, seq):
         'view_name': 'change',
         'verbose_name': 'Change',
         'message': '',
-        'result_html': {}, # for test
         'form': None,
+        'delete_url': f'/mail_job/{seq}/delete/',
     }
     if request.method == 'POST':
         form = MailJobForm(request.POST)
