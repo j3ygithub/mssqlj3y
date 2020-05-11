@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import pyodbc
 import pandas
-from .forms import SetupForm, LookupForm
+from .forms import SetupForm, LookupForm, MailJobForm
 from secret.database import login_info
 # Create your views here.
 
@@ -129,12 +129,16 @@ def lookup(request):
                 df = pandas.DataFrame(tuple(row) for row in response_query_all)
                 df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
                 for index, row in df.iterrows():
+                    # added a href
+                    df.loc[index, '動作'] = f'<a href="/mail_job/{row["項次"]}/change/">修改</a>/<a href="/mail_job/{row["項次"]}/delete/">註銷</a>'
+                    # merge the period and the weekend flag
                     if row['週期'] == '每日' and row['假日除外'] == 'T':
                         df.loc[index, '週期'] = '每日(假日除外)'
-                df = df[['部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+                df = df[['動作', '部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容', '收件人', '建立者', '建立時間']]
+
                 df = df.sort_values(by=['建立時間'], ascending=False)
                 df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
-                df_html = df.to_html(justify='left', classes='j3y-df table table-responsive')
+                df_html = df.to_html(justify='left', classes='j3y-df table table-responsive', escape=False)
                 context['result_html']['目前設置'] = df_html
             else:
                 pass
@@ -142,6 +146,114 @@ def lookup(request):
         except:
             context['message'] = 'Failed.'
     return render(request, 'mail_job/lookup.html', context)
+
+
+def change(request, seq):
+    context = {
+        'view_name': 'change',
+        'verbose_name': 'Change',
+        'message': '',
+        'result_html': {}, # for test
+        'form': None,
+    }
+    if request.method == 'POST':
+        form = MailJobForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            department = form.cleaned_data['department']
+            event_class = form.cleaned_data['event_class']
+            event = form.cleaned_data['event']
+            note_date = form.cleaned_data['note_date']
+            period = form.cleaned_data['period']
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            recipient = form.cleaned_data['recipient']
+            if request.user.is_authenticated:
+                updated_by = request.user
+            else:
+                updated_by = request.META.get('REMOTE_ADDR')
+            if period == '每日(假日除外)':
+                period = '每日'
+                weekend_flag = 'T'
+            else:
+                weekend_flag = 'F'
+        try:
+            # call update sp
+            query_string = f"""
+            exec mail_job.dbo.update_mail_job
+            @seq='{seq}',
+            @department='{department}',
+            @event_class='{event_class}',
+            @event='{event}',
+            @note_date='{note_date}',
+            @period='{period}',
+            @weekend_flag='{weekend_flag}',
+            @subject='{subject}',
+            @body='{body}',
+            @recipient='{recipient}',
+            @stop_date='',
+            @update_by='{updated_by}'
+            ;
+            """
+            response_query_all = exec_sp(
+                driver=login_info['driver'],
+                server=login_info['server'],
+                database=login_info['database'],
+                uid=login_info['uid'],
+                pwd=login_info['pwd'],
+                query_header='set nocount on;',
+                query_string=query_string,
+            )
+            context['message'] = response_query_all[0][0]
+        except:
+            context['message'] = 'Failed.'
+    else:
+        try:
+            # call query sp
+            query_string = f"""
+            exec mail_job.dbo.show_mail_job
+            @seq='{seq}',
+            @department=''
+            ;
+            """
+            response_query_all = exec_sp(
+                driver=login_info['driver'],
+                server=login_info['server'],
+                database=login_info['database'],
+                uid=login_info['uid'],
+                pwd=login_info['pwd'],
+                query_header='set nocount on;',
+                query_string=query_string,
+            )
+        except:
+            context['message'] = '未知的錯誤，無法返回該筆資料。'
+        try:
+            df = pandas.DataFrame(tuple(row) for row in response_query_all)
+            if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
+                df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+                for index, row in df.iterrows():
+                    if row['週期'] == '每日' and row['假日除外'] == 'T':
+                        df.loc[index, '週期'] = '每日(假日除外)'
+                df = df.sort_values(by=['建立時間'], ascending=False)
+                form = MailJobForm(
+                    initial={
+                        'department': df.loc[0, '部門'],
+                        'event_class': df.loc[0, '事件類型'],
+                        'event': df.loc[0, '事件描述'],
+                        'note_date': df.loc[0, '通知起始日'],
+                        'period': df.loc[0, '週期'],
+                        'subject': df.loc[0, '郵件主旨'],
+                        'body': df.loc[0, '郵件內容'],
+                        'recipient': df.loc[0, '收件人'],
+                    },
+                )
+                context['form'] = form
+                context['message'] = '以下為目前的設置，請填入欲修改的部分後送出。'
+            else:
+                context['message'] = '查無這筆資料，請確認該資料是否已被刪除。'
+        except:
+            context['message'] = '未知的錯誤，無法返回資料。'
+    return render(request, 'mail_job/change.html', context)
 
 
 def exec_sp(driver, server, database, uid, pwd, query_header, query_string):

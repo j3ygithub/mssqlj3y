@@ -1,0 +1,52 @@
+{% extends 'mail_job/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extracss %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+    {% if message %}
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
+            <h6>{{ message }}</h6>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+    {% endif %}
+    {% if form %}
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
+            <h2>Change</h2>
+            <h2><br></h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in form %}
+                    {{ field.label_tag }}
+                    {% render_field field class+='form-control' %}
+                    {% if field.errors %}
+                    <p>{{ field.errors }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {{ form.non_field_errors }}
+                <button type="submit" class="btn btn-secondary">送出</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-10" style="padding: 1.5rem;">
+        </div>
+    </div>
+</div>
+{% endblock %}
