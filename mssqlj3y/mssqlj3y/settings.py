@@ -31,15 +31,16 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks', # this package makes it easier to integrate django templates with bootstrap
+    'accounts.apps.AccountsConfig',
+    'mail_job.apps.MailJobConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'widget_tweaks', # this package makes it easier to integrate django templates with bootstrap
-    'accounts.apps.AccountsConfig',
-    'mail_job.apps.MailJobConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,20 @@ MEDIA_URL = '/uploads/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+# SMTP things
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_USE_TLS = True
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'j3ycode@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'j3ycode46wj6'
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
