@@ -139,18 +139,16 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # SMTP things
+from secret import smtp_info
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = smtp_info.EMAIL_BACKEND
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = smtp_info.EMAIL_HOST
 
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = smtp_info.EMAIL_USE_TLS
 
-EMAIL_PORT = 587
+EMAIL_PORT = smtp_info.EMAIL_PORT
 
-EMAIL_HOST_USER = 'j3ycode@gmail.com'
+EMAIL_HOST_USER = smtp_info.EMAIL_HOST_USER
 
-EMAIL_HOST_PASSWORD = 'j3ycode46wj6'
-
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-
+EMAIL_HOST_PASSWORD = smtp_info.EMAIL_HOST_PASSWORD
