@@ -6,6 +6,41 @@ from django.core.mail import send_mail
 from django.conf import settings
 import uuid
 
+from django import forms
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
+
+class ChiefUserSignUpForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise ValidationError('This Email already exists.')
+        return email
+
+
+def chief_user_sign_up(request): 
+    if request.method == 'POST': 
+        form = ChiefUserSignUpForm(request.POST) 
+        if form.is_valid():
+            chief_user = form.save(commit=False)
+            chief_email = form.cleaned_data.get('email')
+            chief_user.username = chief_email[0:chief_email.index('@')]
+            chief_user.password = uuid.uuid4().hex[0:6]
+            chief_user.save()
+            return redirect('/')
+    else: 
+        form = ChiefUserSignUpForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'registration/chief_user_sign_up.html', context) 
+
+
 def sign_up(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

@@ -2,8 +2,12 @@
 {% load static %}
 {% load widget_tweaks %}
 
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/sign_up.css' %}">
+{% endblock %}
+
 {% block title %}
-<title>Login | Mail Job</title>
+<title>Sign up | Mail Job</title>
 {% endblock title %}
 
 {% block content %}
@@ -14,16 +18,16 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
-            <h2>Login</h2>
+            <h2>Sign up</h2>
             <h2><br></h2>
-            <p>Don't have a account yet? <a href="/accounts/sign_up" style="text-decoration: none">Sign up</a> now.</p>
+            <p>Already got an account? <a href="/accounts/login" style="text-decoration: none">Login</a> here.</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="form-row">
-                    <div class="form-group col">                        
+                    <div class="form-group col">
                         {% render_field field class+='form-control' placeholder=field.label %}
-                        <p>{{ field.errors }}</p>                        
+                        <p>{{ field.errors }}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -34,11 +38,10 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block">Sign up</button>
                     </div>
                 </div>
             </form>
-            <p><a href="/accounts/password_reset" style="text-decoration: none">Forget your password?</a></p>
         </div>
     </div>
     <div class="row justify-content-center">
