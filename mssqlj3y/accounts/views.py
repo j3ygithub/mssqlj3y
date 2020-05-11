@@ -18,28 +18,52 @@ class ChiefUserSignUpForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
+        if '@chief.com.tw' not in email:
+            raise ValidationError(f'The Email address must contain "@chief.com.tw".')
         if User.objects.filter(email=email).exists():
-            raise ValidationError('This Email already exists.')
+            raise ValidationError(f'This Email has already been used.')
         return email
 
 
-def chief_user_sign_up(request): 
+def sign_up_with_chief_email(request): 
     if request.method == 'POST': 
         form = ChiefUserSignUpForm(request.POST) 
         if form.is_valid():
             chief_user = form.save(commit=False)
             chief_email = form.cleaned_data.get('email')
             chief_user.username = chief_email[0:chief_email.index('@')]
-            chief_user.password = uuid.uuid4().hex[0:6]
+            random_uuid_password = uuid.uuid4().hex[0:6]
+            chief_user.set_password(random_uuid_password)
             chief_user.save()
-            return redirect('/')
+            # send a random uuid password email
+            recipient = f'{chief_email}'
+            subject = '您在 Mail Job 上建立了一個新帳號'
+            message = f'Hi {chief_user.username},\n\n您在 Mail Job 上註冊了一個新帳號，您的密碼是 {random_uuid_password}，您可以稍後在 Mail Job 上登入並更改這個密碼。\n\nMail Job'
+            send_password_email(
+                subject=subject,
+                message=message,
+                recipient=recipient,
+            )
+            return redirect('/accounts/password_reset/done/')
     else: 
         form = ChiefUserSignUpForm()
     context = {
         'form': form,
     }
-    return render(request, 'registration/chief_user_sign_up.html', context) 
+    return render(request, 'registration/sign_up_with_chief_email.html', context) 
 
+# a email-sending script, not a view
+def send_password_email(subject, message, recipient):
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[recipient],
+            fail_silently=False,
+        )
+    except:
+        pass
 
 def sign_up(request):
     if request.method == 'POST':
@@ -57,31 +81,3 @@ def sign_up(request):
         'form': form,
     }
     return render(request, 'registration/sign_up.html', context)
-
-
-first_name = 'Jimmy'
-last_name = 'Lin'
-recipient = 'jimmy_lin@chief.com.tw'
-subject = '您在 Mail Job 上註冊了一個新帳號'
-message = f"""Hi {first_name} {last_name},
-
-您在 Mail Job 上註冊了一個新帳號，您的密碼是 1b386d，稍後您可以在 Mail Job 上登入並更改這個密碼。
-
-Mail Job
-"""
-from_email = settings.EMAIL_HOST_USER
-
-def send_email(request):
-    response = send_mail(
-        subject=subject,
-        message=message,
-        from_email=from_email,
-        recipient_list=[recipient],
-        fail_silently=False,
-    )
-    try:
-        if response == 1:
-            return HttpResponse(f'Email has been sent to {recipient} successfully!')
-    except:
-        pass
-    return HttpResponse(f'Fail. Email has not been sent.')
