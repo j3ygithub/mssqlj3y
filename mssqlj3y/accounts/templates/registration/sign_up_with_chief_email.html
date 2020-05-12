@@ -2,25 +2,17 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block extracss %}
-<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/sign_up.css' %}">
-{% endblock %}
-
 {% block title %}
 <title>Sign up | Mail Job</title>
 {% endblock title %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
-            <h2>Sign up with Chief Email</h2>
+<div class="container-fluid h-75">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-auto j3y-center" style="padding: 1.5rem; width: 24rem;">
+            <h1 style="text-align: center;">Sign Up</h1>
             <h2><br></h2>
-            <p>Already got an account? <a href="/accounts/login" style="text-decoration: none">Login</a> here.</p>
+            <p>Already got an account? <a href="{% url 'login' %}" style="text-decoration: none">Login</a> here.</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -44,10 +36,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
         </div>
     </div>
 </div>
