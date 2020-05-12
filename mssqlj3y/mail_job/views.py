@@ -308,6 +308,10 @@ def delete(request, seq):
         context['message'] = '未知的錯誤，無法返回該筆資料。'
     if request.method == 'POST':
         context['method'] = 'POST'
+        if request.user.is_authenticated:
+            updated_by = request.user
+        else:
+            updated_by = request.META.get('REMOTE_ADDR')
         try:
             # call update sp
             query_string = f"""
@@ -323,7 +327,7 @@ def delete(request, seq):
             @body='',
             @recipient='',
             @stop_date='{timezone.localtime(timezone.now()).date()}',
-            @update_by=''
+            @update_by='{updated_by}'
             ;
             """
             response_query_all = exec_sp(
