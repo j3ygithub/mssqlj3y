@@ -12,8 +12,6 @@ def change_list(request, from_add=False, message_from_add=''):
     if not request.user.is_authenticated:
         return redirect('/accounts/login')
     context = {
-        'view_name': 'change_list',
-        'verbose_name': 'Change_list',
         'message': '',
         'result_html': {},
     }
@@ -62,8 +60,6 @@ def add(request):
     if not request.user.is_authenticated:
         return redirect('/accounts/login/')
     context = {
-        'name': 'add',
-        'verbose_name': 'Add',
         'form': None,
         'message': '',
     }
@@ -153,8 +149,6 @@ def change(request, seq):
     if not request.user.is_authenticated:
         return redirect('/accounts/login/')
     context = {
-        'view_name': 'change',
-        'verbose_name': 'Change',
         'message': '',
         'form': None,
         'delete_url': f'/mail_job/{seq}/delete/',
@@ -270,8 +264,6 @@ def delete(request, seq):
         return redirect('/accounts/login/')
     context = {
         'method': 'GET',
-        'view_name': 'delete',
-        'verbose_name': 'Delete',
         'message': '',
     }
     try:

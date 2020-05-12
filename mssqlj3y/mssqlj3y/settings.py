@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^(l%*-@$70+dvo#)l3@((xdm=7(_&(nogjv-h)cd@=3dt*_&5p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+from secret.mssqlj3y.settings import DEBUG
 
 ALLOWED_HOSTS = ['*']
 
