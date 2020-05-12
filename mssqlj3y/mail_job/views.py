@@ -9,6 +9,8 @@ from django.shortcuts import redirect
 
 
 def change_list(request, message=None):
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login')
     context = {
         'view_name': 'change_list',
         'verbose_name': 'Change_list',
@@ -57,6 +59,8 @@ def change_list(request, message=None):
 
 
 def add(request):
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login')
     context = {
         'name': 'add',
         'verbose_name': 'Add',
