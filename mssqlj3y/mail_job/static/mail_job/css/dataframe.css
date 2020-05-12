@@ -1,13 +1,4 @@
-.j3y-df {
-    border: 1px solid rgba(0, 0, 0, .25);
-}
-
 .j3y-df td, th {
-    padding: .5rem;
-    max-width: 10rem;
+    max-width: 9rem;
     word-wrap: break-word;
-}
-
-.j3y-df tr:nth-child(even) {
-    background: rgba(75, 75, 150, .125);
 }

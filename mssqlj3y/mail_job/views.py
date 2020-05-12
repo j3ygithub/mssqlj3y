@@ -46,7 +46,7 @@ def change_list(request, from_add=False, message_from_add=''):
 
             df = df.sort_values(by=['建立時間'], ascending=False)
             df.index = pandas.RangeIndex(start=1, stop=len(df)+1, step=1)
-            df_html = df.to_html(justify='left', classes='j3y-df table table-responsive', escape=False)
+            df_html = df.to_html(justify='left', classes='j3y-df table table-light table-bordered table-striped table-responsive', escape=False)
             context['result_html']['目前設置'] = df_html
         else:
             pass
