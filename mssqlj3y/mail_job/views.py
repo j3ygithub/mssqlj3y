@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 # Create your views here.
 
 
-def change_list(request, message=None):
+def change_list(request, from_add=False, message_from_add=''):
     if not request.user.is_authenticated:
         return redirect('/accounts/login')
     context = {
@@ -53,14 +53,14 @@ def change_list(request, message=None):
         else:
             pass
     except:
-        context['message'] = '未知的錯誤，無法返回資料。'
+        context['message'] += '\n未知的錯誤，無法返回資料。'
     return render(request, 'mail_job/change_list.html', context)
 
 
 
 def add(request):
     if not request.user.is_authenticated:
-        return redirect('/accounts/login')
+        return redirect('/accounts/login/')
     context = {
         'name': 'add',
         'verbose_name': 'Add',
@@ -71,7 +71,7 @@ def add(request):
         form = SetupForm()
         context['form'] = form
         return render(request, 'mail_job/add.html', context)
-    else:
+    elif request.method == 'POST':
         form = SetupForm(request.POST)
         context['form'] = form
         if form.is_valid():
@@ -120,35 +120,38 @@ def add(request):
             )
             # end
             context['message'] = response_insert[0][0]
-        except:
-            context['message'] = 'Failed.'
-        try:
-            # call do-test sp
             if followed_action == '立即發出一封測試信件' and response_insert[0][0] == '新增成功':
-                seq = response_insert[0][1]
-                query_string = f"""
-                exec mail_job.dbo.do_mail_job_onetime
-                @seq_action='{seq}'
-                ;
-                """
-                response_do_test = exec_sp(
-                    driver=login_info['driver'],
-                    server=login_info['server'],
-                    database=login_info['database'],
-                    uid=login_info['uid'],
-                    pwd=login_info['pwd'],
-                    query_header='set nocount on;',
-                    query_string=query_string,
-                )
-            # end
-            if response_do_test:
-                context['message'] += f'\n{response_do_test}'
+                try:
+                    # call do-test sp
+                    seq = response_insert[0][1]
+                    query_string = f"""
+                    exec mail_job.dbo.do_mail_job_onetime
+                    @seq_action='{seq}'
+                    ;
+                    """
+                    response_do_test = exec_sp(
+                        driver=login_info['driver'],
+                        server=login_info['server'],
+                        database=login_info['database'],
+                        uid=login_info['uid'],
+                        pwd=login_info['pwd'],
+                        query_header='set nocount on;',
+                        query_string=query_string,
+                    )
+                    # end
+                    context['message'] += '\n已經發出測試信。'
+                except:
+                    pass
+            context['form'] = SetupForm()
         except:
-            pass
-        return redirect('/')
+            context['message'] = '未知的異常，無法返回資料。'
+            context['form'] = SetupForm()
+        return render(request, 'mail_job/add.html', context)
 
 
 def change(request, seq):
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login/')
     context = {
         'view_name': 'change',
         'verbose_name': 'Change',
@@ -232,6 +235,12 @@ def change(request, seq):
             if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
                 df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
                 for index, row in df.iterrows():
+                    try:
+                        if not str(request.user) == row['建立者'] and not request.user.is_staff:
+                            context['message'] = '你只能修改自己建立的 Mail Job。'
+                            return render(request, 'mail_job/change.html', context)
+                    except:
+                        pass
                     if row['週期'] == '每日' and row['假日除外'] == 'T':
                         df.loc[index, '週期'] = '每日(假日除外)'
                 df = df.sort_values(by=['建立時間'], ascending=False)
@@ -257,12 +266,46 @@ def change(request, seq):
 
 
 def delete(request, seq):
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login/')
     context = {
         'method': 'GET',
         'view_name': 'delete',
         'verbose_name': 'Delete',
         'message': '',
     }
+    try:
+        # call query sp
+        query_string = f"""
+        exec mail_job.dbo.show_mail_job
+        @seq='{seq}',
+        @department=''
+        ;
+        """
+        response_query_all = exec_sp(
+            driver=login_info['driver'],
+            server=login_info['server'],
+            database=login_info['database'],
+            uid=login_info['uid'],
+            pwd=login_info['pwd'],
+            query_header='set nocount on;',
+            query_string=query_string,
+        )
+    except:
+        context['message'] = '未知的錯誤，無法返回該筆資料。'
+    try:
+        df = pandas.DataFrame(tuple(row) for row in response_query_all)
+        if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
+            df.columns = ['查詢結果', '項次', '部門', '事件類型', '事件描述', '通知起始日', '週期', '假日除外', '郵件主旨', '郵件內容', '收件人', '建立時間', '規則終止日', '建立者', '修改者', '修改日期', ]
+            for index, row in df.iterrows():
+                try:
+                    if not str(request.user) == row['建立者'] and not request.user.is_staff:
+                        context['message'] = '你只能註銷自己建立的 Mail Job。'
+                        return render(request, 'mail_job/change.html', context)
+                except:
+                    pass
+    except:
+        context['message'] = '未知的錯誤，無法返回該筆資料。'
     if request.method == 'POST':
         context['method'] = 'POST'
         try:

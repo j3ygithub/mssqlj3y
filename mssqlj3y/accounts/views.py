@@ -15,16 +15,16 @@ def sign_up_with_chief_email(request):
             user = form.save(commit=False)
             email = form.cleaned_data.get('email')
             username = email[0:email.index('@')]
-            chief_user.username = username
+            user.username = username
             random_uuid_password = uuid.uuid4().hex[0:6]
-            chief_user.set_password(random_uuid_password)
-            chief_user.save()
+            user.set_password(random_uuid_password)
+            user.save()
             # send a random uuid password email
             recipient = f'{email}'
             subject = "[Mail Job] You have created an account on Mail Job."
             try:
                 if '_' in username:
-                    username_readable = ' '.join([ word[0:].upper() + word[1:] for word in username.split('_') ])
+                    username_readable = ' '.join([ word[0].upper() + word[1:] for word in username.split('_') ])
                 else:
                     username_readable = username
             except:
