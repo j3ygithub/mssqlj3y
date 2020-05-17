@@ -9,13 +9,13 @@ from .mssql_sp import exec_sp
 # Create your views here.
 
 
-def change_list(request, from_add=False, message_from_add=''):
-    if not request.user.is_authenticated:
-        return redirect(reverse('login'))
+def change_list(request):
     context = {
-        'message': '',
+        'messages': {},
         'htmls': {},
     }
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
     try:
         # call query sp
         query_string = f"""exec mail_job.dbo.show_mail_job @seq='', @department='';"""
@@ -42,9 +42,10 @@ def change_list(request, from_add=False, message_from_add=''):
             ]
             for index, row in df.iterrows():
                 # added a href
-                df.loc[
-                    index,
-                    '動作'] = f'<a href="/mail_job/{row["項次"]}/change/">修改</a>/<a href="/mail_job/{row["項次"]}/delete/">註銷</a>'
+                html = f'<a href="/mail_job/{row["項次"]}/change/">修改</a>'
+                html += f'<br><a href="/mail_job/{row["項次"]}/delete/">註銷</a>'
+                html += f'<br><a href="/mail_job/{row["項次"]}/mail-test/">測試</a>'
+                df.loc[index, '動作'] = html
                 # merge the period and the weekend flag
                 if row['週期'] == '每日' and row['假日除外'] == 'T':
                     df.loc[index, '週期'] = '每日(假日除外)'
@@ -71,19 +72,20 @@ def change_list(request, from_add=False, message_from_add=''):
             )
             context['htmls']['currently'] = df_html
         else:
-            context['message'] += '\n未知的錯誤，返回的資料格式不正確。'
+            context['messages']['change_list'] = '未知的錯誤，返回的資料格式不正確。'
     except:
-        context['message'] += '\n未知的錯誤，無法返回資料。'
+        context['messages']['change_list'] = '未知的錯誤，無法返回資料。'
+        context['messages']['dashboard'] = '已成功發出測試信。'
     return render(request, 'mail_job/change_list.html', context)
 
 
 def add(request):
-    if not request.user.is_authenticated:
-        return redirect('/accounts/login/')
     context = {
         'form': None,
         'message': '',
     }
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
     if request.method != 'POST':
         form = SetupForm()
         context['form'] = form
@@ -270,10 +272,9 @@ def change(request, seq):
 
 def delete(request, seq):
     if not request.user.is_authenticated:
-        return redirect('/accounts/login/')
+        return redirect(reverse('login'))
     context = {
-        'method': 'GET',
-        'message': '',
+        'messages': {},
     }
     try:
         # call query sp
@@ -285,7 +286,7 @@ def delete(request, seq):
         """
         response_query_all = exec_sp(query_string=query_string)
     except:
-        context['message'] = '未知的錯誤，無法返回該筆資料。'
+        context['messages']['change_list'] = '未知的錯誤，無法返回該筆資料。'
     try:
         df = pandas.DataFrame(tuple(row) for row in response_query_all)
         if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
@@ -311,14 +312,13 @@ def delete(request, seq):
                 try:
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
-                        context['message'] = '你只能註銷自己建立的 Mail Job。'
+                        context['messages']['delete'] = '你只能註銷自己建立的 Mail Job。'
                         return render(request, 'mail_job/change.html', context)
                 except:
                     pass
     except:
-        context['message'] = '未知的錯誤，無法返回該筆資料。'
+        context['messages']['delete'] = '未知的錯誤，無法返回該筆資料。'
     if request.method == 'POST':
-        context['method'] = 'POST'
         if request.user.is_authenticated:
             updated_by = request.user
         else:
@@ -343,11 +343,73 @@ def delete(request, seq):
             """
             response_query_all = exec_sp(query_string=query_string)
             if response_query_all[0][0] == '修改成功':
-                context['message'] = '已註銷成功。'
+                context['messages']['delete'] = '已註銷成功。'
             else:
-                context['message'] = '註銷失敗，該資料可能已不存在。'
+                context['messages']['delete'] = '註銷失敗，該資料可能已不存在。'
         except:
-            context['message'] = '未知的錯誤，無法返回資料。'
-    else:
-        pass
+            context['messages']['delete'] = '未知的錯誤，無法返回資料。'
     return render(request, 'mail_job/delete.html', context)
+
+
+def mail_test(request, seq):
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+    context = {
+        'messages': {},
+    }
+    try:
+        # call query sp
+        query_string = f"""
+        exec mail_job.dbo.show_mail_job
+        @seq='{seq}',
+        @department=''
+        ;
+        """
+        response_query_all = exec_sp(query_string=query_string)
+    except:
+        context['messages']['change_list'] = '未知的錯誤，無法返回該筆資料。'
+    try:
+        df = pandas.DataFrame(tuple(row) for row in response_query_all)
+        if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
+            df.columns = [
+                '查詢結果',
+                '項次',
+                '部門',
+                '事件類型',
+                '事件描述',
+                '通知起始日',
+                '週期',
+                '假日除外',
+                '郵件主旨',
+                '郵件內容',
+                '收件人',
+                '建立時間',
+                '規則終止日',
+                '建立者',
+                '修改者',
+                '修改日期',
+            ]
+            for index, row in df.iterrows():
+                try:
+                    if not str(request.user
+                               ) == row['建立者'] and not request.user.is_staff:
+                        context['messages']['mail_test'] = '你只能測試自己建立的 Mail Job。'
+                        return render(request, 'mail_job/change.html', context)
+                except:
+                    pass
+    except:
+        context['messages']['mail_test'] = '未知的錯誤，無法返回該筆資料。'
+    if request.method == 'POST':
+        try:
+            # call do-test sp
+            query_string = f"""
+            exec mail_job.dbo.do_mail_job_onetime
+            @seq_action='{seq}'
+            ;
+            """
+            response_do_test = exec_sp(query_string=query_string)
+            # end
+        except:
+            pass
+        context['messages']['mail-test'] = '已經發出測試信。'
+    return render(request, 'mail_job/mail_test.html', context)

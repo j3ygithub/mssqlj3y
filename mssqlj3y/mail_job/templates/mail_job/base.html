@@ -63,6 +63,17 @@
         </div>
     </nav>
     {% endblock %}
+    {% if messages %}
+    {% block messages %}
+    {% for key, value in messages.items %}
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <span class="navbar-text py-0">
+            {{ value }}
+        </span>
+    </nav>
+    {% endfor %}    
+    {% endblock %}
+    {% endif %}
     {% block content %}
     {% endblock %}
     {% block basejs %}

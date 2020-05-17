@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block title %}
-<title>Delete | Mail Job</title>
+<title>Mail test | Mail Job</title>
 {% endblock title %}
 
 {% block content %}
@@ -20,12 +20,12 @@
         <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
             <h2>您確定嗎？</h2>
             <h2><br></h2>
-            <p>確定要註銷這筆 Mail Job 嗎？</p>
+            <p>確定要發出這筆 Mail Job 的測試信嗎？</p>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-danger btn-block">註銷</button>
+                        <button type="submit" class="btn btn-success btn-block">發出</button>
                     </div>
                 </div>
             </form>
