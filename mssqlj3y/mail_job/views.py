@@ -80,18 +80,18 @@ def change_list(request, messages={}):
 
 
 def add(request):
-    context = {
-        'form': None,
-        'message': '',
-    }
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
+    context = {
+        'form': None,
+        'messages': {},
+    }
     if request.method != 'POST':
-        form = SetupForm()
+        form = MailJobForm()
         context['form'] = form
         return render(request, 'mail_job/add.html', context)
     elif request.method == 'POST':
-        form = SetupForm(request.POST)
+        form = MailJobForm(request.POST)
         context['form'] = form
         if form.is_valid():
             department = form.cleaned_data['department']
@@ -106,7 +106,6 @@ def add(request):
                 created_by = request.user
             else:
                 created_by = request.META.get('REMOTE_ADDR')
-            followed_action = form.cleaned_data['followed_action']
             if period == '每日(假日除外)':
                 period = '每日'
                 weekend_flag = 'T'
@@ -130,26 +129,14 @@ def add(request):
             """
             response_insert = exec_sp(query_string=query_string)
             # end
-            context['message'] = response_insert[0][0]
-            if followed_action == '立即發出一封測試信件' and response_insert[0][
-                    0] == '新增成功':
-                try:
-                    # call do-test sp
-                    seq = response_insert[0][1]
-                    query_string = f"""
-                    exec mail_job.dbo.do_mail_job_onetime
-                    @seq_action='{seq}'
-                    ;
-                    """
-                    response_do_test = exec_sp(query_string=query_string)
-                    # end
-                    context['message'] += '\n已經發出測試信。'
-                except:
-                    pass
-            context['form'] = SetupForm()
+            response_insert[0][0]
+            if response_insert[0][0] == '新增成功':
+                context['messages']['add'] = '已新增成功。'
+                return change_list(request, messages=context['messages'])
+            if response_insert[0][0] == '新增失敗，資料重覆，請確認':
+                context['messages']['add'] = '與既有的資料重覆，新增失敗。'
         except:
-            context['message'] = '未知的異常，無法返回資料。'
-            context['form'] = SetupForm()
+            context['messages']['add'] = '未知的錯誤，返回的資料格式不正確。'
         return render(request, 'mail_job/add.html', context)
 
 
@@ -347,7 +334,9 @@ def delete(request, seq):
                 context['messages']['delete'] = '註銷失敗，該資料可能已不存在。'
         except:
             context['messages']['delete'] = '未知的錯誤，無法返回資料。'
-    return change_list(request, messages=context['messages'])
+        return change_list(request, messages=context['messages'])
+    else:
+        return render(request, 'mail_job/delete.html', context)
 
 
 def mail_test(request, seq):
