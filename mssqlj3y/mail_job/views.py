@@ -9,9 +9,9 @@ from .mssql_sp import exec_sp
 # Create your views here.
 
 
-def change_list(request):
+def change_list(request, messages={}):
     context = {
-        'messages': {},
+        'messages': messages,
         'htmls': {},
     }
     if not request.user.is_authenticated:
@@ -394,7 +394,7 @@ def mail_test(request, seq):
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
                         context['messages']['mail_test'] = '你只能測試自己建立的 Mail Job。'
-                        return render(request, 'mail_job/change.html', context)
+                        return change_list(request, messages=context['messages'])
                 except:
                     pass
     except:
@@ -412,4 +412,6 @@ def mail_test(request, seq):
         except:
             pass
         context['messages']['mail-test'] = '已經發出測試信。'
-    return render(request, 'mail_job/mail_test.html', context)
+        return change_list(request, messages=context['messages'])
+    else:
+        return render(request, 'mail_job/mail_test.html', context)
