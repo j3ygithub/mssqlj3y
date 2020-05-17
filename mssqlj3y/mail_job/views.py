@@ -10,12 +10,12 @@ from .mssql_sp import exec_sp
 
 
 def change_list(request, messages={}):
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
     context = {
         'messages': messages,
         'htmls': {},
     }
-    if not request.user.is_authenticated:
-        return redirect(reverse('login'))
     try:
         # call query sp
         query_string = f"""exec mail_job.dbo.show_mail_job @seq='', @department='';"""
@@ -155,9 +155,9 @@ def add(request):
 
 def change(request, seq):
     if not request.user.is_authenticated:
-        return redirect('/accounts/login/')
+        return redirect(reverse('login'))
     context = {
-        'message': '',
+        'messages': {},
         'form': None,
         'delete_url': f'/mail_job/{seq}/delete/',
     }
@@ -201,9 +201,11 @@ def change(request, seq):
             ;
             """
             response_query_all = exec_sp(query_string=query_string)
-            context['message'] = response_query_all[0][0]
+            if response_query_all[0][0] == '修改成功':
+                context['messages']['change'] = '已修改成功。'
         except:
-            context['message'] = 'Failed.'
+            context['messages']['change'] = '未知的錯誤，返回的資料格式不正確。'
+        return change_list(request, messages=context['messages'])
     else:
         try:
             # call query sp
@@ -215,7 +217,7 @@ def change(request, seq):
             """
             response_query_all = exec_sp(query_string=query_string)
         except:
-            context['message'] = '未知的錯誤，無法返回該筆資料。'
+            context['messages']['change'] = '未知的錯誤，無法返回該筆資料。'
         try:
             df = pandas.DataFrame(tuple(row) for row in response_query_all)
             if len(response_query_all
@@ -240,12 +242,9 @@ def change(request, seq):
                 ]
                 for index, row in df.iterrows():
                     try:
-                        if not str(
-                                request.user
-                        ) == row['建立者'] and not request.user.is_staff:
-                            context['message'] = '你只能修改自己建立的 Mail Job。'
-                            return render(request, 'mail_job/change.html',
-                                          context)
+                        if not str(request.user) == row['建立者'] and not request.user.is_staff:
+                            context['messages']['change'] = '你只能修改自己建立的 Mail Job。'
+                            return change_list(request, messages=context['messages'])
                     except:
                         pass
                     if row['週期'] == '每日' and row['假日除外'] == 'T':
@@ -262,12 +261,12 @@ def change(request, seq):
                     'recipient': df.loc[0, '收件人'],
                 }, )
                 context['form'] = form
-                context['message'] = '以下為目前的設置，請填入欲修改的部分後送出。'
+                context['messages']['change'] = '以下為目前的設置，請填入欲修改的部分後送出。'
             else:
-                context['message'] = '查無這筆資料，請確認該資料是否已被刪除。'
+                context['messages']['change'] = '查無這筆資料，請確認該資料是否已被刪除。'
         except:
-            context['message'] = '未知的錯誤，無法返回資料。'
-    return render(request, 'mail_job/change.html', context)
+            context['messages']['change'] = '未知的錯誤，無法返回資料。'
+        return render(request, 'mail_job/change.html', context)
 
 
 def delete(request, seq):
@@ -313,7 +312,7 @@ def delete(request, seq):
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
                         context['messages']['delete'] = '你只能註銷自己建立的 Mail Job。'
-                        return render(request, 'mail_job/change.html', context)
+                        return change_list(request, messages=context['messages'])
                 except:
                     pass
     except:
@@ -348,7 +347,7 @@ def delete(request, seq):
                 context['messages']['delete'] = '註銷失敗，該資料可能已不存在。'
         except:
             context['messages']['delete'] = '未知的錯誤，無法返回資料。'
-    return render(request, 'mail_job/delete.html', context)
+    return change_list(request, messages=context['messages'])
 
 
 def mail_test(request, seq):
