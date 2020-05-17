@@ -1,18 +1,20 @@
 from django.shortcuts import render
-import pandas
-from .forms import SetupForm, LookupForm, MailJobForm
-from .mssql_sp import exec_sp
 from django.utils import timezone
 from django.shortcuts import redirect
+from django.urls import reverse
+import pandas
+from .forms import SetupForm, MailJobForm
+from .mssql_sp import exec_sp
+
 # Create your views here.
 
 
 def change_list(request, from_add=False, message_from_add=''):
     if not request.user.is_authenticated:
-        return redirect('/accounts/login')
+        return redirect(reverse('login'))
     context = {
         'message': '',
-        'result_html': {},
+        'htmls': {},
     }
     try:
         # call query sp
@@ -47,20 +49,29 @@ def change_list(request, from_add=False, message_from_add=''):
                 if row['週期'] == '每日' and row['假日除外'] == 'T':
                     df.loc[index, '週期'] = '每日(假日除外)'
             df = df[[
-                '動作', '部門', '事件類型', '事件描述', '通知起始日', '週期', '郵件主旨', '郵件內容',
-                '收件人', '建立者', '建立時間'
+                '動作',
+                '部門',
+                '事件類型',
+                '事件描述',
+                '通知起始日',
+                '週期',
+                '郵件主旨',
+                '郵件內容',
+                '收件人',
+                '建立者',
+                '建立時間',
             ]]
-
             df = df.sort_values(by=['建立時間'], ascending=False)
             df.index = pandas.RangeIndex(start=1, stop=len(df) + 1, step=1)
             df_html = df.to_html(
                 justify='left',
                 classes=
                 'j3y-df table table-light table-bordered table-striped table-responsive',
-                escape=False)
-            context['result_html']['目前設置'] = df_html
+                escape=False,
+            )
+            context['htmls']['currently'] = df_html
         else:
-            pass
+            context['message'] += '\n未知的錯誤，返回的資料格式不正確。'
     except:
         context['message'] += '\n未知的錯誤，無法返回資料。'
     return render(request, 'mail_job/change_list.html', context)

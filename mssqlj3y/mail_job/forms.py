@@ -130,29 +130,6 @@ class SetupForm(forms.Form):
     )
 
 
-class LookupForm(forms.Form):
-    department = forms.ChoiceField(
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
-        label='部門',
-        choices=(
-            ('all', '全部'),
-            ('D11', 'D11'),
-            ('D21', 'D21'),
-            ('D31', 'D31'),
-            ('T11', 'T11'),
-            ('T12', 'T12'),
-            ('T21', 'T21'),
-            ('T22', 'T22'),
-            ('T31', 'T31'),
-            ('T32', 'T32'),
-        ),
-    )
-
-
 class MailJobForm(forms.Form):
     department = forms.ChoiceField(
         widget=forms.Select(
