@@ -25,15 +25,14 @@
     {% block nav %}
     <nav class="navbar navbar-expand-md navbar-light" style="background-color: rgba(0,0,0,.1);">
         <a class="navbar-brand" href="/">Mail Job</a>
+        {% if user.is_authenticated %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#togglerTarget"
             aria-controls="togglerTarget" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        {% if user.is_authenticated %}
         <div class="collapse navbar-collapse" id="togglerTarget">
             <ul class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" data-toggle="modal" href="#" data-target="#homeHow">How ?</a>
-                <!-- Modal -->
                 <div class="modal fade" id="homeHow" tabindex="-1" role="dialog" aria-labelledby="homeHowLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -65,7 +64,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
