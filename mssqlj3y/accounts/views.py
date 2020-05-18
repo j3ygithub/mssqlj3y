@@ -29,7 +29,7 @@ def sign_up_with_chief_email(request):
                     username_readable = username
             except:
                 username_readable = username
-            message = f'Hi {username_readable},\n\nYou have created a new account on Mail Job. Your account is {username} and your password is {random_uuid_password}. you could login and change it on Mail Job later.\n\nSincerely,\nMail Job'
+            message = f'Hi {username_readable},\n\nYou have created a new account on Mail Job. \nYour account: {username}\nyour password: {random_uuid_password}\nYou could login and change it on Mail Job later.\n\nSincerely,\nMail Job'
             send_password_email(
                 subject=subject,
                 message=message,
