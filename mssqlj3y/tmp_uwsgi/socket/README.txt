@@ -1,0 +1,1 @@
+This directory is where uwsgi socket file lives in, and this file is for git to detect this directory because socket file doesn't show when uwsgi not running.
