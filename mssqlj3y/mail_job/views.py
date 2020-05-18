@@ -82,7 +82,6 @@ def change_list(request, messages={}):
             context['messages']['change_list'] = '未知的錯誤，返回的資料格式不正確。'
     except:
         context['messages']['change_list'] = '未知的錯誤，無法返回資料。'
-        context['messages']['dashboard'] = '已成功發出測試信。'
     return render(request, 'mail_job/change_list.html', context)
 
 
