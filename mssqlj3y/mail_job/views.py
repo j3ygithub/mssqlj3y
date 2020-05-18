@@ -150,9 +150,9 @@ def change(request, seq):
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
+        'seq': seq,
         'messages': {},
         'form': None,
-        'delete_url': f'/mail_job/{seq}/delete/',
     }
     if request.method == 'POST':
         form = MailJobForm(request.POST)
