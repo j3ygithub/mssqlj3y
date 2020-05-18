@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'mail_job/css/base.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
     {% endblock %}
     {% block extracss %}
     {% endblock %}
@@ -24,34 +25,65 @@
     {% block nav %}
     <nav class="navbar navbar-expand-md navbar-light" style="background-color: rgba(0,0,0,.1);">
         <a class="navbar-brand" href="/">Mail Job</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#togglerTarget"
+            aria-controls="togglerTarget" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="togglerTarget">
             <ul class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" data-toggle="modal" href="#" data-target="#homeHow">How ?</a>
+                <!-- Modal -->
+                <div class="modal fade" id="homeHow" tabindex="-1" role="dialog" aria-labelledby="homeHowLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="homeHowLabel">如何使用</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="false">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
+                                        style="width: 8rem; border-radius: 2rem;">新增
+                                        +</a>
+                                    可以新增一筆屬於你的 Mail Job。</p>
+                                <hr>
+                                <p> 當一筆 Mail Job 到達<span style="font-weight: bolder;">通知起始日</span>時，系統將根據<span
+                                        style="font-weight: bolder;">週期</span>寄送郵件給<span
+                                        style="font-weight: bolder;">收件者</span>當中的所有人。郵件的主旨與內容由<span
+                                        style="font-weight: bolder;">郵件主旨</span>與<span
+                                        style="font-weight: bolder;">郵件內容</span>決定。</p>
+                                <hr>
+                                <p> 你可以使用表格欄位<span style="font-weight: bolder;">動作</span>當中的<span
+                                        style="font-weight: bolder;">修改</span>、<span
+                                        style="font-weight: bolder;">註銷</span>來管理你的 Mail Job，使用<span
+                                        style="font-weight: bolder;">發測試信</span>發出一封測試信，測試你的收件者是否都能收到郵件。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+            </ul>
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Users
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{ user.username }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if user.is_authenticated %}
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                         <div class="dropdown-divider"></div>
-                        {% endif %}
                         <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                         <a class="dropdown-item" href="{% url 'sign_up' %}">Sign up</a>
                         <a class="dropdown-item" href="{% url 'password_reset' %}">Password reset</a>
                     </div>
                 </li>
             </ul>
-            {% if user.is_authenticated %}
-            <span class="navbar-text">
-                Hi, {{ user.username }}.&nbsp;&nbsp;<a class="text-primary" href="{% url 'logout' %}">Logout</a>
-            </span>
-            {% endif %}
         </div>
+        {% endif %}
     </nav>
     {% endblock %}
     {% if messages %}
@@ -62,7 +94,7 @@
             {{ value }}
         </span>
     </nav>
-    {% endfor %}    
+    {% endfor %}
     {% endblock %}
     {% endif %}
     {% block content %}
