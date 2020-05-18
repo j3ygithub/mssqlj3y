@@ -24,8 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('mail_job/', include('mail_job.urls')),
-    path('', RedirectView.as_view(url='/mail_job/')),
+    path('mail-job/', include('mail_job.urls')),
+    path('', RedirectView.as_view(url='/mail-job/')),
 ]
 # my urls
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.shortcuts import redirect
 from django.urls import reverse
 import pandas
-from .forms import SetupForm, MailJobForm
+from .forms import MailJobForm
 from .mssql_sp import exec_sp
 
 # Create your views here.
@@ -54,6 +54,8 @@ def change_list(request, messages={}):
                 # merge the period and the weekend flag
                 if row['週期'] == '每日' and row['假日除外'] == 'T':
                     df.loc[index, '週期'] = '每日(假日除外)'
+                if len(row['郵件內容']) > 50:
+                    df.loc[index, '郵件內容'] = row['郵件內容'][:50] + '......'
             df = df[[
                 '動作',
                 '部門',
