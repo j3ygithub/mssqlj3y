@@ -14,11 +14,13 @@
     </div>
     {% if htmls %}
     {% for key, value in htmls.items %}
+    {% if key == 'change_list' %}
     <div class="row justify-content-center">
         <div class="col-auto" style="padding: 1.5rem;">
             {{ value|safe }}
         </div>
     </div>
+    {% endif %}
     {% endfor %}
     {% endif %}
     <div class="row justify-content-center">

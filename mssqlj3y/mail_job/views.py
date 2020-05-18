@@ -75,7 +75,7 @@ def change_list(request, messages={}):
                 'j3y-df table table-light table-bordered table-striped table-responsive',
                 escape=False,
             )
-            context['htmls']['currently'] = df_html
+            context['htmls']['change_list'] = df_html
         else:
             context['messages']['change_list'] = '未知的錯誤，返回的資料格式不正確。'
     except:
