@@ -93,6 +93,7 @@ def add(request):
     }
     if request.method != 'POST':
         form = MailJobForm()
+        context['messages']['add'] = '輸入以下表格以新增 Mail Job。'
         context['form'] = form
         return render(request, 'mail_job/add.html', context)
     elif request.method == 'POST':

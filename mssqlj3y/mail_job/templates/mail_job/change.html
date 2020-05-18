@@ -12,12 +12,12 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-10" style="padding: 1.5rem;">
+        <div class="col-auto" style="padding: 1.5rem;">
         </div>
     </div>
     {% if form %}
     <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
+        <div class="col-auto j3y-border" style="padding: 1.5rem;">
             <form method="post">
                 <h2>修改</h2>
                 <h2><br></h2>
@@ -25,13 +25,11 @@
                 {% for field in form %}
                 <div class="form-row">
                     <div class="form-group col">
-                        <div class="form-group">
-                            {{ field.label_tag }}
-                            {% render_field field class+='form-control' %}
-                            {% if field.errors %}
-                            <p>{{ field.errors }}</p>
-                            {% endif %}
-                        </div>
+                        {{ field.label_tag }}
+                        {% render_field field class+='form-control' %}
+                        {% if field.errors %}
+                        <p>{{ field.errors }}</p>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -49,7 +47,7 @@
     </div>
     {% endif %}
     <div class="row justify-content-center">
-        <div class="col-10" style="padding: 1.5rem;">
+        <div class="col-auto" style="padding: 1.5rem;">
         </div>
     </div>
 </div>
