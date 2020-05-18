@@ -44,9 +44,9 @@ def change_list(request, messages={}):
                 # added a href
                 options = [
                     '<option value="">請選擇</option>',
-                    f'<option value="/mail_job/{row["項次"]}/change/">修改</option>',
-                    f'<option value="/mail_job/{row["項次"]}/delete/">註銷</option>',
-                    f'<option value="/mail_job/{row["項次"]}/mail-test/">發測試信</option>',
+                    f'<option value="{reverse("mail_job:change", kwargs={"seq": row["項次"]})}">修改</option>',
+                    f'<option value="{reverse("mail_job:delete", kwargs={"seq": row["項次"]})}">註銷</option>',
+                    f'<option value="{reverse("mail_job:mail_test", kwargs={"seq": row["項次"]})}">發測試信</option>',
                 ]
                 html_select = f'<select class="form-control" onchange="location = this.value;">{"".join(options)}</select>'
                 html_form = f'<form autocomplete="off"><div class="form-group">{html_select}</div></form>'
