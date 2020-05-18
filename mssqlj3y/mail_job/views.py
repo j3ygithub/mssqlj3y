@@ -42,10 +42,15 @@ def change_list(request, messages={}):
             ]
             for index, row in df.iterrows():
                 # added a href
-                html = f'<a href="/mail_job/{row["項次"]}/change/">修改</a>'
-                html += f'<br><a href="/mail_job/{row["項次"]}/delete/">註銷</a>'
-                html += f'<br><a href="/mail_job/{row["項次"]}/mail-test/">測試</a>'
-                df.loc[index, '動作'] = html
+                options = [
+                    '<option value="">請選擇</option>',
+                    f'<option value="/mail_job/{row["項次"]}/change/">修改</option>',
+                    f'<option value="/mail_job/{row["項次"]}/delete/">註銷</option>',
+                    f'<option value="/mail_job/{row["項次"]}/mail-test/">發測試信</option>',
+                ]
+                html_select = f'<select class="form-control" onchange="location = this.value;">{"".join(options)}</select>'
+                html_form = f'<form autocomplete="off"><div class="form-group">{html_select}</div></form>'
+                df.loc[index, '動作'] = html_form
                 # merge the period and the weekend flag
                 if row['週期'] == '每日' and row['假日除外'] == 'T':
                     df.loc[index, '週期'] = '每日(假日除外)'
