@@ -21,7 +21,7 @@ def sign_up_with_chief_email(request):
             user.save()
             # send a random uuid password email
             recipient = f'{email}'
-            subject = "[Mail Job] You have created an account on Mail Job."
+            subject = "[Mail Job] You have created an account."
             try:
                 if '_' in username:
                     username_readable = ' '.join([ word[0].upper() + word[1:] for word in username.split('_') ])
@@ -29,7 +29,12 @@ def sign_up_with_chief_email(request):
                     username_readable = username
             except:
                 username_readable = username
-            message = f'Hi {username_readable},\n\nYou have created a new account on Mail Job. \nYour account: {username}\nyour password: {random_uuid_password}\nYou could login and change it on Mail Job later.\n\nSincerely,\nMail Job'
+            message = f'Hi {username_readable},'
+            message += '\n\nYou have created a new account on Mail Job. You could login and change it on Mail Job later.'
+            message += f'\n\nYour account: {username}'
+            message += f'\nYour password: {random_uuid_password}'
+            message += '\n\nSincerely,'
+            message += '\nMail Job'
             send_password_email(
                 subject=subject,
                 message=message,
@@ -49,7 +54,7 @@ def send_password_email(subject, message, recipient):
         send_mail(
             subject=subject,
             message=message,
-            from_email=settings.EMAIL_HOST_USER,
+            from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[recipient],
             fail_silently=False,
         )

@@ -143,4 +143,6 @@ from secret.mssqlj3y.settings import (
     EMAIL_PORT,
     EMAIL_HOST_USER,
     EMAIL_HOST_PASSWORD,
+    DEFAULT_FROM_EMAIL,
+    SERVER_EMAIL,
 )
