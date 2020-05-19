@@ -32,18 +32,23 @@
         </button>
         <div class="collapse navbar-collapse" id="togglerTarget">
             <ul class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" data-toggle="modal" href="#" data-target="#homeHow">How ?</a>
-                <div class="modal fade" id="homeHow" tabindex="-1" role="dialog" aria-labelledby="homeHowLabel"
+                <a class="nav-itrm nav-link" data-toggle="modal" href="#" data-target="#modalHow">
+                    How?
+                </a>
+                <div class="modal fade" id="modalHow" tabindex="-1" role="dialog" aria-labelledby="modalHowLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title" id="homeHowLabel">如何使用</h3>
+                                <h3 class="modal-title" id="modalHowLabel">說明</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="false">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <p>
+                                    Mail Job 可以幫助你提醒自己可能會忘記的任何事項，以 Email 的形式根據你的設定發送指定的郵件訊息。</p>
+                                <hr>
                                 <p>
                                     <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
                                         style="width: 8rem; border-radius: 2rem;">新增
@@ -60,6 +65,25 @@
                                         style="font-weight: bolder;">修改</span>、<span
                                         style="font-weight: bolder;">註銷</span>來管理你的 Mail Job，使用<span
                                         style="font-weight: bolder;">發測試信</span>發出一封測試信，測試你的收件者是否都能收到郵件。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="nav-itrm nav-link" data-toggle="modal" href="#" data-target="#modalAbount">
+                    About
+                </a>
+                <div class="modal fade" id="modalAbount" tabindex="-1" role="dialog" aria-labelledby="modalAbountLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="modalAbountLabel">關於</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="false">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>若有任何使用上的問題，請聯繫 Jack Chang 或 Jimmy Lin。</p>
                             </div>
                         </div>
                     </div>
