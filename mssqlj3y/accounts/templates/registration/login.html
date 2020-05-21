@@ -13,7 +13,7 @@
         <div class="col-auto" style="padding: 1.5rem; width: 24rem;">
             <h1 style="text-align: center;">Login</h1>
             <h2><br></h2>
-            <p>Don't have an account? <a href="{% url 'sign_up' %}" style="text-decoration: none">Sign up</a> now.</p>
+            <p>Don't have an account? <a href="{% url 'sign_up' %}" class="text-decoration-none">Sign up</a> now.</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </form>
-            <p><a href="{% url 'password_reset' %}" style="text-decoration: none">Forgot your password?</a></p>
+            <p><a href="{% url 'password_reset' %}" class="text-decoration-none">Forgot your password?</a></p>
         </div>
     </div>
 </div>

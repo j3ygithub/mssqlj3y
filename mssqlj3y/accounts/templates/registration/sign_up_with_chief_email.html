@@ -13,7 +13,7 @@
         <div class="col-auto" style="padding: 1.5rem; width: 24rem;">
             <h1 style="text-align: center;">Sign Up</h1>
             <h2><br></h2>
-            <p>Already got an account? <a href="{% url 'login' %}" style="text-decoration: none">Login</a> here.</p>
+            <p>Already got an account? <a href="{% url 'login' %}" class="text-decoration-none">Login</a> here.</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
