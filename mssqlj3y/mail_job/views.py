@@ -42,15 +42,29 @@ def change_list(request, messages={}):
             ]
             for index, row in df.iterrows():
                 # added a href
-                options = [
-                    '<option value="">請選擇</option>',
-                    f'<option value="{reverse("mail_job:change", kwargs={"seq": row["項次"]})}">修改</option>',
-                    f'<option value="{reverse("mail_job:delete", kwargs={"seq": row["項次"]})}">註銷</option>',
-                    f'<option value="{reverse("mail_job:mail_test", kwargs={"seq": row["項次"]})}">發測試信</option>',
+                # options = [
+                #     '<option value="">請選擇</option>',
+                #     f'<option value="{reverse("mail_job:change", kwargs={"seq": row["項次"]})}">修改</option>',
+                #     f'<option value="{reverse("mail_job:delete", kwargs={"seq": row["項次"]})}">註銷</option>',
+                #     f'<option value="{reverse("mail_job:mail_test", kwargs={"seq": row["項次"]})}">發測試信</option>',
+                # ]
+                # html_select = f'<select class="form-control" onchange="location = this.value;">{"".join(options)}</select>'
+                # html_form = f'<form autocomplete="off"><div class="form-group">{html_select}</div></form>'
+                # df.loc[index, '動作'] = html_form
+                items = [
+                    f'<a class="dropdown-item" href="{reverse("mail_job:change", kwargs={"seq": row["項次"]})}">修改</a>',
+                    f'<a class="dropdown-item" href="{reverse("mail_job:delete", kwargs={"seq": row["項次"]})}">註銷</a>',
+                    f'<a class="dropdown-item" href="{reverse("mail_job:mail_test", kwargs={"seq": row["項次"]})}">發測試信</a>',
                 ]
-                html_select = f'<select class="form-control" onchange="location = this.value;">{"".join(options)}</select>'
-                html_form = f'<form autocomplete="off"><div class="form-group">{html_select}</div></form>'
-                df.loc[index, '動作'] = html_form
+                html_button_dropdown = '<div class="dropdown show">'
+                html_button_dropdown += '<button class="btn btn-light bg-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+                html_button_dropdown += '請選擇'
+                html_button_dropdown += '</button>'
+                html_button_dropdown += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">'
+                html_button_dropdown += f'{"".join(items)}'
+                html_button_dropdown += '</div>'
+                html_button_dropdown += '</div>'
+                df.loc[index, '動作'] = html_button_dropdown
                 # merge the period and the weekend flag
                 if row['週期'] == '每日' and row['假日除外'] == 'T':
                     df.loc[index, '週期'] = '每日(假日除外)'
