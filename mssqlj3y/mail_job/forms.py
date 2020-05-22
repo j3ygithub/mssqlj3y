@@ -1,6 +1,7 @@
 from django import forms
 from django.utils import timezone
 from django.contrib.admin.widgets import AdminDateWidget
+from django.utils.translation import gettext as _
 
 
 def today():
@@ -14,7 +15,7 @@ class MailJobForm(forms.Form):
                 'class': 'form-control',
             },
         ),
-        label='部門',
+        label=_('Department'),
         choices=(
             ('D11', 'D11'),
             ('D21', 'D21'),

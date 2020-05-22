@@ -1,4 +1,5 @@
 {% extends 'mail_job/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -16,7 +17,7 @@
             <div style="text-align: center; padding: 2rem;">
                 <p>
                     <h3>Mail Job</h3>
-                    Remind you for those you may miss, by mail.
+                    {% trans 'Remind you for those you may miss, by mail.' %}
                 </p>
             </div>
             <div style="text-align: end; padding: 2rem;">

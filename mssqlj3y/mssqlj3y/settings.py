@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # for dynamic languages support
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -108,6 +109,17 @@ AUTH_PASSWORD_VALIDATORS = []
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+# for i18n
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+# this don't change the navbar i18n form, needed to be checked
+LANGUAGES = {
+    ('zh-hant', '繁體中文'),
+    ('en-us', 'English'),
+}
 
 TIME_ZONE = 'Asia/Taipei'
 
