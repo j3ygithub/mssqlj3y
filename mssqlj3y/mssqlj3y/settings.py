@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = []
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hant'
 
 # for i18n
 LOCALE_PATHS = (
@@ -117,8 +117,8 @@ LOCALE_PATHS = (
 
 # this don't change the navbar i18n form, needed to be checked
 LANGUAGES = {
-    ('zh-hant', '繁體中文'),
-    ('en-us', 'English'),
+    ('zh-hant', ''),
+    ('en', ''),
 }
 
 TIME_ZONE = 'Asia/Taipei'

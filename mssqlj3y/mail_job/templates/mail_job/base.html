@@ -34,14 +34,14 @@
         <div class="collapse navbar-collapse" id="togglerTarget">
             <ul class="navbar-nav mr-auto">
                 <a class="nav-itrm nav-link" data-toggle="modal" href="#" data-target="#modalHow">
-                    How?
+                    {% trans 'Help' %}
                 </a>
                 <div class="modal fade" id="modalHow" tabindex="-1" role="dialog" aria-labelledby="modalHowLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title" id="modalHowLabel">說明</h3>
+                                <h3 class="modal-title" id="modalHowLabel">{% trans 'Help' %}</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="false">&times;</span>
                                 </button>
@@ -71,40 +71,24 @@
                     </div>
                 </div>
                 <a class="nav-itrm nav-link" data-toggle="modal" href="#" data-target="#modalAbount">
-                    About
+                    {% trans 'About' %}
                 </a>
                 <div class="modal fade" id="modalAbount" tabindex="-1" role="dialog" aria-labelledby="modalAbountLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title" id="modalAbountLabel">關於</h3>
+                                <h3 class="modal-title" id="modalAbountLabel">{% trans 'About' %}</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="false">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>若有任何使用上的問題，請聯繫 Jack Chang 或 Jimmy Lin。</p>
+                                <p>{% trans 'If there is a problem, please contact Jack Chang or Jimmy Lin.' %}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                    <select name="language">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="Go">
-                </form>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -115,11 +99,23 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                        <a class="dropdown-item" href="{% url 'sign_up' %}">Sign up</a>
-                        <a class="dropdown-item" href="{% url 'password_reset' %}">Password reset</a>
+                        <a class="dropdown-item" href="{% url 'login' %}">{% trans 'Login' %}</a>
+                        <a class="dropdown-item" href="{% url 'sign_up' %}">{% trans 'Sign up' %}</a>
+                        <a class="dropdown-item" href="{% url 'password_reset' %}">{% trans 'Password reset' %}</a>
                     </div>
                 </li>
+                <form class="form-inline mr-auto" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <select name="language" class="form-control" onchange="this.form.submit();">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ language.name_local }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </form>
             </ul>
         </div>
         {% endif %}
