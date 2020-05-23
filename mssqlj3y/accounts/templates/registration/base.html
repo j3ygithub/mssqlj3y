@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/base.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
     {% endblock %}
     {% block extracss %}
     {% endblock %}
@@ -52,8 +54,7 @@
                                 <hr>
                                 <p>
                                     <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
-                                        style="width: 8rem; border-radius: 2rem;">新增
-                                        +</a>
+                                        style="width: 8rem; border-radius: 2rem;">{% trans 'Add +'%}</a>
                                     可以新增一筆屬於你的 Mail Job。</p>
                                 <hr>
                                 <p> 當一筆 Mail Job 到達<span style="font-weight: bolder;">通知起始日</span>時，系統將根據<span

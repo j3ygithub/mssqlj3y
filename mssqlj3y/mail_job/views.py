@@ -104,8 +104,8 @@ def change_list(request, messages={}):
                     for t in choices_period:
                         if row[_('Period')] == t[0]:
                             df.loc[index, _('Period')] = t[1]
-                if len(row[_('Mail Subject')]) > 50:
-                    df.loc[index, _('Mail Subject')] = row[_('Mail Subject')][:50] + '......'
+                if len(row[_('Mail Content')]) > 50:
+                    df.loc[index, _('Mail Content')] = row[_('Mail Content')][:50] + '......'
             df = df[[
                 _('Action'), # 動作
                 _('Dep.'), # 部門

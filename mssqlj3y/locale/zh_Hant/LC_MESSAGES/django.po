@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-24 02:53+0800\n"
+"POT-Creation-Date: 2020-05-24 03:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,53 +18,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\accounts\templates\registration\base.html:37
-#: .\accounts\templates\registration\base.html:44
-#: .\mail_job\templates\mail_job\base.html:37
-#: .\mail_job\templates\mail_job\base.html:44
+#: .\accounts\templates\registration\base.html:39
+#: .\accounts\templates\registration\base.html:46
+#: .\mail_job\templates\mail_job\base.html:39
+#: .\mail_job\templates\mail_job\base.html:46
 msgid "Help"
 msgstr "使用說明"
 
-#: .\accounts\templates\registration\base.html:74
-#: .\accounts\templates\registration\base.html:81
-#: .\mail_job\templates\mail_job\base.html:74
-#: .\mail_job\templates\mail_job\base.html:81
+#: .\accounts\templates\registration\base.html:57
+#: .\mail_job\templates\mail_job\base.html:57
+#: .\mail_job\templates\mail_job\change_list.html:25
+msgid "Add +"
+msgstr "新增 +"
+
+#: .\accounts\templates\registration\base.html:75
+#: .\accounts\templates\registration\base.html:82
+#: .\mail_job\templates\mail_job\base.html:75
+#: .\mail_job\templates\mail_job\base.html:82
 msgid "About"
 msgstr "關於"
 
-#: .\accounts\templates\registration\base.html:87
-#: .\mail_job\templates\mail_job\base.html:87
+#: .\accounts\templates\registration\base.html:88
+#: .\mail_job\templates\mail_job\base.html:88
 msgid "If there is a problem, please contact Jack Chang or Jimmy Lin."
 msgstr "若有任何使用上的問題，請聯繫 Jack Chang 或 Jimmy Lin。"
 
-#: .\accounts\templates\registration\base.html:100
-#: .\mail_job\templates\mail_job\base.html:100
+#: .\accounts\templates\registration\base.html:101
+#: .\mail_job\templates\mail_job\base.html:101
 msgid "Logout"
 msgstr "登出"
 
-#: .\accounts\templates\registration\base.html:102
+#: .\accounts\templates\registration\base.html:103
 #: .\accounts\templates\registration\login.html:7
 #: .\accounts\templates\registration\login.html:15
 #: .\accounts\templates\registration\login.html:37
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:17
-#: .\mail_job\templates\mail_job\base.html:102
+#: .\mail_job\templates\mail_job\base.html:103
 msgid "Login"
 msgstr "登入"
 
-#: .\accounts\templates\registration\base.html:103
+#: .\accounts\templates\registration\base.html:104
 #: .\accounts\templates\registration\login.html:17
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:7
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:15
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:40
-#: .\mail_job\templates\mail_job\base.html:103
+#: .\mail_job\templates\mail_job\base.html:104
 msgid "Sign up"
 msgstr "註冊"
 
-#: .\accounts\templates\registration\base.html:104
+#: .\accounts\templates\registration\base.html:105
 #: .\accounts\templates\registration\password_reset_done.html:7
 #: .\accounts\templates\registration\password_reset_form.html:7
 #: .\accounts\templates\registration\password_reset_form.html:15
-#: .\mail_job\templates\mail_job\base.html:104
+#: .\mail_job\templates\mail_job\base.html:105
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -339,8 +345,7 @@ msgstr "週期"
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:122 .\mail_job\views.py:33 .\mail_job\views.py:107
-#: .\mail_job\views.py:108 .\mail_job\views.py:116
+#: .\mail_job\forms.py:122 .\mail_job\views.py:33 .\mail_job\views.py:116
 msgid "Mail Subject"
 msgstr "郵件主旨"
 
@@ -352,7 +357,8 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:133 .\mail_job\views.py:34 .\mail_job\views.py:117
+#: .\mail_job\forms.py:133 .\mail_job\views.py:34 .\mail_job\views.py:107
+#: .\mail_job\views.py:108 .\mail_job\views.py:117
 msgid "Mail Content"
 msgstr "郵件內容"
 
@@ -396,10 +402,6 @@ msgstr "發測試信"
 #: .\mail_job\templates\mail_job\change_list.html:20
 msgid "Remind you for those you may miss, by mail."
 msgstr "讓郵件代替你記憶那些瑣事"
-
-#: .\mail_job\templates\mail_job\change_list.html:25
-msgid "Add +"
-msgstr "新增 +"
 
 #: .\mail_job\templates\mail_job\delete.html:22
 #: .\mail_job\templates\mail_job\mail_test.html:22
