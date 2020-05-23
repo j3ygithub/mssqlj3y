@@ -1,4 +1,5 @@
 {% extends 'mail_job/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -17,7 +18,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-auto j3y-border" style="padding: 1.5rem;">
-            <h2>新增</h2>
+            <h2>{% trans 'Add' %}</h2>
             <h2><br></h2>
             <form method="post">
                 {% csrf_token %}
@@ -39,7 +40,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-primary btn-block">新增</button>
+                        <button type="submit" class="btn btn-primary btn-block">{% trans 'Add' %}</button>
                     </div>
                 </div>
             </form>

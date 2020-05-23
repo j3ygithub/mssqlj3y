@@ -1,9 +1,10 @@
 {% extends 'registration/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
 {% block title %}
-<title>Login | Mail Job</title>
+<title>{% trans 'Login' %} | Mail Job</title>
 {% endblock title %}
 
 {% block content %}
@@ -11,9 +12,9 @@
     <div class="row" style="height: 6rem;"></div>
     <div class="row justify-content-center">
         <div class="col-auto" style="padding: 1.5rem; width: 24rem;">
-            <h1 style="text-align: center;">Login</h1>
+            <h1 style="text-align: center;">{% trans 'Login' %}</h1>
             <h2><br></h2>
-            <p>Don't have an account? <a href="{% url 'sign_up' %}" class="text-decoration-none">Sign up</a> now.</p>
+            <p>{% trans "Don't have an account?" %}<a href="{% url 'sign_up' %}" class="text-decoration-none">{% trans 'Sign up' %}</a>{% trans 'now.' %}</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -33,11 +34,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block">{% trans 'Login' %}</button>
                     </div>
                 </div>
             </form>
-            <p><a href="{% url 'password_reset' %}" class="text-decoration-none">Forgot your password?</a></p>
+            <p><a href="{% url 'password_reset' %}" class="text-decoration-none">{% trans 'Forgot your password?' %}</a></p>
         </div>
     </div>
 </div>

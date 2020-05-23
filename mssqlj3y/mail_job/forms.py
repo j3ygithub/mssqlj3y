@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 from django.contrib.admin.widgets import AdminDateWidget
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 def today():
@@ -32,21 +32,20 @@ class MailJobForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex. 憑證到期',
+                'placeholder': _('ex. Expiration of certificates'),
             },
         ),
-        label='事件類型',
-        initial='憑證到期',
+        label=_('Event Type'),
         max_length=16
     )
     event = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex. jimmylin.chief.net.tw 憑證到期',
+                'placeholder': _('ex. Expiration of the certificate on jimmylin.chief.net.tw'),
             },
         ),
-        label='事件描述',
+        label=_('Event'),
         max_length=32,
     )
     note_date = forms.DateField(
@@ -56,7 +55,7 @@ class MailJobForm(forms.Form):
                 'type':'date',
             },
         ),
-        label='通知起始日',
+        label=_('Start From'),
         initial=today,
     )
     choices_period = [
@@ -78,7 +77,7 @@ class MailJobForm(forms.Form):
                 'class': 'form-control',
             },
         ),
-        label='週期',
+        label=_('Period'),
         choices=choices_period,
         initial='每日',
     )
@@ -86,32 +85,32 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex. jimmylin.chief.net.tw 憑證到期通知',
+                'placeholder': _('ex. Notification - Certificate Expiration - jimmylin.chief.net.tw'),
                 'rows':2,
             },
         ),
-        label='郵件主旨',
+        label=_('Mail Subject'),
         max_length=64,
     )
     body = forms.CharField(
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex.\njimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。',
+                'placeholder': _('ex.\nThe Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please update it.'),
                 'rows':16,
             },
         ),
-        label='郵件內容',
+        label=_('Mail Content'),
         max_length=512,
     )
     recipient = forms.CharField(
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'ex.\njimmy_lin@chief.com.tw;\nt32@chief.com.tw;\ncathy_sung@chief.com.tw;',
+                'placeholder': _('ex.\njimmy_lin@chief.com.tw;\nt32@chief.com.tw;\ncathy_sung@chief.com.tw;'),
                 'rows':8,
             },
         ),
-        label='收件人',
+        label=_('Recipients'),
         max_length=256,
     )

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-<title>Change | Mail Job</title>
+<title>{% trans 'Change' %} | Mail Job</title>
 {% endblock title %}
 
 {% block content %}
@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-auto j3y-border" style="padding: 1.5rem;">
             <form method="post">
-                <h2>修改</h2>
+                <h2>{% trans 'Change' %}</h2>
                 <h2><br></h2>
                 {% csrf_token %}
                 {% for field in form %}
@@ -37,15 +37,15 @@
                 {{ form.non_field_errors }}
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-primary btn-block">{% trans 'change' %}</button>
+                        <button type="submit" class="btn btn-primary btn-block">{% trans 'Change' %}</button>
                     </div>
                     <div class="form-group col">
-                        <a href="{% url 'mail_job:delete' seq=seq %}" class="btn btn-danger btn-block">註銷</a>
+                        <a href="{% url 'mail_job:delete' seq=seq %}" class="btn btn-danger btn-block">{% trans 'Delete' %}</a>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <a href="{% url 'mail_job:mail_test' seq=seq %}" class="btn btn-success btn-block">發測試信</a>
+                        <a href="{% url 'mail_job:mail_test' seq=seq %}" class="btn btn-success btn-block">{% trans 'Mail Test' %}</a>
                     </div>
                 </div>
             </form>

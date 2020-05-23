@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-22 23:17+0800\n"
+"POT-Creation-Date: 2020-05-23 09:21+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,186 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\mail_job\forms.py:18
-msgid "Department"
-msgstr "部門"
-
+#: .\accounts\templates\registration\base.html:37
+#: .\accounts\templates\registration\base.html:44
 #: .\mail_job\templates\mail_job\base.html:37
 #: .\mail_job\templates\mail_job\base.html:44
 msgid "Help"
 msgstr "使用說明"
 
+#: .\accounts\templates\registration\base.html:74
+#: .\accounts\templates\registration\base.html:81
 #: .\mail_job\templates\mail_job\base.html:74
 #: .\mail_job\templates\mail_job\base.html:81
 msgid "About"
 msgstr "關於"
 
+#: .\accounts\templates\registration\base.html:87
 #: .\mail_job\templates\mail_job\base.html:87
-msgid "If there is any trouble, please contact Jack Chang or Jimmy Lin"
+msgid "If there is a problem, please contact Jack Chang or Jimmy Lin."
 msgstr "若有任何使用上的問題，請聯繫 Jack Chang 或 Jimmy Lin。"
 
-#: .\mail_job\templates\mail_job\base.html:116
+#: .\accounts\templates\registration\base.html:100
+#: .\mail_job\templates\mail_job\base.html:100
 msgid "Logout"
 msgstr "登出"
 
-#: .\mail_job\templates\mail_job\base.html:118
+#: .\accounts\templates\registration\base.html:102
+#: .\accounts\templates\registration\login.html:7
+#: .\accounts\templates\registration\login.html:15
+#: .\accounts\templates\registration\login.html:37
+#: .\mail_job\templates\mail_job\base.html:102
 msgid "Login"
 msgstr "登入"
 
-#: .\mail_job\templates\mail_job\base.html:119
+#: .\accounts\templates\registration\base.html:103
+#: .\accounts\templates\registration\login.html:17
+#: .\mail_job\templates\mail_job\base.html:103
 msgid "Sign up"
 msgstr "註冊"
 
-#: .\mail_job\templates\mail_job\base.html:120
+#: .\accounts\templates\registration\base.html:104
+#: .\accounts\templates\registration\password_reset_form.html:7
+#: .\accounts\templates\registration\password_reset_form.html:15
+#: .\mail_job\templates\mail_job\base.html:104
 msgid "Password reset"
 msgstr "密碼重置"
 
+#: .\accounts\templates\registration\login.html:17
+msgid "Don't have an account?"
+msgstr "仍未有帳號？"
+
+#: .\accounts\templates\registration\login.html:17
+#: .\accounts\templates\registration\password_reset_complete.html:16
+msgid "now."
+msgstr " "
+
+#: .\accounts\templates\registration\login.html:41
+msgid "Forgot your password?"
+msgstr "忘記你的密碼？"
+
+#: .\accounts\templates\registration\password_reset_complete.html:6
+#: .\accounts\templates\registration\password_reset_complete.html:14
+msgid "Done"
+msgstr "完成"
+
+#: .\accounts\templates\registration\password_reset_complete.html:6
+#: .\accounts\templates\registration\password_reset_confirm.html:7
+#: .\accounts\templates\registration\password_reset_confirm.html:15
+msgid "Set a new password"
+msgstr "設置一個新的密碼"
+
+#: .\accounts\templates\registration\password_reset_complete.html:16
+#, fuzzy
+#| msgid "Login"
+msgid "login"
+msgstr "登入"
+
+#: .\accounts\templates\registration\password_reset_confirm.html:18
+msgid "Enter your new password and replace the old one."
+msgstr "輸入你的新密碼並取代舊的"
+
+#: .\accounts\templates\registration\password_reset_confirm.html:38
+msgid "Change password"
+msgstr "修改密碼"
+
+#: .\accounts\templates\registration\password_reset_confirm.html:43
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr "密碼重置的連結已失效，因為它已經被使用過了，請重做密碼重置。"
+
+#: .\accounts\templates\registration\password_reset_form.html:17
+msgid ""
+"Enter your email address, and we'll email instructions for setting a new one."
+msgstr "輸入你的信箱地址，我們會把重設密碼的指示寄給你。"
+
+#: .\accounts\templates\registration\password_reset_form.html:32
+msgid "Reset"
+msgstr "重置"
+
+#: .\mail_job\forms.py:18
+msgid "Department"
+msgstr "部門"
+
+#: .\mail_job\forms.py:35
+msgid "ex. Expiration of certificates"
+msgstr "例如：憑證到期"
+
+#: .\mail_job\forms.py:38
+msgid "Event Type"
+msgstr "事件類型"
+
+#: .\mail_job\forms.py:45
+msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
+msgstr "例如： jimmylin.chief.net.tw 憑證到期"
+
+#: .\mail_job\forms.py:48
+msgid "Event"
+msgstr "事件描述"
+
+#: .\mail_job\forms.py:58
+msgid "Start From"
+msgstr "通知起始日"
+
+#: .\mail_job\forms.py:80
+msgid "Period"
+msgstr "週期"
+
+#: .\mail_job\forms.py:88
+msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
+msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
+
+#: .\mail_job\forms.py:92
+msgid "Mail Subject"
+msgstr "郵件主旨"
+
+#: .\mail_job\forms.py:99
+msgid ""
+"ex.\n"
+"The Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please "
+"update it."
+msgstr ""
+"例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
+
+#: .\mail_job\forms.py:103
+msgid "Mail Content"
+msgstr "郵件內容"
+
+#: .\mail_job\forms.py:110
+msgid ""
+"ex.\n"
+"jimmy_lin@chief.com.tw;\n"
+"t32@chief.com.tw;\n"
+"cathy_sung@chief.com.tw;"
+msgstr ""
+"例如：\n"
+"jimmy_lin@chief.com.tw;\n"
+"t32@chief.com.tw;\n"
+"cathy_sung@chief.com.tw;"
+
+#: .\mail_job\forms.py:114
+msgid "Recipients"
+msgstr "收件人"
+
+#: .\mail_job\templates\mail_job\add.html:21
+#: .\mail_job\templates\mail_job\add.html:43
+msgid "Add"
+msgstr "新增"
+
+#: .\mail_job\templates\mail_job\change.html:10
+#: .\mail_job\templates\mail_job\change.html:23
 #: .\mail_job\templates\mail_job\change.html:40
-msgid "change"
+msgid "Change"
 msgstr "修改"
+
+#: .\mail_job\templates\mail_job\change.html:43
+msgid "Delete"
+msgstr "註銷"
+
+#: .\mail_job\templates\mail_job\change.html:48
+msgid "Mail Test"
+msgstr "發測試信"
 
 #: .\mail_job\templates\mail_job\change_list.html:20
 msgid "Remind you for those you may miss, by mail."
@@ -63,11 +206,3 @@ msgstr "讓郵件代替你記憶那些瑣事"
 #: .\mail_job\templates\mail_job\change_list.html:25
 msgid "Add +"
 msgstr "新增 +"
-
-#: .\mssqlj3y\settings.py:120
-msgid "Trandition Chinese"
-msgstr "非殘體中文"
-
-#: .\mssqlj3y\settings.py:121
-msgid "English"
-msgstr "英文"
