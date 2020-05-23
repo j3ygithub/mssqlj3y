@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-23 13:48+0800\n"
+"POT-Creation-Date: 2020-05-23 14:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,7 +141,7 @@ msgstr "已經有帳號了嗎？"
 msgid " here."
 msgstr " "
 
-#: .\mail_job\forms.py:18
+#: .\mail_job\forms.py:18 .\mail_job\views.py:28 .\mail_job\views.py:66
 msgid "Department"
 msgstr "部門"
 
@@ -149,7 +149,7 @@ msgstr "部門"
 msgid "ex. Expiration of certificates"
 msgstr "例如：憑證到期"
 
-#: .\mail_job\forms.py:38
+#: .\mail_job\forms.py:38 .\mail_job\views.py:29 .\mail_job\views.py:67
 msgid "Event Type"
 msgstr "事件類型"
 
@@ -157,15 +157,16 @@ msgstr "事件類型"
 msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期"
 
-#: .\mail_job\forms.py:48
+#: .\mail_job\forms.py:48 .\mail_job\views.py:30 .\mail_job\views.py:68
 msgid "Event"
 msgstr "事件描述"
 
-#: .\mail_job\forms.py:58
+#: .\mail_job\forms.py:58 .\mail_job\views.py:31 .\mail_job\views.py:69
 msgid "Start From"
 msgstr "通知起始日"
 
-#: .\mail_job\forms.py:80
+#: .\mail_job\forms.py:80 .\mail_job\views.py:32 .\mail_job\views.py:59
+#: .\mail_job\views.py:60 .\mail_job\views.py:70
 msgid "Period"
 msgstr "週期"
 
@@ -173,7 +174,8 @@ msgstr "週期"
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:92
+#: .\mail_job\forms.py:92 .\mail_job\views.py:34 .\mail_job\views.py:61
+#: .\mail_job\views.py:62 .\mail_job\views.py:71
 msgid "Mail Subject"
 msgstr "郵件主旨"
 
@@ -185,7 +187,7 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:103
+#: .\mail_job\forms.py:103 .\mail_job\views.py:35 .\mail_job\views.py:72
 msgid "Mail Content"
 msgstr "郵件內容"
 
@@ -201,7 +203,7 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:114
+#: .\mail_job\forms.py:114 .\mail_job\views.py:36 .\mail_job\views.py:73
 msgid "Recipients"
 msgstr "收件人"
 
@@ -231,3 +233,23 @@ msgstr "讓郵件代替你記憶那些瑣事"
 #: .\mail_job\templates\mail_job\change_list.html:25
 msgid "Add +"
 msgstr "新增 +"
+
+#: .\mail_job\views.py:27 .\mail_job\views.py:65
+msgid "Serial"
+msgstr "項次"
+
+#: .\mail_job\views.py:37 .\mail_job\views.py:75 .\mail_job\views.py:77
+msgid "Created Date"
+msgstr "建立時間"
+
+#: .\mail_job\views.py:39 .\mail_job\views.py:74
+msgid "Created By"
+msgstr "建立者"
+
+#: .\mail_job\views.py:51
+msgid "Choose"
+msgstr "選擇"
+
+#: .\mail_job\views.py:57 .\mail_job\views.py:64
+msgid "Action"
+msgstr ""
