@@ -1,4 +1,5 @@
 {% extends 'mail_job/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -18,14 +19,14 @@
     {% if request.method == 'GET' %}
     <div class="row justify-content-center">
         <div class="col-auto j3y-border" style="padding: 1.5rem;">
-            <h2>您確定嗎？</h2>
+            <h2>{% trans 'Are you sure?' %}</h2>
             <h2><br></h2>
-            <p>確定要註銷這筆 Mail Job 嗎？</p>
+            <p>{% trans 'Are you sure you want to delete this mail job?' %}</p>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-danger btn-block">註銷</button>
+                        <button type="submit" class="btn btn-danger btn-block">{% trans 'Delete' %}</button>
                     </div>
                 </div>
             </form>

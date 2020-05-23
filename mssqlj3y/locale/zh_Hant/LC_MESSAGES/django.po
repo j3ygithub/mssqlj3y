@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-23 22:13+0800\n"
+"POT-Creation-Date: 2020-05-24 02:05+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,95 +141,210 @@ msgstr "已經有帳號了嗎？"
 msgid " here."
 msgstr " "
 
-#: .\mail_job\forms.py:18
+#: .\mail_job\forms.py:17
 msgid "Department"
 msgstr "部門"
 
-#: .\mail_job\forms.py:35
+#: .\mail_job\forms.py:34
 msgid "ex. Expiration of certificates"
 msgstr "例如：憑證到期"
 
-#: .\mail_job\forms.py:38 .\mail_job\views.py:29 .\mail_job\views.py:82
+#: .\mail_job\forms.py:37 .\mail_job\views.py:29 .\mail_job\views.py:113
 msgid "Event Type"
 msgstr "事件類型"
 
-#: .\mail_job\forms.py:45
+#: .\mail_job\forms.py:44
 msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期"
 
-#: .\mail_job\forms.py:49 .\mail_job\views.py:30 .\mail_job\views.py:83
+#: .\mail_job\forms.py:48 .\mail_job\views.py:30 .\mail_job\views.py:114
 msgid "Event"
 msgstr "事件描述"
 
-#: .\mail_job\forms.py:59 .\mail_job\views.py:31 .\mail_job\views.py:84
+#: .\mail_job\forms.py:58 .\mail_job\views.py:31 .\mail_job\views.py:115
 msgid "Start From"
 msgstr "通知起始日"
 
-#: .\mail_job\forms.py:63 .\mail_job\views.py:60
+#: .\mail_job\forms.py:62 .\mail_job\views.py:60
 msgid "Once"
 msgstr "單次"
 
-#: .\mail_job\forms.py:64 .\mail_job\views.py:61
+#: .\mail_job\forms.py:63 .\mail_job\views.py:61
 msgid "Daily"
 msgstr "每日"
 
-#: .\mail_job\forms.py:65 .\mail_job\views.py:62 .\mail_job\views.py:72
+#: .\mail_job\forms.py:64 .\mail_job\views.py:62 .\mail_job\views.py:103
 msgid "Each weekday"
 msgstr "平日"
 
-#: .\mail_job\forms.py:66 .\mail_job\views.py:63
+#: .\mail_job\forms.py:65 .\mail_job\views.py:63
 msgid "Each Monday"
 msgstr "每週一"
 
-#: .\mail_job\forms.py:67 .\mail_job\views.py:64
+#: .\mail_job\forms.py:66 .\mail_job\views.py:64
 msgid "Each Tuesday"
 msgstr "每週二"
 
-#: .\mail_job\forms.py:68 .\mail_job\views.py:65
+#: .\mail_job\forms.py:67 .\mail_job\views.py:65
 msgid "Each Wednesday "
 msgstr "每週三"
 
-#: .\mail_job\forms.py:69 .\mail_job\views.py:66
+#: .\mail_job\forms.py:68 .\mail_job\views.py:66
 msgid "Each Thursday "
 msgstr "每週日"
 
-#: .\mail_job\forms.py:70 .\mail_job\views.py:67
+#: .\mail_job\forms.py:69 .\mail_job\views.py:67
 msgid "Each Friday "
 msgstr "每週五"
 
-#: .\mail_job\forms.py:71 .\mail_job\views.py:68
+#: .\mail_job\forms.py:70 .\mail_job\views.py:68
 msgid "Each Saturday "
 msgstr "每週六"
 
-#: .\mail_job\forms.py:72 .\mail_job\views.py:69
+#: .\mail_job\forms.py:71 .\mail_job\views.py:69
 msgid "Each Sunday"
 msgstr "每週日"
 
-#: .\mail_job\forms.py:75
+#: .\mail_job\forms.py:72 .\mail_job\views.py:70
 msgid "1st of every month"
 msgstr "每月1號"
 
-#: .\mail_job\forms.py:78
-#, fuzzy, python-brace-format
-msgid "{n}th of every month"
-msgstr "每月{n}號"
+#: .\mail_job\forms.py:73 .\mail_job\views.py:71
+msgid "2nd of every month"
+msgstr "每月2號"
 
-#: .\mail_job\forms.py:86 .\mail_job\views.py:32 .\mail_job\views.py:71
-#: .\mail_job\views.py:72 .\mail_job\views.py:75 .\mail_job\views.py:76
-#: .\mail_job\views.py:85
+#: .\mail_job\forms.py:74 .\mail_job\views.py:72
+msgid "3rd of every month"
+msgstr "每月3號"
+
+#: .\mail_job\forms.py:75 .\mail_job\views.py:73
+msgid "4th of every month"
+msgstr "每月4號"
+
+#: .\mail_job\forms.py:76 .\mail_job\views.py:74
+msgid "5th of every month"
+msgstr "每月5號"
+
+#: .\mail_job\forms.py:77 .\mail_job\views.py:75
+msgid "6th of every month"
+msgstr "每月6號"
+
+#: .\mail_job\forms.py:78 .\mail_job\views.py:76
+msgid "7th of every month"
+msgstr "每月7號"
+
+#: .\mail_job\forms.py:79 .\mail_job\views.py:77
+msgid "8th of every month"
+msgstr "每月8號"
+
+#: .\mail_job\forms.py:80 .\mail_job\views.py:78
+msgid "9th of every month"
+msgstr "每月9號"
+
+#: .\mail_job\forms.py:81 .\mail_job\views.py:79
+msgid "10th of every month"
+msgstr "每月10號"
+
+#: .\mail_job\forms.py:82 .\mail_job\views.py:80
+msgid "11th of every month"
+msgstr "每月11號"
+
+#: .\mail_job\forms.py:83 .\mail_job\views.py:81
+msgid "12th of every month"
+msgstr "每月12號"
+
+#: .\mail_job\forms.py:84 .\mail_job\views.py:82
+msgid "13th of every month"
+msgstr "每月13號"
+
+#: .\mail_job\forms.py:85 .\mail_job\views.py:83
+msgid "14th of every month"
+msgstr "每月14號"
+
+#: .\mail_job\forms.py:86 .\mail_job\views.py:84
+msgid "15th of every month"
+msgstr "每月15號"
+
+#: .\mail_job\forms.py:87 .\mail_job\views.py:85
+msgid "16th of every month"
+msgstr "每月16號"
+
+#: .\mail_job\forms.py:88 .\mail_job\views.py:86
+msgid "17th of every month"
+msgstr "每月17號"
+
+#: .\mail_job\forms.py:89 .\mail_job\views.py:87
+msgid "18th of every month"
+msgstr "每月18號"
+
+#: .\mail_job\forms.py:90 .\mail_job\views.py:88
+msgid "19th of every month"
+msgstr "每月19號"
+
+#: .\mail_job\forms.py:91 .\mail_job\views.py:89
+msgid "20th of every month"
+msgstr "每月20號"
+
+#: .\mail_job\forms.py:92 .\mail_job\views.py:90
+msgid "21th of every month"
+msgstr "每月21號"
+
+#: .\mail_job\forms.py:93 .\mail_job\views.py:91
+msgid "22th of every month"
+msgstr "每月22號"
+
+#: .\mail_job\forms.py:94 .\mail_job\views.py:92
+msgid "23th of every month"
+msgstr "每月23號"
+
+#: .\mail_job\forms.py:95 .\mail_job\views.py:93
+msgid "24th of every month"
+msgstr "每月24號"
+
+#: .\mail_job\forms.py:96 .\mail_job\views.py:94
+msgid "25th of every month"
+msgstr "每月25號"
+
+#: .\mail_job\forms.py:97 .\mail_job\views.py:95
+msgid "26th of every month"
+msgstr "每月26號"
+
+#: .\mail_job\forms.py:98 .\mail_job\views.py:96
+msgid "27th of every month"
+msgstr "每月27號"
+
+#: .\mail_job\forms.py:99 .\mail_job\views.py:97
+msgid "28th of every month"
+msgstr "每月28號"
+
+#: .\mail_job\forms.py:100 .\mail_job\views.py:98
+msgid "29th of every month"
+msgstr "每月29號"
+
+#: .\mail_job\forms.py:101 .\mail_job\views.py:99
+msgid "30th of every month"
+msgstr "每月30號"
+
+#: .\mail_job\forms.py:102 .\mail_job\views.py:100
+msgid "31th of every month"
+msgstr "每月31號"
+
+#: .\mail_job\forms.py:110 .\mail_job\views.py:32 .\mail_job\views.py:102
+#: .\mail_job\views.py:103 .\mail_job\views.py:106 .\mail_job\views.py:107
+#: .\mail_job\views.py:116
 msgid "Period"
 msgstr "週期"
 
-#: .\mail_job\forms.py:94
+#: .\mail_job\forms.py:118
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:98 .\mail_job\views.py:34 .\mail_job\views.py:77
-#: .\mail_job\views.py:78 .\mail_job\views.py:86
+#: .\mail_job\forms.py:122 .\mail_job\views.py:34 .\mail_job\views.py:108
+#: .\mail_job\views.py:109 .\mail_job\views.py:117
 msgid "Mail Subject"
 msgstr "郵件主旨"
 
-#: .\mail_job\forms.py:105
+#: .\mail_job\forms.py:129
 msgid ""
 "ex.\n"
 "The Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please "
@@ -237,11 +352,11 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:109 .\mail_job\views.py:35 .\mail_job\views.py:87
+#: .\mail_job\forms.py:133 .\mail_job\views.py:35 .\mail_job\views.py:118
 msgid "Mail Content"
 msgstr "郵件內容"
 
-#: .\mail_job\forms.py:116
+#: .\mail_job\forms.py:140
 msgid ""
 "ex.\n"
 "jimmy_lin@chief.com.tw;\n"
@@ -253,10 +368,11 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:120 .\mail_job\views.py:36 .\mail_job\views.py:88
+#: .\mail_job\forms.py:144 .\mail_job\views.py:36 .\mail_job\views.py:119
 msgid "Recipients"
 msgstr "收件人"
 
+#: .\mail_job\templates\mail_job\add.html:10
 #: .\mail_job\templates\mail_job\add.html:21
 #: .\mail_job\templates\mail_job\add.html:43
 msgid "Add"
@@ -269,6 +385,7 @@ msgid "Change"
 msgstr "修改"
 
 #: .\mail_job\templates\mail_job\change.html:43
+#: .\mail_job\templates\mail_job\delete.html:29
 msgid "Delete"
 msgstr "註銷"
 
@@ -284,19 +401,40 @@ msgstr "讓郵件代替你記憶那些瑣事"
 msgid "Add +"
 msgstr "新增 +"
 
+#: .\mail_job\templates\mail_job\delete.html:22
+#: .\mail_job\templates\mail_job\mail_test.html:22
+msgid "Are you sure?"
+msgstr "你確定嗎？"
+
+#: .\mail_job\templates\mail_job\delete.html:24
+msgid "Are you sure you want to delete this mail job?"
+msgstr "你確定要註銷這筆 mail job 嗎"
+
+#: .\mail_job\templates\mail_job\mail_test.html:10
+msgid "Mail test"
+msgstr "發測試信"
+
+#: .\mail_job\templates\mail_job\mail_test.html:24
+msgid "Are you sure you want to send the test mail of this mail job?"
+msgstr "你確定要送出這筆 mail job 的測試信嗎？"
+
+#: .\mail_job\templates\mail_job\mail_test.html:29
+msgid "Send"
+msgstr "送出"
+
 #: .\mail_job\views.py:27
 msgid "Serial"
 msgstr "項次"
 
-#: .\mail_job\views.py:28 .\mail_job\views.py:81
+#: .\mail_job\views.py:28 .\mail_job\views.py:112
 msgid "Dep."
 msgstr "部門"
 
-#: .\mail_job\views.py:37 .\mail_job\views.py:90 .\mail_job\views.py:92
+#: .\mail_job\views.py:37 .\mail_job\views.py:121 .\mail_job\views.py:123
 msgid "Created Date"
 msgstr "建立時間"
 
-#: .\mail_job\views.py:39 .\mail_job\views.py:89
+#: .\mail_job\views.py:39 .\mail_job\views.py:120
 msgid "Created By"
 msgstr "建立者"
 
@@ -304,6 +442,6 @@ msgstr "建立者"
 msgid "Choose"
 msgstr "選擇"
 
-#: .\mail_job\views.py:57 .\mail_job\views.py:80
+#: .\mail_job\views.py:57 .\mail_job\views.py:111
 msgid "Action"
 msgstr "動作"

@@ -69,12 +69,37 @@ class MailJobForm(forms.Form):
         ('每週五', _('Each Friday ')),
         ('每週六', _('Each Saturday ')),
         ('每週日', _('Each Sunday')),
-    ]
-    choices_period += [
         ('每月1號', _('1st of every month')),
-    ]
-    choices_period += [
-        (f'每月{n}號',  _(f"{n}th of every month")) for n in range(1, 32)
+        ('每月2號', _('2nd of every month')),
+        ('每月3號', _('3rd of every month')),
+        ('每月4號', _('4th of every month')),
+        ('每月5號', _('5th of every month')),
+        ('每月6號', _('6th of every month')),
+        ('每月7號', _('7th of every month')),
+        ('每月8號', _('8th of every month')),
+        ('每月9號', _('9th of every month')),
+        ('每月10號', _('10th of every month')),
+        ('每月11號', _('11th of every month')),
+        ('每月12號', _('12th of every month')),
+        ('每月13號', _('13th of every month')),
+        ('每月14號', _('14th of every month')),
+        ('每月15號', _('15th of every month')),
+        ('每月16號', _('16th of every month')),
+        ('每月17號', _('17th of every month')),
+        ('每月18號', _('18th of every month')),
+        ('每月19號', _('19th of every month')),
+        ('每月20號', _('20th of every month')),
+        ('每月21號', _('21th of every month')),
+        ('每月22號', _('22th of every month')),
+        ('每月23號', _('23th of every month')),
+        ('每月24號', _('24th of every month')),
+        ('每月25號', _('25th of every month')),
+        ('每月26號', _('26th of every month')),
+        ('每月27號', _('27th of every month')),
+        ('每月28號', _('28th of every month')),
+        ('每月29號', _('29th of every month')),
+        ('每月30號', _('30th of every month')),
+        ('每月31號', _('31th of every month')),
     ]
     period = forms.ChoiceField(
         widget=forms.Select(
