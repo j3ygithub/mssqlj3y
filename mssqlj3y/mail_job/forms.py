@@ -61,7 +61,7 @@ class MailJobForm(forms.Form):
     choices_period = [
         ('單次', _('Once')),
         ('每日', _('Daily')),
-        ('每日(假日除外)', _('Each weekday')),
+        ('平日', _('Each weekday')),
         ('每週一', _('Each Monday')),
         ('每週二', _('Each Tuesday')),
         ('每週三', _('Each Wednesday ')),

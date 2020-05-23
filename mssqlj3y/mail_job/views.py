@@ -9,7 +9,6 @@ from django.utils.translation import gettext as _
 
 
 def change_list(request, messages={}):
-    print(request.LANGUAGE_CODE)
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
@@ -59,7 +58,7 @@ def change_list(request, messages={}):
                 choices_period = [
                     ('單次', _('Once')),
                     ('每日', _('Daily')),
-                    ('每日(假日除外)', _('Each weekday')),
+                    ('平日', _('Each weekday')),
                     ('每週一', _('Each Monday')),
                     ('每週二', _('Each Tuesday')),
                     ('每週三', _('Each Wednesday ')),
@@ -130,10 +129,9 @@ def change_list(request, messages={}):
             )
             context['htmls']['change_list'] = df_html
         else:
-            context['messages']['change_list'] = '未知的錯誤，返回的資料格式不正確。'
-    except Exception as e:
-        print(e)
-        context['messages']['change_list'] = '未知的錯誤，無法返回資料。'
+            context['messages']['change_list'] = _('Unknown error. The format of the returned data is not correct.')
+    except:
+        context['messages']['change_list'] = _('Unknown error. The data cannot be returned.')
     return render(request, 'mail_job/change_list.html', context)
 
 
@@ -146,7 +144,7 @@ def add(request):
     }
     if request.method != 'POST':
         form = MailJobForm()
-        context['messages']['add'] = '輸入以下表格以新增 Mail Job。'
+        context['messages']['add'] = _('Fill in the following form to create a new mail job.')
         context['form'] = form
         return render(request, 'mail_job/add.html', context)
     elif request.method == 'POST':
@@ -165,7 +163,7 @@ def add(request):
                 created_by = request.user
             else:
                 created_by = request.META.get('REMOTE_ADDR')
-            if period == '每日(假日除外)':
+            if period == '平日':
                 period = '每日'
                 weekend_flag = 'T'
             else:
@@ -190,12 +188,12 @@ def add(request):
             # end
             response_insert[0][0]
             if response_insert[0][0] == '新增成功':
-                context['messages']['add'] = '已新增成功。'
+                context['messages']['add'] = _('Added successfully.')
                 return change_list(request, messages=context['messages'])
             if response_insert[0][0] == '新增失敗，資料重覆，請確認':
-                context['messages']['add'] = '與既有的資料重覆，新增失敗。'
+                context['messages']['add'] = _('Failed to add. The data is duplicate with the existing.')
         except:
-            context['messages']['add'] = '未知的錯誤，返回的資料格式不正確。'
+            context['messages']['add'] = _('Unknown error. The format of the return value is not correct.')
         return render(request, 'mail_job/add.html', context)
 
 
@@ -219,11 +217,8 @@ def change(request, seq):
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
             recipient = form.cleaned_data['recipient']
-            if request.user.is_authenticated:
-                updated_by = request.user
-            else:
-                updated_by = request.META.get('REMOTE_ADDR')
-            if period == '每日(假日除外)':
+            updated_by = request.user
+            if period == '平日':
                 period = '每日'
                 weekend_flag = 'T'
             else:
@@ -248,9 +243,9 @@ def change(request, seq):
             """
             response_query_all = exec_sp(query_string=query_string)
             if response_query_all[0][0] == '修改成功':
-                context['messages']['change'] = '已修改成功。'
+                context['messages']['change'] = _('Changed successfully.')
         except:
-            context['messages']['change'] = '未知的錯誤，返回的資料格式不正確。'
+            context['messages']['change'] = _('Unknown error. The format of the return value is not correct.')
         return change_list(request, messages=context['messages'])
     else:
         try:
@@ -263,7 +258,7 @@ def change(request, seq):
             """
             response_query_all = exec_sp(query_string=query_string)
         except:
-            context['messages']['change'] = '未知的錯誤，無法返回該筆資料。'
+            context['messages']['change'] = _('Unknown error. The data cannot be returned.')
         try:
             df = pandas.DataFrame(tuple(row) for row in response_query_all)
             if len(response_query_all
@@ -289,12 +284,12 @@ def change(request, seq):
                 for index, row in df.iterrows():
                     try:
                         if not str(request.user) == row['建立者'] and not request.user.is_staff:
-                            context['messages']['change'] = '你只能修改自己建立的 Mail Job。'
+                            context['messages']['change'] = _('You can only change the mail job created by you.')
                             return change_list(request, messages=context['messages'])
                     except:
                         pass
                     if row['週期'] == '每日' and row['假日除外'] == 'T':
-                        df.loc[index, '週期'] = '每日(假日除外)'
+                        df.loc[index, '週期'] = '平日'
                 df = df.sort_values(by=['建立時間'], ascending=False)
                 form = MailJobForm(initial={
                     'department': df.loc[0, '部門'],
@@ -307,11 +302,11 @@ def change(request, seq):
                     'recipient': df.loc[0, '收件人'],
                 }, )
                 context['form'] = form
-                context['messages']['change'] = '以下為目前的設置，請填入欲修改的部分後送出。'
+                context['messages']['change'] = _('The following is the current setting. Please fill in the part you want to modify and then submit.')
             else:
-                context['messages']['change'] = '查無這筆資料，請確認該資料是否已被刪除。'
+                context['messages']['change'] = _('The mail job is not available. Please confirm whether it has been deleted.')
         except:
-            context['messages']['change'] = '未知的錯誤，無法返回資料。'
+            context['messages']['change'] = _('Unknown error, data cannot return.')
         return render(request, 'mail_job/change.html', context)
 
 
@@ -331,7 +326,7 @@ def delete(request, seq):
         """
         response_query_all = exec_sp(query_string=query_string)
     except:
-        context['messages']['change_list'] = '未知的錯誤，無法返回該筆資料。'
+        context['messages']['change_list'] = _('Unknown error. The data cannot be returned.')
     try:
         df = pandas.DataFrame(tuple(row) for row in response_query_all)
         if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
@@ -357,17 +352,14 @@ def delete(request, seq):
                 try:
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
-                        context['messages']['delete'] = '你只能註銷自己建立的 Mail Job。'
+                        context['messages']['delete'] = _('You can only delete the mail job created by you.')
                         return change_list(request, messages=context['messages'])
                 except:
                     pass
     except:
-        context['messages']['delete'] = '未知的錯誤，無法返回該筆資料。'
+        context['messages']['delete'] = _('Unknown error. The data cannot be returned.')
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            updated_by = request.user
-        else:
-            updated_by = request.META.get('REMOTE_ADDR')
+        updated_by = request.user
         try:
             # call update sp
             query_string = f"""
@@ -388,11 +380,11 @@ def delete(request, seq):
             """
             response_query_all = exec_sp(query_string=query_string)
             if response_query_all[0][0] == '修改成功':
-                context['messages']['delete'] = '已註銷成功。'
+                context['messages']['delete'] = _('Deleted successfully.')
             else:
-                context['messages']['delete'] = '註銷失敗，該資料可能已不存在。'
+                context['messages']['delete'] = _('The mail job is not available. Please confirm whether it has been deleted.')
         except:
-            context['messages']['delete'] = '未知的錯誤，無法返回資料。'
+            context['messages']['delete'] = _('Unknown error, data cannot return.')
         return change_list(request, messages=context['messages'])
     else:
         return render(request, 'mail_job/delete.html', context)
@@ -414,7 +406,7 @@ def mail_test(request, seq):
         """
         response_query_all = exec_sp(query_string=query_string)
     except:
-        context['messages']['change_list'] = '未知的錯誤，無法返回該筆資料。'
+        context['messages']['change_list'] = _('Unknown error. The data cannot be returned.')
     try:
         df = pandas.DataFrame(tuple(row) for row in response_query_all)
         if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
@@ -440,12 +432,12 @@ def mail_test(request, seq):
                 try:
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
-                        context['messages']['mail_test'] = '你只能測試自己建立的 Mail Job。'
+                        context['messages']['mail_test'] = _('You can only do a mail test on the mail job created by you.')
                         return change_list(request, messages=context['messages'])
                 except:
                     pass
     except:
-        context['messages']['mail_test'] = '未知的錯誤，無法返回該筆資料。'
+        context['messages']['mail_test'] = _('Unknown error. The data cannot be returned.')
     if request.method == 'POST':
         try:
             # call do-test sp
@@ -458,7 +450,7 @@ def mail_test(request, seq):
             # end
         except:
             pass
-        context['messages']['mail-test'] = '已經發出測試信。'
+        context['messages']['mail-test'] = _('The test mail has been sent.')
         return change_list(request, messages=context['messages'])
     else:
         return render(request, 'mail_job/mail_test.html', context)
