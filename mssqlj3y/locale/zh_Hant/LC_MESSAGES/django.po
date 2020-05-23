@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-23 09:21+0800\n"
+"POT-Creation-Date: 2020-05-23 13:48+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,17 +46,22 @@ msgstr "登出"
 #: .\accounts\templates\registration\login.html:7
 #: .\accounts\templates\registration\login.html:15
 #: .\accounts\templates\registration\login.html:37
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:17
 #: .\mail_job\templates\mail_job\base.html:102
 msgid "Login"
 msgstr "登入"
 
 #: .\accounts\templates\registration\base.html:103
 #: .\accounts\templates\registration\login.html:17
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:7
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:15
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:40
 #: .\mail_job\templates\mail_job\base.html:103
 msgid "Sign up"
 msgstr "註冊"
 
 #: .\accounts\templates\registration\base.html:104
+#: .\accounts\templates\registration\password_reset_done.html:7
 #: .\accounts\templates\registration\password_reset_form.html:7
 #: .\accounts\templates\registration\password_reset_form.html:15
 #: .\mail_job\templates\mail_job\base.html:104
@@ -64,38 +69,38 @@ msgid "Password reset"
 msgstr "密碼重置"
 
 #: .\accounts\templates\registration\login.html:17
-msgid "Don't have an account?"
+msgid "Don't have an account? "
 msgstr "仍未有帳號？"
 
 #: .\accounts\templates\registration\login.html:17
-#: .\accounts\templates\registration\password_reset_complete.html:16
-msgid "now."
+#: .\accounts\templates\registration\password_reset_complete.html:21
+msgid " now."
 msgstr " "
 
 #: .\accounts\templates\registration\login.html:41
 msgid "Forgot your password?"
 msgstr "忘記你的密碼？"
 
-#: .\accounts\templates\registration\password_reset_complete.html:6
-#: .\accounts\templates\registration\password_reset_complete.html:14
+#: .\accounts\templates\registration\password_reset_complete.html:7
+#: .\accounts\templates\registration\password_reset_complete.html:15
+#: .\accounts\templates\registration\password_reset_done.html:7
 msgid "Done"
 msgstr "完成"
 
-#: .\accounts\templates\registration\password_reset_complete.html:6
+#: .\accounts\templates\registration\password_reset_complete.html:7
 #: .\accounts\templates\registration\password_reset_confirm.html:7
 #: .\accounts\templates\registration\password_reset_confirm.html:15
 msgid "Set a new password"
 msgstr "設置一個新的密碼"
 
-#: .\accounts\templates\registration\password_reset_complete.html:16
-#, fuzzy
-#| msgid "Login"
+#: .\accounts\templates\registration\password_reset_complete.html:19
+#: .\accounts\templates\registration\password_reset_complete.html:21
 msgid "login"
 msgstr "登入"
 
 #: .\accounts\templates\registration\password_reset_confirm.html:18
-msgid "Enter your new password and replace the old one."
-msgstr "輸入你的新密碼並取代舊的"
+msgid "Enter your new password."
+msgstr "輸入你的新密碼"
 
 #: .\accounts\templates\registration\password_reset_confirm.html:38
 msgid "Change password"
@@ -107,14 +112,34 @@ msgid ""
 "used. Please request a new password reset."
 msgstr "密碼重置的連結已失效，因為它已經被使用過了，請重做密碼重置。"
 
+#: .\accounts\templates\registration\password_reset_done.html:15
+msgid "Check your inbox."
+msgstr "檢查你的信箱"
+
+#: .\accounts\templates\registration\password_reset_done.html:17
+msgid "We've emailed you instructions."
+msgstr "我們已將相關指示寄給你，"
+
+#: .\accounts\templates\registration\password_reset_done.html:18
+msgid "You may check them for following setting."
+msgstr "你可以用他們完成接下來的設定。"
+
 #: .\accounts\templates\registration\password_reset_form.html:17
 msgid ""
 "Enter your email address, and we'll email instructions for setting a new one."
 msgstr "輸入你的信箱地址，我們會把重設密碼的指示寄給你。"
 
-#: .\accounts\templates\registration\password_reset_form.html:32
+#: .\accounts\templates\registration\password_reset_form.html:37
 msgid "Reset"
 msgstr "重置"
+
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:17
+msgid "Already got an account? "
+msgstr "已經有帳號了嗎？"
+
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:17
+msgid " here."
+msgstr " "
 
 #: .\mail_job\forms.py:18
 msgid "Department"

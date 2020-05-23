@@ -14,7 +14,7 @@
         <div class="col-auto" style="padding: 1.5rem; width: 24rem;">
             <h1 style="text-align: center;">{% trans 'Login' %}</h1>
             <h2><br></h2>
-            <p>{% trans "Don't have an account?" %}<a href="{% url 'sign_up' %}" class="text-decoration-none">{% trans 'Sign up' %}</a>{% trans 'now.' %}</p>
+            <p>{% trans "Don't have an account? " %}<a href="{% url 'sign_up' %}" class="text-decoration-none">{% trans 'Sign up' %}</a>{% trans ' now.' %}</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
