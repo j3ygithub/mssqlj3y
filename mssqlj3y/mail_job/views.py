@@ -25,7 +25,7 @@ def change_list(request, messages={}):
             df.columns = [
                 'result', # 查詢結果
                 _('Serial'), # 項次
-                _('Department'), # 部門
+                _('Dep.'), # 部門
                 _('Event Type'), # 事件類型
                 _('Event'), # 事件
                 _('Start From'), # 通知起始日
@@ -56,14 +56,29 @@ def change_list(request, messages={}):
                 html_button_dropdown += '</div>'
                 df.loc[index, _('Action')] = html_button_dropdown
                 # merge the period and the weekend flag
+                choices_period = [
+                    ('單次', _('Once')),
+                    ('每日', _('Daily')),
+                    ('每日(假日除外)', _('Each weekday')),
+                    ('每週一', _('Each Monday')),
+                    ('每週二', _('Each Tuesday')),
+                    ('每週三', _('Each Wednesday ')),
+                    ('每週四', _('Each Thursday ')),
+                    ('每週五', _('Each Friday ')),
+                    ('每週六', _('Each Saturday ')),
+                    ('每週日', _('Each Sunday')),
+                ]
                 if row[_('Period')] == '每日' and row['weekend_flag'] == 'T':
-                    df.loc[index, _('Period')] = '每日(假日除外)'
+                    df.loc[index, _('Period')] = _('Each weekday')
+                else:
+                    for t in choices_period:
+                        if row[_('Period')] == t[0]:
+                            df.loc[index, _('Period')] = t[1]
                 if len(row[_('Mail Subject')]) > 50:
                     df.loc[index, _('Mail Subject')] = row[_('Mail Subject')][:50] + '......'
             df = df[[
                 _('Action'), # 動作
-                _('Serial'), # 項次,
-                _('Department'), # 部門
+                _('Dep.'), # 部門
                 _('Event Type'), # 事件類型
                 _('Event'), # 事件
                 _('Start From'), # 通知起始日

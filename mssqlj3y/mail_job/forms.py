@@ -36,13 +36,14 @@ class MailJobForm(forms.Form):
             },
         ),
         label=_('Event Type'),
-        max_length=16
+        max_length=32,
     )
     event = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
                 'placeholder': _('ex. Expiration of the certificate on jimmylin.chief.net.tw'),
+                'rows':2,
             },
         ),
         label=_('Event'),
@@ -59,18 +60,20 @@ class MailJobForm(forms.Form):
         initial=today,
     )
     choices_period = [
-        ('單次', '單次'),
-        ('每日', '每日'),
-        ('每日(假日除外)', '每日(假日除外)'),
-        ('每週一', '每週一'),
-        ('每週二', '每週二'),
-        ('每週三', '每週三'),
-        ('每週四', '每週四'),
-        ('每週五', '每週五'),
-        ('每週六', '每週六'),
-        ('每週日', '每週日'),
+        ('單次', _('Once')),
+        ('每日', _('Daily')),
+        ('每日(假日除外)', _('Each weekday')),
+        ('每週一', _('Each Monday')),
+        ('每週二', _('Each Tuesday')),
+        ('每週三', _('Each Wednesday ')),
+        ('每週四', _('Each Thursday ')),
+        ('每週五', _('Each Friday ')),
+        ('每週六', _('Each Saturday ')),
+        ('每週日', _('Each Sunday')),
     ]
-    choices_period += [(f'每月{n}號', f'每月{n}號') for n in range(1, 32)]
+    choices_period += [
+        ('每月1號', _('1st of every month')),
+    ]
     period = forms.ChoiceField(
         widget=forms.Select(
             attrs={
