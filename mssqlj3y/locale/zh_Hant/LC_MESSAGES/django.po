@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-23 15:57+0800\n"
+"POT-Creation-Date: 2020-05-23 22:13+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -209,22 +209,27 @@ msgstr "每週日"
 msgid "1st of every month"
 msgstr "每月1號"
 
-#: .\mail_job\forms.py:83 .\mail_job\views.py:32 .\mail_job\views.py:71
+#: .\mail_job\forms.py:78
+#, fuzzy, python-brace-format
+msgid "{n}th of every month"
+msgstr "每月{n}號"
+
+#: .\mail_job\forms.py:86 .\mail_job\views.py:32 .\mail_job\views.py:71
 #: .\mail_job\views.py:72 .\mail_job\views.py:75 .\mail_job\views.py:76
 #: .\mail_job\views.py:85
 msgid "Period"
 msgstr "週期"
 
-#: .\mail_job\forms.py:91
+#: .\mail_job\forms.py:94
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:95 .\mail_job\views.py:34 .\mail_job\views.py:77
+#: .\mail_job\forms.py:98 .\mail_job\views.py:34 .\mail_job\views.py:77
 #: .\mail_job\views.py:78 .\mail_job\views.py:86
 msgid "Mail Subject"
 msgstr "郵件主旨"
 
-#: .\mail_job\forms.py:102
+#: .\mail_job\forms.py:105
 msgid ""
 "ex.\n"
 "The Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please "
@@ -232,11 +237,11 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:106 .\mail_job\views.py:35 .\mail_job\views.py:87
+#: .\mail_job\forms.py:109 .\mail_job\views.py:35 .\mail_job\views.py:87
 msgid "Mail Content"
 msgstr "郵件內容"
 
-#: .\mail_job\forms.py:113
+#: .\mail_job\forms.py:116
 msgid ""
 "ex.\n"
 "jimmy_lin@chief.com.tw;\n"
@@ -248,7 +253,7 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:117 .\mail_job\views.py:36 .\mail_job\views.py:88
+#: .\mail_job\forms.py:120 .\mail_job\views.py:36 .\mail_job\views.py:88
 msgid "Recipients"
 msgstr "收件人"
 

@@ -1,6 +1,5 @@
 from django import forms
 from django.utils import timezone
-from django.contrib.admin.widgets import AdminDateWidget
 from django.utils.translation import gettext_lazy as _
 
 
@@ -73,6 +72,9 @@ class MailJobForm(forms.Form):
     ]
     choices_period += [
         ('每月1號', _('1st of every month')),
+    ]
+    choices_period += [
+        (f'每月{n}號',  _(f"{n}th of every month")) for n in range(1, 32)
     ]
     period = forms.ChoiceField(
         widget=forms.Select(
