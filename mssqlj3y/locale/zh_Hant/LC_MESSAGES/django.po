@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-24 13:00+0800\n"
+"POT-Creation-Date: 2020-05-24 13:05+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "帳號"
 #: .\accounts\templates\registration\login.html:15
 #: .\accounts\templates\registration\login.html:37
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:17
-#: .\mail_job\templates\mail_job\base.html:55
+#: .\mail_job\templates\mail_job\base.html:56
 msgid "Login"
 msgstr "登入"
 
@@ -44,7 +44,7 @@ msgstr "仍未有帳號？"
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:7
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:15
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:40
-#: .\mail_job\templates\mail_job\base.html:56
+#: .\mail_job\templates\mail_job\base.html:57
 msgid "Sign up"
 msgstr "註冊"
 
@@ -91,7 +91,7 @@ msgstr "密碼重置的連結已失效，因為它已經被使用過了，請重
 #: .\accounts\templates\registration\password_reset_done.html:7
 #: .\accounts\templates\registration\password_reset_form.html:7
 #: .\accounts\templates\registration\password_reset_form.html:15
-#: .\mail_job\templates\mail_job\base.html:57
+#: .\mail_job\templates\mail_job\base.html:58
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -373,11 +373,11 @@ msgid "Help"
 msgstr "使用說明"
 
 #: .\mail_job\templates\mail_job\base.html:43
-#: .\mail_job\templates\mail_job\modal_about.html:6
+#: .\mail_job\templates\mail_job\modal_about.html:8
 msgid "About"
 msgstr "關於"
 
-#: .\mail_job\templates\mail_job\base.html:53
+#: .\mail_job\templates\mail_job\base.html:54
 msgid "Logout"
 msgstr "登出"
 
@@ -426,7 +426,7 @@ msgstr "你確定要送出這筆 mail job 的測試信嗎？"
 msgid "Send"
 msgstr "送出"
 
-#: .\mail_job\templates\mail_job\modal_about.html:12
+#: .\mail_job\templates\mail_job\modal_about.html:14
 msgid "If there is a problem, please contact Jack Chang or Jimmy Lin."
 msgstr "若有任何使用上的問題，請聯繫 Jack Chang 或 Jimmy Lin。"
 
