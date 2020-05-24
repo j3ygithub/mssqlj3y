@@ -9,11 +9,7 @@ def today():
 
 class MailJobForm(forms.Form):
     department = forms.ChoiceField(
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
+        widget=forms.Select(),
         label=_('Dep.'),
         choices=(
             ('D11', 'D11'),
@@ -30,7 +26,6 @@ class MailJobForm(forms.Form):
     event_class = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
                 'placeholder': _('ex. Expiration of certificates'),
             },
         ),
@@ -40,7 +35,6 @@ class MailJobForm(forms.Form):
     event = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': 'form-control',
                 'placeholder': _('ex. Expiration of the certificate on jimmylin.chief.net.tw'),
                 'rows':2,
             },
@@ -51,7 +45,6 @@ class MailJobForm(forms.Form):
     note_date = forms.DateField(
         widget=forms.DateInput(
             attrs={
-                'class': 'form-control',
                 'type':'date',
             },
         ),
@@ -102,11 +95,7 @@ class MailJobForm(forms.Form):
         ('每月31號', _('31th of every month')),
     ]
     period = forms.ChoiceField(
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control',
-            },
-        ),
+        widget=forms.Select(),
         label=_('Period'),
         choices=choices_period,
         initial='每日',
@@ -114,7 +103,6 @@ class MailJobForm(forms.Form):
     subject = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': 'form-control',
                 'placeholder': _('ex. Notification - Certificate Expiration - jimmylin.chief.net.tw'),
                 'rows':2,
             },
@@ -125,7 +113,6 @@ class MailJobForm(forms.Form):
     body = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': 'form-control',
                 'placeholder': _('ex.\nThe Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please update it.'),
                 'rows':16,
             },
@@ -136,7 +123,6 @@ class MailJobForm(forms.Form):
     recipient = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': 'form-control',
                 'placeholder': _('ex.\njimmy_lin@chief.com.tw;\nt32@chief.com.tw;\ncathy_sung@chief.com.tw;'),
                 'rows':8,
             },
