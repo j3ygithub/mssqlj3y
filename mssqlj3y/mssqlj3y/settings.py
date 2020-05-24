@@ -101,8 +101,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# disable the AUTH_PASSWORD_VALIDATORS
-AUTH_PASSWORD_VALIDATORS = []
+# We disable the AUTH_PASSWORD_VALIDATORS for convinience of users
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 6,
+        }
+    },
+]
 
 
 # Internationalization
@@ -110,12 +117,12 @@ AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'zh-Hant'
 
-# for i18n
+# For i18n
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-# this don't change the navbar i18n form, needed to be checked
+# This limits the set_language view option
 LANGUAGES = {
     ('zh-hant', ''),
     ('en', ''),

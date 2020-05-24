@@ -18,8 +18,8 @@ from django.views.generic import RedirectView
 from .views import sign_up, send_password_email, sign_up_with_chief_email
 
 urlpatterns = [
-    # path('sign_up/', sign_up, name='sign_up'),
-    path('send-password-email/', send_password_email, name='send_password_email'),
-    path('sign-up/', RedirectView.as_view(url='/accounts/sign-up/with-chief-email/'), name='sign_up'),
+    # path('signup/', sign_up, name='sign_up'), 
+    path('sign-up/', RedirectView.as_view(url='/accounts/sign-up/with-chief-email/'), name='sign_up'), # We disable the original sign up view and redirect it to this.
     path('sign-up/with-chief-email/', sign_up_with_chief_email, name='sign_up_with_chief_email'),
+    path('send-password-email/', send_password_email, name='send_password_email'),
 ]

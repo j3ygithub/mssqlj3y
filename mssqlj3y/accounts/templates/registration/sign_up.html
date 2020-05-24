@@ -1,22 +1,20 @@
 {% extends 'registration/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
 {% block title %}
-<title>Sign up | Mail Job</title>
+<title>{% trans 'Sign up' %} | {% trans 'Accounts' %}</title>
 {% endblock title %}
 
 {% block content %}
 <div class="container-fluid">
+    <div class="row" style="height: 6rem;"></div>
     <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10 j3y-border" style="padding: 1.5rem;">
-            <h2>Sign up</h2>
+        <div class="col-auto" style="padding: 1.5rem; width: 24rem;">
+            <h1 style="text-align: center;">{% trans 'Sign up' %}</h1>
             <h2><br></h2>
-            <p>Already got an account? <a href="/accounts/login" class="text-decoration-none">Login</a> here.</p>
+            <p>{% trans 'Already got an account? ' %}<a href="{% url 'login' %}" class="text-decoration-none">{% trans 'Login' %}</a>{% trans ' here.' %}</p>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -36,14 +34,10 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                        <button type="submit" class="btn btn-primary btn-block">{% trans 'Sign up' %}</button>
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-9 col-10" style="padding: 1.5rem;">
         </div>
     </div>
 </div>
