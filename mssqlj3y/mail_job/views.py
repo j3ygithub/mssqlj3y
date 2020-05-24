@@ -25,17 +25,17 @@ def change_list(request, messages={}):
                 'result', # 查詢結果
                 _('Serial'), # 項次
                 _('Dep.'), # 部門
-                _('Event Type'), # 事件類型
+                _('Event type'), # 事件類型
                 _('Event'), # 事件
-                _('Start From'), # 通知起始日
+                _('Start from'), # 通知起始日
                 _('Period'), # 週期
                 'weekend_flag', # 假日除外
-                _('Mail Subject'), # 郵件主旨
-                _('Mail Content'), # 郵件內容
+                _('Mail subject'), # 郵件主旨
+                _('Mail content'), # 郵件內容
                 _('Recipients'), # 收件人
-                _('Created Date'), # 建立時間
+                _('Created date'), # 建立時間
                 'stop_date', # 規則終止日
-                _('Created By'), # 建立者
+                _('Created by'), # 建立者
                 'update_by', # 修改者
                 'update_date', # 修改日期
             ]
@@ -104,22 +104,22 @@ def change_list(request, messages={}):
                     for t in choices_period:
                         if row[_('Period')] == t[0]:
                             df.loc[index, _('Period')] = t[1]
-                if len(row[_('Mail Content')]) > 50:
-                    df.loc[index, _('Mail Content')] = row[_('Mail Content')][:50] + '......'
+                if len(row[_('Mail content')]) > 50:
+                    df.loc[index, _('Mail content')] = row[_('Mail content')][:50] + '......'
             df = df[[
                 _('Action'), # 動作
                 _('Dep.'), # 部門
-                _('Event Type'), # 事件類型
+                _('Event type'), # 事件類型
                 _('Event'), # 事件
-                _('Start From'), # 通知起始日
+                _('Start from'), # 通知起始日
                 _('Period'), # 週期
-                _('Mail Subject'), # 郵件主旨
-                _('Mail Content'), # 郵件內容
+                _('Mail subject'), # 郵件主旨
+                _('Mail content'), # 郵件內容
                 _('Recipients'), # 收件人
-                _('Created By'), # 建立者
-                _('Created Date'), # 建立時間
+                _('Created by'), # 建立者
+                _('Created date'), # 建立時間
             ]]
-            df = df.sort_values(by=[_('Created Date')], ascending=False)
+            df = df.sort_values(by=[_('Created date')], ascending=False)
             df.index = pandas.RangeIndex(start=1, stop=len(df) + 1, step=1)
             df_html = df.to_html(
                 justify='left',

@@ -14,7 +14,7 @@ class MailJobForm(forms.Form):
                 'class': 'form-control',
             },
         ),
-        label=_('Department'),
+        label=_('Dep.'),
         choices=(
             ('D11', 'D11'),
             ('D21', 'D21'),
@@ -34,7 +34,7 @@ class MailJobForm(forms.Form):
                 'placeholder': _('ex. Expiration of certificates'),
             },
         ),
-        label=_('Event Type'),
+        label=_('Event type'),
         max_length=32,
     )
     event = forms.CharField(
@@ -55,7 +55,7 @@ class MailJobForm(forms.Form):
                 'type':'date',
             },
         ),
-        label=_('Start From'),
+        label=_('Start on'),
         initial=today,
     )
     choices_period = [
@@ -119,7 +119,7 @@ class MailJobForm(forms.Form):
                 'rows':2,
             },
         ),
-        label=_('Mail Subject'),
+        label=_('Mail subject'),
         max_length=64,
     )
     body = forms.CharField(
@@ -130,7 +130,7 @@ class MailJobForm(forms.Form):
                 'rows':16,
             },
         ),
-        label=_('Mail Content'),
+        label=_('Mail content'),
         max_length=512,
     )
     recipient = forms.CharField(
