@@ -17,8 +17,28 @@ th {
     word-wrap: break-word;
 }
 
-.j3y-card {
+.j3y-border-1 {
     border: 1px solid rgba(0,0,0,.1);
+    border-radius: .5rem;
+}
+
+.j3y-border-2 {
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .5rem;
+}
+
+.j3y-border-3 {
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: .5rem;
+}
+
+.j3y-border-4 {
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: .5rem;
+}
+
+.j3y-border-5 {
+    border: 1px solid rgba(0,0,0,.5);
     border-radius: .5rem;
 }
 
