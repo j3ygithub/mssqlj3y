@@ -30,6 +30,9 @@
                         {% if field.errors %}
                         <p>{{ field.errors }}</p>
                         {% endif %}
+                        {% if field.help_text %}
+                        <small class="d-block text-muted">{{ field.help_text }}</small>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}

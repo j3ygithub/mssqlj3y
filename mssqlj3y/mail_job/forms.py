@@ -128,5 +128,6 @@ class MailJobForm(forms.Form):
             },
         ),
         label=_('Recipients'),
+        help_text=_('Use ";" to seperate multiple recipient.'),
         max_length=256,
     )
