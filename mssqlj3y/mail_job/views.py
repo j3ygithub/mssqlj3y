@@ -17,7 +17,7 @@ def change_list(request, messages={}):
     }
     try:
         # call query sp
-        query_string = f"""exec mail_job.dbo.show_mail_job @seq='', @department='';"""
+        query_string = "exec mail_job.dbo.show_mail_job @seq='', @department='';"
         response_query_all = exec_sp(query_string=query_string)
         if response_query_all[0][0] == '查詢成功':
             df = pandas.DataFrame(tuple(row) for row in response_query_all)

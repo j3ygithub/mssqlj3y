@@ -370,7 +370,7 @@ msgstr "收件人"
 
 #: .\mail_job\forms.py:131
 msgid "Use \";\" to seperate multiple recipient."
-msgstr "使用 \";\" 分隔多個收件者。"
+msgstr "使用「;」分隔多個收件者。"
 
 #: .\mail_job\templates\mail_job\add.html:10
 #: .\mail_job\templates\mail_job\add.html:21
