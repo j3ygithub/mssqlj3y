@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 17:46+0800\n"
+"POT-Creation-Date: 2020-06-04 17:59+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,16 +130,17 @@ msgid "Reminder"
 msgstr ""
 
 #: .\accounts\templates\registration\sign_up.html:20
+#: .\mail_job\templates\mail_job\change_list.html:22
 msgid "For those you may miss."
 msgstr "替你記憶那些瑣事"
 
 #: .\accounts\templates\registration\sign_up.html:23
-msgid "I wanna"
-msgstr "我想要"
+msgid "Sign up with Cheif Email."
+msgstr "以 Cheif Email 註冊"
 
 #: .\accounts\templates\registration\sign_up.html:24
-msgid "Sign up with Cheif Email"
-msgstr "以 Cheif Email 註冊"
+msgid "My Cheif Email has been used."
+msgstr "我的 Chief Email 已被使用"
 
 #: .\accounts\templates\registration\sign_up_with_account_password.html:17
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:17
@@ -427,12 +428,6 @@ msgstr "註銷"
 #: .\mail_job\templates\mail_job\change.html:48
 msgid "Mail Test"
 msgstr "發測試信"
-
-#: .\mail_job\templates\mail_job\change_list.html:22
-#, fuzzy
-#| msgid "For those you may miss."
-msgid "Remind you for those you may miss."
-msgstr "替你記憶那些瑣事"
 
 #: .\mail_job\templates\mail_job\change_list.html:27
 #: .\mail_job\templates\mail_job\modal_help.html:20
