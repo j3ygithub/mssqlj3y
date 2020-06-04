@@ -8,6 +8,27 @@ from .forms import ChiefUserSignUpForm
 import uuid
 
 
+def sign_up(request):
+    context = {}
+    return render(request, 'registration/sign_up.html', context)
+
+def sign_up_with_account_password(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'registration/sign_up_with_account_password.html', context)
+
 def sign_up_with_chief_email(request): 
     if request.method == 'POST': 
         form = ChiefUserSignUpForm(request.POST) 
@@ -60,20 +81,3 @@ def send_password_email(subject, message, recipient):
         )
     except:
         pass
-
-def sign_up(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('/')
-    else:
-        form = UserCreationForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'registration/sign_up.html', context)
