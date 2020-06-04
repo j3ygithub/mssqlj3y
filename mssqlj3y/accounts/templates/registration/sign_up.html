@@ -9,12 +9,19 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row" style="height: 6rem;"></div>
     <div class="row justify-content-center">
-        <div class="col-auto" style="padding: 1.5rem; width: 24rem;">
-            <h1 style="text-align: center;">{% trans 'Sign up' %}</h1>
-            <h2><br></h2>
-            <p>{% trans 'Already got an account? ' %}<a href="{% url 'login' %}" class="text-decoration-none">{% trans 'Login' %}</a>{% trans ' here.' %}</p>
+        <div class="col-auto" style="padding: 1.5rem; max-width: 24rem;">
+            <div style="text-align: center; padding: 2rem;">
+                <p>
+                    <svg class="bi bi-bell-fill" width="6rem" height="6rem" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                    </svg>
+                    <h1>{% trans 'Reminder' %}</h1>
+                    <p class="text-secondary">{% trans 'For those you may miss.' %}</p>
+                </p>
+            </div>
+            <p>{% trans 'I wanna' %}</p>
+            <a class="btn btn-block text-danger border-danger" href="{% url 'sign_up_with_chief_email' %}" style="background-color: rgb(232, 228, 238)">{% trans 'Sign up with Cheif Email' %}</a>
         </div>
     </div>
 </div>
