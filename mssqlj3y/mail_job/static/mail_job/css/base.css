@@ -1,11 +1,6 @@
 * {
-    font-family: Georgia, 'Noto Sans TC', 'Times New Roman', Times, serif;
-    color: #343A40;
-}
-
-th {
     font-family: 'Roboto Slab', 'Noto Sans TC', 'Times New Roman', Times, serif;
-    font-weight: 500;
+    color: #343A40;
 }
 
 .j3y-table th {
