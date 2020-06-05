@@ -8,12 +8,12 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div style="height: 4rem"></div>
+    <div class="row" style="height: 4rem"></div>
     {% if htmls %}
     {% for key, value in htmls.items %}
     {% if key == 'change_list' %}
     <div class="row justify-content-center">
-        <div class="col-auto px-4">
+        <div class="col-auto">
             <div class="text-center">
                 <p>
                     <svg class="bi bi-bell" width="8rem" height="8rem" viewBox="0 0 16 16" fill="currentColor"
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-auto px-4">
+        <div class="col-auto">
             <div class="text-right p-4">
                 <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
                     style="width: 8rem; border-radius: 2rem;">{% trans 'Add'%} +</a>
@@ -42,6 +42,6 @@
     {% endif %}
     {% endfor %}
     {% endif %}
-    <div style="height: 16rem"></div>
+    <div class="row" style="height: 8rem"></div>
 </div>
 {% endblock %}
