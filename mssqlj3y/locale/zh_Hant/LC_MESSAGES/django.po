@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-04 17:59+0800\n"
+"POT-Creation-Date: 2020-06-05 09:39+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr "重置"
 #: .\mail_job\templates\mail_job\base.html:34
 #: .\mail_job\templates\mail_job\change_list.html:21
 msgid "Reminder"
-msgstr ""
+msgstr "Reminder"
 
 #: .\accounts\templates\registration\sign_up.html:20
 #: .\mail_job\templates\mail_job\change_list.html:22
@@ -396,6 +396,8 @@ msgstr "使用「;」分隔多個收件者。"
 #: .\mail_job\templates\mail_job\add.html:10
 #: .\mail_job\templates\mail_job\add.html:21
 #: .\mail_job\templates\mail_job\add.html:46
+#: .\mail_job\templates\mail_job\change_list.html:27
+#: .\mail_job\templates\mail_job\modal_help.html:20
 msgid "Add"
 msgstr "新增"
 
@@ -428,11 +430,6 @@ msgstr "註銷"
 #: .\mail_job\templates\mail_job\change.html:48
 msgid "Mail Test"
 msgstr "發測試信"
-
-#: .\mail_job\templates\mail_job\change_list.html:27
-#: .\mail_job\templates\mail_job\modal_help.html:20
-msgid "Add +"
-msgstr "新增 +"
 
 #: .\mail_job\templates\mail_job\delete.html:19
 #: .\mail_job\templates\mail_job\mail_test.html:19
