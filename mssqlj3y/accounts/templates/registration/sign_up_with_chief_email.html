@@ -28,10 +28,20 @@
     </div>
     <div class="row" style="height: 2rem"></div>
     <div class="row justify-content-center">
-        <div class="col-auto">
+        <div class="col-auto" style="width: 21.6rem">
             <p>{% trans 'Already got an account? ' %}<a href="{% url 'login' %}" class="text-decoration-none">{% trans 'Login' %}</a>{% trans ' here.' %}</p>
-            <form method="post" style="width: 20rem;" novalidate>
+            <form method="post" novalidate>
                 {% csrf_token %}
+                {% if form.errors %}
+                    {% if form.errors|length == 1 %}
+                    <p class="text-danger">{% trans "Please correct the error below." %}</p>
+                    {% else %}
+                    <p class="text-danger">{% trans "Please correct the errors below." %}</p>
+                    {% endif %}
+                {% endif %}
+                {% for error in form.non_field_errors %}
+                <p class="text-danger">{{ error }}</p>
+                {% endfor %}
                 <div class="form-row">
                     <div class="form-group col">
                         {% if form.email.errors %}
