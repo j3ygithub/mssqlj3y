@@ -1,28 +1,29 @@
 from django.urls import path
 from django.views.generic import RedirectView
-from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetConfirmView
+from django.contrib.auth.views import (
+    LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
+    PasswordResetCompleteView)
 from django.utils.translation import gettext_lazy as _
 from .views import sign_up, sign_up_with_account_password, sign_up_with_chief_email, send_password_email
 from .forms import EmailValidationOnForgotPassword
 
 
+# we use many built-in auth-related views from django.contrib.auth.urls
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path(
-        'password-reset/',
-        PasswordResetView.as_view(
-            form_class=EmailValidationOnForgotPassword,
-        ),
-        name='password_reset'
-    ),
-    path(
-        'password-reset-confirm/',
-        PasswordResetConfirmView.as_view(),
-        name='password_reset_confirm'
-    )
+    path('password-change/', PasswordChangeView.as_view(), name='password_change'), # to be done
+    path('password-change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'), # to be done
+    # we override this form class of this view
+    path('password-reset/', PasswordResetView.as_view(form_class=EmailValidationOnForgotPassword), name='password_reset'),
+    path('password-reset/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
 
+
+# some custom views
 urlpatterns += [
     path('sign-up/', sign_up, name='sign_up'),
     path('sign-up/with-account-password/', sign_up_with_account_password, name='sign_up_with_account_password'), # not shown directly on web interface
