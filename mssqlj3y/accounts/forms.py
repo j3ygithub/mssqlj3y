@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+
 class ChiefUserSignUpForm(forms.ModelForm):
 
     email = forms.EmailField(
