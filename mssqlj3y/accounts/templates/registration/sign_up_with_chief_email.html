@@ -29,28 +29,27 @@
     <div class="row" style="height: 2rem"></div>
     <div class="row justify-content-center">
         <div class="col-auto" style="width: 21.6rem">
-            <p>{% trans 'Already got an account? ' %}<a href="{% url 'login' %}" class="text-decoration-none">{% trans 'Login' %}</a>{% trans ' here.' %}</p>
+            <p>{% trans 'Already got an account? ' %}<a href="{% url 'login' %}"
+                    class="text-decoration-none">{% trans 'Login' %}</a>{% trans ' here.' %}</p>
             <form method="post" novalidate>
                 {% csrf_token %}
-                {% if form.errors %}
-                    {% if form.errors|length == 1 %}
-                    <p class="text-danger">{% trans "Please correct the error below." %}</p>
-                    {% else %}
-                    <p class="text-danger">{% trans "Please correct the errors below." %}</p>
-                    {% endif %}
+                {% if form.errors|length == 1 %}
+                <p class="text-danger">{% trans "Please correct the error below." %}</p>
+                {% elif form.errors|length > 1 %}
+                <p class="text-danger">{% trans "Please correct the errors below." %}</p>
                 {% endif %}
                 {% for error in form.non_field_errors %}
                 <p class="text-danger">{{ error }}</p>
                 {% endfor %}
                 <div class="form-row">
                     <div class="form-group col">
-                        {% if form.email.errors %}
+                        {% if not form.email.errors %}
+                        {% render_field form.email class+='form-control' %}
+                        {% else %}
                         {% render_field form.email class+='form-control border-danger' %}
                         {% for error in form.email.errors %}
-                        <small class="text-danger">{{ error }}</small>
+                        <small class="text-danger d-block">{{ error }}</small>
                         {% endfor %}
-                        {% else %}
-                        {% render_field form.email class+='form-control' %}
                         {% endif %}
                     </div>
                 </div>

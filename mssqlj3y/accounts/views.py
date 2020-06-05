@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ChiefUserSignUpForm
 import uuid
+from django.contrib.auth import views
 
 
 def sign_up(request):
