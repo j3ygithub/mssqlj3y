@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-05 09:39+0800\n"
+"POT-Creation-Date: 2020-06-05 13:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\accounts\forms.py:9 .\accounts\forms.py:13
+msgid "Chief Email"
+msgstr "Chief Email"
+
+#: .\accounts\forms.py:24
+msgid "The Email address must contain \"@chief.com.tw\"."
+msgstr "Email 必須包含「@Chief.com.tw」。"
+
+#: .\accounts\forms.py:26
+msgid "This Email has already been used."
+msgstr "這個 Email 已被使用。"
 
 #: .\accounts\templates\registration\base.html:5
 #: .\accounts\templates\registration\login.html:7
@@ -34,8 +46,8 @@ msgstr "帳號"
 #: .\accounts\templates\registration\login.html:15
 #: .\accounts\templates\registration\login.html:37
 #: .\accounts\templates\registration\sign_up_with_account_password.html:17
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:17
-#: .\mail_job\templates\mail_job\base.html:61
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:32
+#: .\mail_job\templates\mail_job\base.html:64
 msgid "Login"
 msgstr "登入"
 
@@ -49,9 +61,8 @@ msgstr "仍未有帳號？"
 #: .\accounts\templates\registration\sign_up_with_account_password.html:15
 #: .\accounts\templates\registration\sign_up_with_account_password.html:37
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:7
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:15
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:40
-#: .\mail_job\templates\mail_job\base.html:62
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:49
+#: .\mail_job\templates\mail_job\base.html:65
 msgid "Sign up"
 msgstr "註冊"
 
@@ -98,7 +109,7 @@ msgstr "密碼重置的連結已失效，因為它已經被使用過了，請重
 #: .\accounts\templates\registration\password_reset_done.html:7
 #: .\accounts\templates\registration\password_reset_form.html:7
 #: .\accounts\templates\registration\password_reset_form.html:15
-#: .\mail_job\templates\mail_job\base.html:63
+#: .\mail_job\templates\mail_job\base.html:66
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -123,32 +134,35 @@ msgstr "輸入你的信箱地址，我們會把重設密碼的指示寄給你。
 msgid "Reset"
 msgstr "重置"
 
-#: .\accounts\templates\registration\sign_up.html:19
-#: .\mail_job\templates\mail_job\base.html:34
-#: .\mail_job\templates\mail_job\change_list.html:21
+#: .\accounts\templates\registration\sign_up.html:24
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:24
+#: .\mail_job\templates\mail_job\base.html:23
+#: .\mail_job\templates\mail_job\base.html:37
+#: .\mail_job\templates\mail_job\change_list.html:26
 msgid "Reminder"
 msgstr "Reminder"
 
-#: .\accounts\templates\registration\sign_up.html:20
-#: .\mail_job\templates\mail_job\change_list.html:22
+#: .\accounts\templates\registration\sign_up.html:25
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:25
+#: .\mail_job\templates\mail_job\change_list.html:27
 msgid "For those you may miss."
 msgstr "替你記憶那些瑣事"
 
-#: .\accounts\templates\registration\sign_up.html:23
+#: .\accounts\templates\registration\sign_up.html:32
 msgid "Sign up with Cheif Email."
 msgstr "以 Cheif Email 註冊"
 
-#: .\accounts\templates\registration\sign_up.html:24
+#: .\accounts\templates\registration\sign_up.html:33
 msgid "My Cheif Email has been used."
 msgstr "我的 Chief Email 已被使用"
 
 #: .\accounts\templates\registration\sign_up_with_account_password.html:17
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:17
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:32
 msgid "Already got an account? "
 msgstr "已經有帳號了嗎？"
 
 #: .\accounts\templates\registration\sign_up_with_account_password.html:17
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:17
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:32
 msgid " here."
 msgstr " "
 
@@ -396,22 +410,22 @@ msgstr "使用「;」分隔多個收件者。"
 #: .\mail_job\templates\mail_job\add.html:10
 #: .\mail_job\templates\mail_job\add.html:21
 #: .\mail_job\templates\mail_job\add.html:46
-#: .\mail_job\templates\mail_job\change_list.html:27
+#: .\mail_job\templates\mail_job\change_list.html:35
 #: .\mail_job\templates\mail_job\modal_help.html:20
 msgid "Add"
 msgstr "新增"
 
-#: .\mail_job\templates\mail_job\base.html:44
+#: .\mail_job\templates\mail_job\base.html:47
 #: .\mail_job\templates\mail_job\modal_help.html:7
 msgid "Help"
 msgstr "使用說明"
 
-#: .\mail_job\templates\mail_job\base.html:48
+#: .\mail_job\templates\mail_job\base.html:51
 #: .\mail_job\templates\mail_job\modal_about.html:8
 msgid "About"
 msgstr "關於"
 
-#: .\mail_job\templates\mail_job\base.html:59
+#: .\mail_job\templates\mail_job\base.html:62
 msgid "Logout"
 msgstr "登出"
 

@@ -30,20 +30,18 @@
     <div class="row justify-content-center">
         <div class="col-auto">
             <p>{% trans 'Already got an account? ' %}<a href="{% url 'login' %}" class="text-decoration-none">{% trans 'Login' %}</a>{% trans ' here.' %}</p>
-            <form method="post" style="width: 20rem;">
+            <form method="post" style="width: 20rem;" novalidate>
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% render_field form.email class+='form-control' placeholder='user_name@chief.com.tw' %}
                         {% if form.email.errors %}
-                        <p>{{ form.email.errors }}</p>
+                        {% render_field form.email class+='form-control border-danger' %}
+                        {% for error in form.email.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                        {% else %}
+                        {% render_field form.email class+='form-control' %}
                         {% endif %}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col">
-                        {{ form.non_field_errors }}
                     </div>
                 </div>
                 <div class="form-row">
