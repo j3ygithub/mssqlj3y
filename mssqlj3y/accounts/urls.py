@@ -13,8 +13,8 @@ from .forms import EmailValidationOnForgotPassword
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('password-change/', PasswordChangeView.as_view(), name='password_change'), # to be done
-    path('password-change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'), # to be done
+    path('password-change/', PasswordChangeView.as_view(), name='password_change'),
+    path('password-change/done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
     # we override this form class of this view
     path('password-reset/', PasswordResetView.as_view(form_class=EmailValidationOnForgotPassword), name='password_reset'),
     path('password-reset/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
