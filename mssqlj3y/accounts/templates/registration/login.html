@@ -29,7 +29,7 @@
     <div class="row" style="height: 2rem"></div>
     <div class="row justify-content-center">
         <div class="col-auto" style="width: 21.6rem">
-            <p>{% trans 'No account? ' %}<a href="{% url 'login' %}" class="text-decoration-none">{% trans 'Create one' %}</a></p>
+            <p>{% trans 'No account? ' %}<a href="{% url 'sign_up' %}" class="text-decoration-none">{% trans 'Create one' %}</a></p>
             <form method="post" novalidate>
                 {% csrf_token %}
                 {% if form.errors %}
