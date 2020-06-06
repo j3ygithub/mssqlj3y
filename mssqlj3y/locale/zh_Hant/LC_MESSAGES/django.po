@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 17:48+0800\n"
+"POT-Creation-Date: 2020-06-06 21:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\accounts\forms.py:13
+#: .\accounts\forms.py:14
 msgid "There is no user registered with this Email."
 msgstr "沒有以這個 Email 註冊的使用者。"
 
-#: .\accounts\forms.py:20 .\accounts\forms.py:24
+#: .\accounts\forms.py:21 .\accounts\forms.py:25
 msgid "Chief Email"
 msgstr "Chief Email"
 
-#: .\accounts\forms.py:39
+#: .\accounts\forms.py:40
 msgid "The Email address must end with \"@chief.com.tw\"."
 msgstr "Email 必須以「@Chief.com.tw」結尾。"
 
-#: .\accounts\forms.py:47
+#: .\accounts\forms.py:48
 msgid "The Email has already been used."
 msgstr "Email 已被使用。"
+
+#: .\accounts\forms.py:58 .\mail_job\views.py:50
+msgid "Choose"
+msgstr "選擇"
+
+#: .\accounts\forms.py:59
+msgid "D11"
+msgstr ""
+
+#: .\accounts\forms.py:60
+msgid "D21"
+msgstr ""
+
+#: .\accounts\forms.py:61
+msgid "D31"
+msgstr ""
+
+#: .\accounts\forms.py:62
+msgid "T00"
+msgstr ""
+
+#: .\accounts\forms.py:63
+msgid "T11"
+msgstr ""
+
+#: .\accounts\forms.py:64
+msgid "T21"
+msgstr ""
+
+#: .\accounts\forms.py:65
+msgid "T22"
+msgstr ""
+
+#: .\accounts\forms.py:66
+msgid "T31"
+msgstr ""
+
+#: .\accounts\forms.py:67
+msgid "T32"
+msgstr ""
+
+#: .\accounts\forms.py:71 .\accounts\models.py:13 .\mail_job\forms.py:13
+#: .\mail_job\templates\mail_job\modal_help.html:36 .\mail_job\views.py:27
+#: .\mail_job\views.py:111
+msgid "Dep."
+msgstr "部門"
+
+#: .\accounts\forms.py:77 .\accounts\models.py:18
+msgid "Phone number"
+msgstr "電話號碼"
+
+#: .\accounts\models.py:8
+msgid "User"
+msgstr "使用者"
 
 #: .\accounts\templates\registration\base.html:5
 #: .\accounts\templates\registration\login.html:7
@@ -56,7 +110,7 @@ msgstr "帳號"
 #: .\accounts\templates\registration\password_reset_done.html:34
 #: .\accounts\templates\registration\sign_up_with_account_password.html:33
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:33
-#: .\mail_job\templates\mail_job\base.html:64
+#: .\mail_job\templates\mail_job\base.html:66
 msgid "Login"
 msgstr "登入"
 
@@ -113,7 +167,7 @@ msgstr "忘記你的密碼？"
 #: .\accounts\templates\registration\password_change_done.html:7
 #: .\accounts\templates\registration\password_change_form.html:7
 #: .\accounts\templates\registration\password_change_form.html:25
-#: .\mail_job\templates\mail_job\base.html:67
+#: .\mail_job\templates\mail_job\base.html:64
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -202,7 +256,7 @@ msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:7
 #: .\accounts\templates\registration\profile_change.html:25
-#: .\mail_job\templates\mail_job\base.html:66
+#: .\mail_job\templates\mail_job\base.html:63
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -218,7 +272,7 @@ msgstr "修改"
 #: .\accounts\templates\registration\sign_up_with_account_password.html:62
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:7
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:58
-#: .\mail_job\templates\mail_job\base.html:65
+#: .\mail_job\templates\mail_job\base.html:67
 msgid "Sign up"
 msgstr "註冊"
 
@@ -241,11 +295,6 @@ msgstr "已經有帳號了嗎？"
 #: .\accounts\views.py:21 .\mail_job\views.py:246
 msgid "Changed successfully."
 msgstr "已修改成功。"
-
-#: .\mail_job\forms.py:13 .\mail_job\templates\mail_job\modal_help.html:36
-#: .\mail_job\views.py:27 .\mail_job\views.py:111
-msgid "Dep."
-msgstr "部門"
 
 #: .\mail_job\forms.py:29
 msgid "ex. Expiration of certificates"
@@ -639,10 +688,6 @@ msgstr "項次"
 #: .\mail_job\views.py:30 .\mail_job\views.py:114
 msgid "Start from"
 msgstr "通知起始日"
-
-#: .\mail_job\views.py:50
-msgid "Choose"
-msgstr "選擇"
 
 #: .\mail_job\views.py:56 .\mail_job\views.py:110
 msgid "Action"
