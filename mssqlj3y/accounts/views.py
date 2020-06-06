@@ -1,13 +1,33 @@
-from django.shortcuts import HttpResponse, render
-from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect, render, get_object_or_404
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import ChiefUserSignUpForm
 import uuid
-from django.contrib.auth import views
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+from .forms import ChiefUserSignUpForm, UserProfileForm
 
+
+def profile_change(request):
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+    instance = get_object_or_404(User, id=request.user.id)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Changed successfully.'))
+            request.method = 'GET'
+            return profile_change(request)
+    else:
+        form = UserProfileForm(instance=instance)
+    context = {
+        'form': form,
+    }
+    user = get_object_or_404(User, username=request.user)
+    return render(request, 'registration/profile_change.html', context)
 
 def sign_up(request):
     context = {}
