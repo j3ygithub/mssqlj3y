@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from .models import Profile
 
 
 class EmailValidationOnForgotPassword(PasswordResetForm):
@@ -52,10 +53,50 @@ class ChiefUserSignUpForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
 
+    # from reverse-one-to-one formfield
+    choice_department = [
+        ('', _('Choose')),
+        ('D11', _('D11')),
+        ('D21', _('D21')),
+        ('D31', _('D31')),
+        ('T00', _('T00')),
+        ('T11', _('T11')),
+        ('T21', _('T21')),
+        ('T22', _('T22')),
+        ('T31', _('T31')),
+        ('T32', _('T32')),
+    ]
+    department = forms.CharField(
+        widget=forms.Select(choices=choice_department),
+        label=_('Dep.'),
+        max_length=64,
+        required=True,
+    )
+
+    phone_number = forms.CharField(
+        label=_('Phone number'),
+        max_length=32,
+        required=False,
+    )
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'groups', ]
+        fields = ['first_name', 'last_name', 'email', 'department', ]
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].disabled = True
+        if self.instance.pk and Profile.objects.filter(user=self.instance.pk).exists():
+            self.fields['department'].initial = self.instance.profile.department
+            self.fields['phone_number'].initial = self.instance.profile.phone_number
+
+    def save(self, commit=True):
+        instance = super().save(commit=commit)
+        instance.save()
+        if not Profile.objects.filter(user=self.instance.pk).exists():
+            profile = Profile.objects.create(user=instance)
+            profile.save()
+        instance.profile.department = self.cleaned_data['department']
+        instance.profile.phone_number = self.cleaned_data['phone_number']
+        instance.profile.save()
+        return instance

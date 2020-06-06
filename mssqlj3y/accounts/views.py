@@ -19,14 +19,12 @@ def profile_change(request):
         if form.is_valid():
             form.save()
             messages.success(request, _('Changed successfully.'))
-            request.method = 'GET'
-            return profile_change(request)
+            redirect(reverse('profile_change'))
     else:
         form = UserProfileForm(instance=instance)
     context = {
         'form': form,
     }
-    user = get_object_or_404(User, username=request.user)
     return render(request, 'registration/profile_change.html', context)
 
 def sign_up(request):
