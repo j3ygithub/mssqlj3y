@@ -4,7 +4,7 @@
 {% load widget_tweaks %}
 
 {% block title %}
-<title>{% trans 'Profile change' %} | {% trans 'Accounts' %}</title>
+<title>{% trans 'Profile' %} | {% trans 'Accounts' %}</title>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
                     </svg>
                 </p>
                 <p>
-                    <h3 style="text-align: center;">{% trans 'Profile change' %}</h3>
+                    <h3 style="text-align: center;">{% trans 'Profile' %}</h3>
                 </p>
             </div>
         </div>
@@ -30,7 +30,6 @@
     <div class="row" style="height: 2rem"></div>
     <div class="row justify-content-center">
         <div class="col-auto" style="width: 21.6rem">
-            <p>{% trans "Here is your profile. You may update it and submit to change it." %}</p>
             <form method="post" novalidate>
                 {% csrf_token %}
                 {% if form.errors|length == 1 %}

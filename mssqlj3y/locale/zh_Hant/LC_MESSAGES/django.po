@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 15:24+0800\n"
+"POT-Creation-Date: 2020-06-06 17:48+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,6 +42,7 @@ msgstr "Email 已被使用。"
 #: .\accounts\templates\registration\password_reset_confirm.html:7
 #: .\accounts\templates\registration\password_reset_done.html:7
 #: .\accounts\templates\registration\password_reset_form.html:7
+#: .\accounts\templates\registration\profile_change.html:7
 #: .\accounts\templates\registration\sign_up.html:7
 #: .\accounts\templates\registration\sign_up_with_account_password.html:7
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:7
@@ -89,6 +90,7 @@ msgstr "建立"
 #: .\accounts\templates\registration\password_change_form.html:37
 #: .\accounts\templates\registration\password_reset_confirm.html:38
 #: .\accounts\templates\registration\password_reset_form.html:37
+#: .\accounts\templates\registration\profile_change.html:36
 #: .\accounts\templates\registration\sign_up_with_account_password.html:38
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:37
 msgid "Please correct the error below."
@@ -98,6 +100,7 @@ msgstr "請修正以下的錯誤。"
 #: .\accounts\templates\registration\password_change_form.html:39
 #: .\accounts\templates\registration\password_reset_confirm.html:40
 #: .\accounts\templates\registration\password_reset_form.html:39
+#: .\accounts\templates\registration\profile_change.html:38
 #: .\accounts\templates\registration\sign_up_with_account_password.html:40
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:39
 msgid "Please correct the errors below."
@@ -110,7 +113,7 @@ msgstr "忘記你的密碼？"
 #: .\accounts\templates\registration\password_change_done.html:7
 #: .\accounts\templates\registration\password_change_form.html:7
 #: .\accounts\templates\registration\password_change_form.html:25
-#: .\mail_job\templates\mail_job\base.html:66
+#: .\mail_job\templates\mail_job\base.html:67
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -168,7 +171,7 @@ msgstr "密碼重置的連結已失效，因為它已經被使用過了，請重
 #: .\accounts\templates\registration\password_reset_done.html:7
 #: .\accounts\templates\registration\password_reset_form.html:7
 #: .\accounts\templates\registration\password_reset_form.html:25
-#: .\mail_job\templates\mail_job\base.html:67
+#: .\mail_job\templates\mail_job\base.html:68
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -186,7 +189,7 @@ msgstr "你可以用他們完成接下來的設定。"
 
 #: .\accounts\templates\registration\password_reset_done.html:35
 msgid "I didn't recieve it."
-msgstr ""
+msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:33
 msgid ""
@@ -196,6 +199,19 @@ msgstr "輸入你的信箱地址，我們會把重設密碼的指示寄給你。
 #: .\accounts\templates\registration\password_reset_form.html:60
 msgid "Reset"
 msgstr "重置"
+
+#: .\accounts\templates\registration\profile_change.html:7
+#: .\accounts\templates\registration\profile_change.html:25
+#: .\mail_job\templates\mail_job\base.html:66
+msgid "Profile"
+msgstr "個人檔案"
+
+#: .\accounts\templates\registration\profile_change.html:60
+#: .\mail_job\templates\mail_job\change.html:10
+#: .\mail_job\templates\mail_job\change.html:23
+#: .\mail_job\templates\mail_job\change.html:40
+msgid "Change"
+msgstr "修改"
 
 #: .\accounts\templates\registration\sign_up.html:7
 #: .\accounts\templates\registration\sign_up_with_account_password.html:7
@@ -221,6 +237,10 @@ msgstr "已經有帳號了嗎？"
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:32
 msgid "Already got an account? "
 msgstr "已經有帳號了嗎？"
+
+#: .\accounts\views.py:21 .\mail_job\views.py:246
+msgid "Changed successfully."
+msgstr "已修改成功。"
 
 #: .\mail_job\forms.py:13 .\mail_job\templates\mail_job\modal_help.html:36
 #: .\mail_job\views.py:27 .\mail_job\views.py:111
@@ -485,12 +505,6 @@ msgstr "關於"
 msgid "Logout"
 msgstr "登出"
 
-#: .\mail_job\templates\mail_job\change.html:10
-#: .\mail_job\templates\mail_job\change.html:23
-#: .\mail_job\templates\mail_job\change.html:40
-msgid "Change"
-msgstr "修改"
-
 #: .\mail_job\templates\mail_job\change.html:43
 #: .\mail_job\templates\mail_job\delete.html:10
 #: .\mail_job\templates\mail_job\delete.html:26
@@ -658,10 +672,6 @@ msgstr "新增失敗，資料與既有的重複。"
 #: .\mail_job\views.py:196 .\mail_job\views.py:248
 msgid "Unknown error. The format of the return value is not correct."
 msgstr "未知的錯誤，返回的資料格式不正確。"
-
-#: .\mail_job\views.py:246
-msgid "Changed successfully."
-msgstr "已修改成功。"
 
 #: .\mail_job\views.py:287
 msgid "You can only change the mail job created by you."
