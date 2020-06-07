@@ -128,6 +128,7 @@ def change_list(request, messages={}):
                 escape=False,
             )
             context['htmls']['change_list'] = df_html
+            context['messages'] = [_('Here are all mail jobs.')]
         else:
             context['messages']['change_list'] = _('Unknown error. The format of the returned data is not correct.')
     except:
@@ -140,11 +141,11 @@ def add(request):
         return redirect(reverse('login'))
     context = {
         'form': None,
-        'messages': {},
+        'messages': [],
     }
     if request.method != 'POST':
         form = MailJobForm()
-        context['messages']['add'] = _('Fill in the following form to create a new mail job.')
+        context['messages'] = [_('Fill in the following form to create a new mail job.')]
         context['form'] = form
         return render(request, 'mail_job/add.html', context)
     elif request.method == 'POST':
