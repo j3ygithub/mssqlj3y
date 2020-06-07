@@ -41,18 +41,20 @@
                 {% for error in form.non_field_errors %}
                 <p class="text-danger">{{ error }}</p>
                 {% endfor %}
+                {% for field in form %}
                 <div class="form-row">
                     <div class="form-group col">
-                        {% if not form.email.errors %}
-                        {% render_field form.email class+='form-control' %}
+                        {% if not field.errors %}
+                        {% render_field field class+='form-control' %}
                         {% else %}
-                        {% render_field form.email class+='form-control border-danger' %}
-                        {% for error in form.email.errors %}
+                        {% render_field field class+='form-control border-danger' %}
+                        {% for error in field.errors %}
                         <small class="text-danger d-block">{{ error }}</small>
                         {% endfor %}
                         {% endif %}
                     </div>
                 </div>
+                {% endfor %}
                 <div class="form-row">
                     <div class="form-group col">
                         <button type="submit" class="btn btn-dark btn-block">{% trans 'Sign up' %}</button>

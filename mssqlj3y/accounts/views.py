@@ -19,7 +19,7 @@ def profile_change(request):
         if form.is_valid():
             form.save()
             messages.success(request, _('Changed successfully.'))
-            redirect(reverse('profile_change'))
+            return redirect(reverse('profile_change'))
     else:
         form = UserProfileForm(instance=instance)
     context = {
@@ -55,8 +55,8 @@ def sign_up_with_chief_email(request):
             user = form.save(commit=False)
             email = form.cleaned_data.get('email')
             username = email[0:email.index('@')]
-            user.username = username
             random_uuid_password = uuid.uuid4().hex[0:6]
+            user.username = username
             user.set_password(random_uuid_password)
             user.save()
             # send a random uuid password email
@@ -80,7 +80,7 @@ def sign_up_with_chief_email(request):
                 message=message,
                 recipient=recipient,
             )
-            return redirect('/accounts/password_reset/done/')
+            return redirect(reverse('password_reset_done'))
     else: 
         form = ChiefUserSignUpForm()
     context = {

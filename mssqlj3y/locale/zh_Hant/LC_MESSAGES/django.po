@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 21:00+0800\n"
+"POT-Creation-Date: 2020-06-06 22:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,61 +26,65 @@ msgstr "沒有以這個 Email 註冊的使用者。"
 msgid "Chief Email"
 msgstr "Chief Email"
 
-#: .\accounts\forms.py:40
-msgid "The Email address must end with \"@chief.com.tw\"."
-msgstr "Email 必須以「@Chief.com.tw」結尾。"
+#: .\accounts\forms.py:31
+msgid "Choose Department"
+msgstr "選擇部門"
 
-#: .\accounts\forms.py:48
-msgid "The Email has already been used."
-msgstr "Email 已被使用。"
-
-#: .\accounts\forms.py:58 .\mail_job\views.py:50
-msgid "Choose"
-msgstr "選擇"
-
-#: .\accounts\forms.py:59
+#: .\accounts\forms.py:32 .\accounts\forms.py:89
 msgid "D11"
 msgstr ""
 
-#: .\accounts\forms.py:60
+#: .\accounts\forms.py:33 .\accounts\forms.py:90
 msgid "D21"
 msgstr ""
 
-#: .\accounts\forms.py:61
+#: .\accounts\forms.py:34 .\accounts\forms.py:91
 msgid "D31"
 msgstr ""
 
-#: .\accounts\forms.py:62
+#: .\accounts\forms.py:35 .\accounts\forms.py:92
 msgid "T00"
 msgstr ""
 
-#: .\accounts\forms.py:63
+#: .\accounts\forms.py:36 .\accounts\forms.py:93
 msgid "T11"
 msgstr ""
 
-#: .\accounts\forms.py:64
+#: .\accounts\forms.py:37 .\accounts\forms.py:94
 msgid "T21"
 msgstr ""
 
-#: .\accounts\forms.py:65
+#: .\accounts\forms.py:38 .\accounts\forms.py:95
 msgid "T22"
 msgstr ""
 
-#: .\accounts\forms.py:66
+#: .\accounts\forms.py:39 .\accounts\forms.py:96
 msgid "T31"
 msgstr ""
 
-#: .\accounts\forms.py:67
+#: .\accounts\forms.py:40 .\accounts\forms.py:97
 msgid "T32"
 msgstr ""
 
-#: .\accounts\forms.py:71 .\accounts\models.py:13 .\mail_job\forms.py:13
-#: .\mail_job\templates\mail_job\modal_help.html:36 .\mail_job\views.py:27
-#: .\mail_job\views.py:111
+#: .\accounts\forms.py:45 .\accounts\forms.py:102 .\accounts\models.py:13
+#: .\mail_job\forms.py:13 .\mail_job\templates\mail_job\modal_help.html:36
+#: .\mail_job\views.py:27 .\mail_job\views.py:111
 msgid "Dep."
 msgstr "部門"
 
-#: .\accounts\forms.py:77 .\accounts\models.py:18
+#: .\accounts\forms.py:60
+msgid "The Email address must end with \"@chief.com.tw\"."
+msgstr "Email 必須以「@Chief.com.tw」結尾。"
+
+#: .\accounts\forms.py:68
+msgid "The Email has already been used."
+msgstr "Email 已被使用。"
+
+#: .\accounts\forms.py:88 .\mail_job\views.py:50
+msgid "Choose"
+msgstr "選擇"
+
+#: .\accounts\forms.py:108 .\accounts\models.py:18
 msgid "Phone number"
 msgstr "電話號碼"
 
@@ -271,7 +275,7 @@ msgstr "修改"
 #: .\accounts\templates\registration\sign_up_with_account_password.html:7
 #: .\accounts\templates\registration\sign_up_with_account_password.html:62
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:7
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:58
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:60
 #: .\mail_job\templates\mail_job\base.html:67
 msgid "Sign up"
 msgstr "註冊"

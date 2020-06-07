@@ -27,6 +27,26 @@ class ChiefUserSignUpForm(forms.ModelForm):
         ),
     )
 
+    choice_department = [
+        ('', _('Choose Department')),
+        ('D11', _('D11')),
+        ('D21', _('D21')),
+        ('D31', _('D31')),
+        ('T00', _('T00')),
+        ('T11', _('T11')),
+        ('T21', _('T21')),
+        ('T22', _('T22')),
+        ('T31', _('T31')),
+        ('T32', _('T32')),
+    ]
+
+    department = forms.CharField(
+        widget=forms.Select(choices=choice_department),
+        label=_('Dep.'),
+        max_length=64,
+        required=True,
+    )
+
     class Meta:
         model = User
         fields = ['email']
@@ -51,6 +71,16 @@ class ChiefUserSignUpForm(forms.ModelForm):
             )
         return email
 
+    def save(self, commit=True):
+        instance = super().save(commit=commit)
+        instance.save()
+        if not Profile.objects.filter(user=self.instance.pk).exists():
+            profile = Profile.objects.create(user=instance)
+            profile.save()
+        instance.profile.department = self.cleaned_data['department']
+        instance.profile.save()
+        return instance
+
 class UserProfileForm(forms.ModelForm):
 
     # from reverse-one-to-one formfield
@@ -66,6 +96,7 @@ class UserProfileForm(forms.ModelForm):
         ('T31', _('T31')),
         ('T32', _('T32')),
     ]
+
     department = forms.CharField(
         widget=forms.Select(choices=choice_department),
         label=_('Dep.'),
@@ -85,10 +116,15 @@ class UserProfileForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['email'].disabled = True
-        if self.instance.pk and Profile.objects.filter(user=self.instance.pk).exists():
-            self.fields['department'].initial = self.instance.profile.department
-            self.fields['phone_number'].initial = self.instance.profile.phone_number
+        if self.instance.pk:
+            if Profile.objects.filter(user=self.instance.pk).exists():
+                self.fields['email'].disabled = True
+                self.fields['department'].disabled = True
+                self.fields['department'].initial = self.instance.profile.department
+                self.fields['phone_number'].initial = self.instance.profile.phone_number
+            else:
+                self.fields['email'].disabled = False
+                self.fields['department'].disabled = False
 
     def save(self, commit=True):
         instance = super().save(commit=commit)
