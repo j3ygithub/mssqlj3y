@@ -31,17 +31,23 @@
                 <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
                     style="width: 8rem; border-radius: 2rem;">{% trans 'Add'%} +</a>
             </div>
-            <table>
+            <table class="dataframe j3y-df table table-light table-bordered table-striped table-responsive">
                 <thead>
                     <tr>
                         <th>result</th>
-                        <th>a</th>
-                        <th>b</th>
+                        <th>serial</th>
+                        <th>department</th>
+                        <th>event_type</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for rows in jsons %}
-                    {{ row }}
+                    {% for index, row in df.iterrows %}
+                    <tr>
+                        <td>{{ row.result }}</td>
+                        <td>{{ row.serial }}</td>
+                        <td>{{ row.department }}</td>
+                        <td>{{ row.event_type }}</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>

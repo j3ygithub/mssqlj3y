@@ -14,14 +14,30 @@ def change_list_new(request):
         return redirect(reverse('login'))
     context = {
         'tips': [],
-        'jsons': None
+        'df': None
     }
     try:
         response_show = sp_show_mail_job()
-        dfs = pandas.DataFrame(tuple(row) for row in response_show)
-        jsons = dfs.to_json(orient='records')
-        print(jsons)
-        context['jsons'] = jsons
+        df = pandas.DataFrame(tuple(row) for row in response_show)
+        df.columns = [
+            'result', # 查詢結果
+            'serial', # 項次
+            'department', # 部門
+            'event_type', # 事件類型
+            'event', # 事件
+            'start_from', # 通知起始日
+            'period', # 週期
+            'weekend_flag', # 假日除外
+            'mail_subject', # 郵件主旨
+            'mail_content', # 郵件內容
+            'recipients', # 收件人
+            'created_date', # 建立時間
+            'stop_date', # 規則終止日
+            'created_by', # 建立者
+            'updated_by', # 修改者
+            'updated_date', # 修改日期
+        ]
+        context['df'] = df
     except:
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     return render(request, 'mail_job/change_list_new.html', context)
