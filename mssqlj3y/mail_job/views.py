@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.contrib import messages
 import pandas
-from .mssql_sp import exec_sp
+from .mssql_sp import sp_show_mail_job, sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime
 from .forms import MailJobForm
 
 
@@ -17,10 +17,9 @@ def change_list(request):
         'htmls': {},
     }
     try:
-        query_string = "exec mail_job.dbo.show_mail_job @seq='', @department='';"
-        response_query_all = exec_sp(query_string=query_string)
-        if response_query_all[0][0] == '查詢成功':
-            df = pandas.DataFrame(tuple(row) for row in response_query_all)
+        response_show = sp_show_mail_job()
+        if response_show[0][0] == '查詢成功':
+            df = pandas.DataFrame(tuple(row) for row in response_show)
             df.columns = [
                 'result', # 查詢結果
                 _('Serial'), # 項次
@@ -170,24 +169,18 @@ def add(request):
             else:
                 weekend_flag = 'F'
         try:
-            # call insert sp
-            query_string = f"""
-            exec mail_job.dbo.insert_mail_job 
-            @department='{department}',
-            @event_class='{event_class}',
-            @event='{event}',
-            @note_date='{note_date}',
-            @period='{period}',
-            @weekend_flag='{weekend_flag}',
-            @subject='{subject}',
-            @body='{body}',
-            @recipient='{recipient}',
-            @create_by='{created_by}'
-            ;
-            """
-            response_insert = exec_sp(query_string=query_string)
-            # end
-            response_insert[0][0]
+            response_insert = sp_insert_mail_job(
+                department=department,
+                event_class=event_class,
+                event=event,
+                note_date=note_date,
+                period=period,
+                weekend_flag=weekend_flag,
+                subject=subject,
+                body=body,
+                recipient=recipient,
+                created_by=created_by,
+            )
             if response_insert[0][0] == '新增成功':
                 messages.add_message(request, messages.SUCCESS, _('Added successfully.'))
                 return redirect(reverse('mail_job:change_list'))
@@ -227,45 +220,35 @@ def change(request, seq):
             else:
                 weekend_flag = 'F'
         try:
-            # call update sp
-            query_string = f"""
-            exec mail_job.dbo.update_mail_job
-            @seq='{seq}',
-            @department='{department}',
-            @event_class='{event_class}',
-            @event='{event}',
-            @note_date='{note_date}',
-            @period='{period}',
-            @weekend_flag='{weekend_flag}',
-            @subject='{subject}',
-            @body='{body}',
-            @recipient='{recipient}',
-            @stop_date='',
-            @update_by='{updated_by}'
-            ;
-            """
-            response_query_all = exec_sp(query_string=query_string)
-            if response_query_all[0][0] == '修改成功':
+            response_update = sp_update_mail_job(
+                seq=seq,
+                department=department,
+                event_class=event_class,
+                event=event,
+                note_date=note_date,
+                period=period,
+                weekend_flag=weekend_flag,
+                subject=subject,
+                body=body,
+                recipient=recipient,
+                updated_by=updated_by,
+            )
+            print(response_update)
+            if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Changed successfully.'))
-        except:
+        except Exception as e:
+            print(e)
             messages.add_message(request, messages.ERROR, _('Unknown error. The format of the return value is not correct.'))
         return redirect(reverse('mail_job:change_list'))
     else:
         try:
-            # call query sp
-            query_string = f"""
-            exec mail_job.dbo.show_mail_job
-            @seq='{seq}',
-            @department=''
-            ;
-            """
-            response_query_all = exec_sp(query_string=query_string)
+            response_show = sp_show_mail_job(seq=seq)
         except:
             messages.add_message(request, messages.ERROR, _('Unknown error. The data cannot be returned.'))
         try:
-            df = pandas.DataFrame(tuple(row) for row in response_query_all)
-            if len(response_query_all
-                   ) == 1 and response_query_all[0][0] == '查詢成功':
+            df = pandas.DataFrame(tuple(row) for row in response_show)
+            if len(response_show
+                   ) == 1 and response_show[0][0] == '查詢成功':
                 df.columns = [
                     '查詢結果',
                     '項次',
@@ -321,19 +304,12 @@ def delete(request, seq):
         'messages': {},
     }
     try:
-        # call query sp
-        query_string = f"""
-        exec mail_job.dbo.show_mail_job
-        @seq='{seq}',
-        @department=''
-        ;
-        """
-        response_query_all = exec_sp(query_string=query_string)
+        response_show = sp_show_mail_job(seq=seq)
     except:
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     try:
-        df = pandas.DataFrame(tuple(row) for row in response_query_all)
-        if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
+        df = pandas.DataFrame(tuple(row) for row in response_show)
+        if len(response_show) == 1 and response_show[0][0] == '查詢成功':
             df.columns = [
                 '查詢結果',
                 '項次',
@@ -365,25 +341,12 @@ def delete(request, seq):
     if request.method == 'POST':
         updated_by = request.user
         try:
-            # call update sp
-            query_string = f"""
-            exec mail_job.dbo.update_mail_job
-            @seq='{seq}',
-            @department='',
-            @event_class='',
-            @event='',
-            @note_date='',
-            @period='',
-            @weekend_flag='',
-            @subject='',
-            @body='',
-            @recipient='',
-            @stop_date='{timezone.localtime(timezone.now()).date()}',
-            @update_by='{updated_by}'
-            ;
-            """
-            response_query_all = exec_sp(query_string=query_string)
-            if response_query_all[0][0] == '修改成功':
+            response_update = sp_update_mail_job(
+                seq=seq,
+                stop_date=timezone.localtime(timezone.now()).date(),
+                updated_by=updated_by,
+            )
+            if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Deleted successfully.'))
             else:
                 messages.add_message(request, messages.ERROR, _('The mail job is not available. Please confirm whether it has been deleted.'))            
@@ -401,19 +364,12 @@ def mail_test(request, seq):
         'tips': [],
     }
     try:
-        # call query sp
-        query_string = f"""
-        exec mail_job.dbo.show_mail_job
-        @seq='{seq}',
-        @department=''
-        ;
-        """
-        response_query_all = exec_sp(query_string=query_string)
+        response_show = sp_show_mail_job(seq=seq)
     except:
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     try:
-        df = pandas.DataFrame(tuple(row) for row in response_query_all)
-        if len(response_query_all) == 1 and response_query_all[0][0] == '查詢成功':
+        df = pandas.DataFrame(tuple(row) for row in response_show)
+        if len(response_show) == 1 and response_show[0][0] == '查詢成功':
             df.columns = [
                 '查詢結果',
                 '項次',
@@ -444,14 +400,7 @@ def mail_test(request, seq):
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     if request.method == 'POST':
         try:
-            # call do-test sp
-            query_string = f"""
-            exec mail_job.dbo.do_mail_job_onetime
-            @seq_action='{seq}'
-            ;
-            """
-            response_do_test = exec_sp(query_string=query_string)
-            # end
+            response_do_test = sp_do_mail_job_onetime(seq=seq)
         except:
             pass
         messages.add_message(request, messages.SUCCESS, _('The test mail has been sent.'))
