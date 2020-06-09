@@ -9,7 +9,7 @@ def exec_sp(query_string, query_header='set nocount on;'):
     database = login_info['database']
     uid = login_info['uid']
     pwd = login_info['pwd']
-    connect_string = f"""DRIVER={driver}; SERVER={server}; DATABASE={database}; UID={uid}; PWD={pwd};"""
+    connect_string = f'DRIVER={driver}; SERVER={server}; DATABASE={database}; UID={uid}; PWD={pwd};'
     cnxn = pyodbc.connect(connect_string, autocommit=True)
     cursor = cnxn.cursor()
     cursor.execute(query_header + query_string)
@@ -18,9 +18,15 @@ def exec_sp(query_string, query_header='set nocount on;'):
     cnxn.close()
     return response
 
-def sp_show_mail_job(seq=''):
+def sp_show_mail_job(seq='', department=''):
 
-    query_string = f"exec mail_job.dbo.show_mail_job @seq='{seq}', @department='' ;"
+    query_string = f"exec mail_job.dbo.show_mail_job @seq='{seq}', @department='{department}' ;"
+    response_query_all = exec_sp(query_string=query_string)
+    return response_query_all
+
+def sp_show_mail_job_1(seq='', created_by=''):
+
+    query_string = f"exec mail_job.dbo.show_mail_job_1 @seq='{seq}', @create_by='{created_by}' ;"
     response_query_all = exec_sp(query_string=query_string)
     return response_query_all
 
