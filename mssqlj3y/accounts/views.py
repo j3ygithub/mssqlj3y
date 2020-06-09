@@ -1,16 +1,19 @@
-from django.shortcuts import render, redirect, render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.core.mail import send_mail
 from django.conf import settings
-import uuid
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+import uuid
 from .forms import ChiefUserSignUpForm, UserProfileForm
 
 
 def profile_change(request):
+    """
+    A profile change view.
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     instance = get_object_or_404(User, id=request.user.id)
@@ -28,10 +31,16 @@ def profile_change(request):
     return render(request, 'registration/profile_change.html', context)
 
 def sign_up(request):
+    """
+    A lobby view of sign-up view.
+    """
     context = {}
     return render(request, 'registration/sign_up.html', context)
 
 def sign_up_with_account_password(request):
+    """
+    A standard sign-up view.
+    """
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -48,37 +57,57 @@ def sign_up_with_account_password(request):
     }
     return render(request, 'registration/sign_up_with_account_password.html', context)
 
+def get_name_dict(username):
+    """
+    For a given username string, generating a dictionary contaning
+    first_name and last_name.
+    """
+    name_list = [ word[0:1].upper() + word[1:] for word in username.split('_') ]
+    name_dict = {
+        'first_name': ' '.join(name_list[0:1]),
+        'last_name': ' '.join(name_list[1:]),
+    }
+    return name_dict
+
 def sign_up_with_chief_email(request): 
+    """
+    A sign-up view for chief user.
+    An user provides a Email and we use its prefix as username
+    and generate a random uuid string as password.
+    We then send a Email containing these info to users.
+    """
     if request.method == 'POST': 
         form = ChiefUserSignUpForm(request.POST) 
         if form.is_valid():
-            user = form.save(commit=False)
+            # Create a user and save it to DB.
             email = form.cleaned_data.get('email')
             username = email[0:email.index('@')]
-            random_uuid_password = uuid.uuid4().hex[0:6]
+            user = form.save(commit=False)
             user.username = username
+            random_uuid_password = uuid.uuid4().hex[0:6]                
             user.set_password(random_uuid_password)
+            user.first_name = get_name_dict(username)['first_name']
+            user.last_name = get_name_dict(username)['last_name']
             user.save()
-            # send a random uuid password email
-            recipient = f'{email}'
-            subject = "[Mail Job] You have created an account."
-            try:
-                if '_' in username:
-                    username_readable = ' '.join([ word[0].upper() + word[1:] for word in username.split('_') ])
-                else:
-                    username_readable = username
-            except:
-                username_readable = username
-            message = f'Hi {username_readable},'
-            message += '\n\nYou have created a new account on Mail Job. You could login and change it on Mail Job later.'
-            message += f'\n\nYour account: {username}'
-            message += f'\nYour password: {random_uuid_password}'
-            message += '\n\nSincerely,'
-            message += '\nMail Job'
-            send_password_email(
+            # Send a login info Email.
+            subject = '[Reminder] You have created an account.'
+            message = (
+                f'Hi {user.first_name} {user.last_name},\n'
+                '\n'
+                'You have created a new account on Reminder. You could login and change it on Reminder later.\n'
+                '\n'
+                f'Your account: {username}\n'
+                f'Your password: {random_uuid_password}\n'
+                '\n'
+                'Sincerely,\n'
+                'Reminder\n'
+            )
+            send_mail(
                 subject=subject,
                 message=message,
-                recipient=recipient,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[email],
+                fail_silently=False,
             )
             return redirect(reverse('password_reset_done'))
     else: 
@@ -87,16 +116,3 @@ def sign_up_with_chief_email(request):
         'form': form,
     }
     return render(request, 'registration/sign_up_with_chief_email.html', context) 
-
-# a email-sending script, not a view
-def send_password_email(subject, message, recipient):
-    try:
-        send_mail(
-            subject=subject,
-            message=message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[recipient],
-            fail_silently=False,
-        )
-    except:
-        pass

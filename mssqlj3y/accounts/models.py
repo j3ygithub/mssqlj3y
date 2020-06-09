@@ -9,11 +9,13 @@ class Profile(models.Model):
         to=User,
         on_delete=models.CASCADE,
     )
+
     department = models.CharField(
         verbose_name=_('Dep.'),
         max_length=64,
         blank=True,
     )
+
     phone_number = models.CharField(
         verbose_name=_('Phone number'),
         max_length=32,

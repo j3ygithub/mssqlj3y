@@ -5,7 +5,7 @@ from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
     PasswordResetCompleteView)
 from django.utils.translation import gettext_lazy as _
-from .views import sign_up, sign_up_with_account_password, sign_up_with_chief_email, send_password_email, profile_change
+from .views import sign_up, sign_up_with_account_password, sign_up_with_chief_email, profile_change
 from .forms import EmailValidationOnForgotPassword
 
 
