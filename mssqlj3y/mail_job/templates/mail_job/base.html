@@ -105,11 +105,21 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
         <span class="navbar-text py-0 text-success">{{ message }}</span>
-        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR  %}
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
         <span class="navbar-text py-0 text-danger">{{ message }}</span>
         {% else %}
         <span class="navbar-text py-0">{{ message }}</span>
         {% endif %}
+    </nav>
+    {% endfor %}
+    {% endif %}
+    {% endblock %}
+
+    {% block tip %}
+    {% if tips %}
+    {% for tip in tips %}
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <span class="navbar-text py-0 text-secondary">{{ tip }}</span>
     </nav>
     {% endfor %}
     {% endif %}

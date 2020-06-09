@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 22:45+0800\n"
+"POT-Creation-Date: 2020-06-09 15:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "T32"
 msgstr ""
 
-#: .\accounts\forms.py:45 .\accounts\forms.py:102 .\accounts\models.py:13
+#: .\accounts\forms.py:45 .\accounts\forms.py:102 .\accounts\models.py:14
 #: .\mail_job\forms.py:13 .\mail_job\templates\mail_job\modal_help.html:36
 #: .\mail_job\views.py:27 .\mail_job\views.py:111
 msgid "Dep."
@@ -84,7 +84,7 @@ msgstr "Email 已被使用。"
 msgid "Choose"
 msgstr "選擇"
 
-#: .\accounts\forms.py:108 .\accounts\models.py:18
+#: .\accounts\forms.py:108 .\accounts\models.py:20
 msgid "Phone number"
 msgstr "電話號碼"
 
@@ -296,7 +296,7 @@ msgstr "已經有帳號了嗎？"
 msgid "Already got an account? "
 msgstr "已經有帳號了嗎？"
 
-#: .\accounts\views.py:21 .\mail_job\views.py:246
+#: .\accounts\views.py:24 .\mail_job\views.py:249
 msgid "Changed successfully."
 msgstr "已修改成功。"
 
@@ -697,62 +697,66 @@ msgstr "通知起始日"
 msgid "Action"
 msgstr "動作"
 
-#: .\mail_job\views.py:132
+#: .\mail_job\views.py:131
+msgid "Here are all mail jobs."
+msgstr "以下是所有的 Mail Job"
+
+#: .\mail_job\views.py:133
 msgid "Unknown error. The format of the returned data is not correct."
 msgstr "未知的錯誤，返回的資料格式不正確。"
 
-#: .\mail_job\views.py:134 .\mail_job\views.py:261 .\mail_job\views.py:329
-#: .\mail_job\views.py:360 .\mail_job\views.py:409 .\mail_job\views.py:440
+#: .\mail_job\views.py:135 .\mail_job\views.py:264 .\mail_job\views.py:333
+#: .\mail_job\views.py:364 .\mail_job\views.py:413 .\mail_job\views.py:444
 msgid "Unknown error. The data cannot be returned."
 msgstr "未知的錯誤，無法返回資料。"
 
-#: .\mail_job\views.py:147
+#: .\mail_job\views.py:148
 msgid "Fill in the following form to create a new mail job."
 msgstr "填寫以下表格以新增 mail job。"
 
-#: .\mail_job\views.py:191
+#: .\mail_job\views.py:192
 msgid "Added successfully."
 msgstr "已新增成功。"
 
-#: .\mail_job\views.py:194
+#: .\mail_job\views.py:195
 msgid "Failed to add. The data is duplicate with the existing."
 msgstr "新增失敗，資料與既有的重複。"
 
-#: .\mail_job\views.py:196 .\mail_job\views.py:248
+#: .\mail_job\views.py:197 .\mail_job\views.py:199 .\mail_job\views.py:251
 msgid "Unknown error. The format of the return value is not correct."
 msgstr "未知的錯誤，返回的資料格式不正確。"
 
-#: .\mail_job\views.py:287
+#: .\mail_job\views.py:290
 msgid "You can only change the mail job created by you."
 msgstr "你只能修改自己建立的 mail job。"
 
-#: .\mail_job\views.py:305
+#: .\mail_job\views.py:308
 msgid ""
 "The following is the current setting. Please fill in the part you want to "
 "modify and then submit."
 msgstr "以下為目前的設置，請填入欲修改的部分後送出。"
 
-#: .\mail_job\views.py:307 .\mail_job\views.py:385
+#: .\mail_job\views.py:310 .\mail_job\views.py:389
 msgid ""
 "The mail job is not available. Please confirm whether it has been deleted."
 msgstr "查無資料，請確認該 mail job 是否已被刪除。"
 
-#: .\mail_job\views.py:309 .\mail_job\views.py:387
+#: .\mail_job\views.py:312 .\mail_job\views.py:391
 msgid "Unknown error, data cannot return."
 msgstr "未知的錯誤，無法返回資料。"
 
-#: .\mail_job\views.py:355
+#: .\mail_job\views.py:359
 msgid "You can only delete the mail job created by you."
 msgstr "你只能註銷自己建立的 mail job。"
 
-#: .\mail_job\views.py:383
+#: .\mail_job\views.py:387
 msgid "Deleted successfully."
 msgstr "已註銷成功。"
 
-#: .\mail_job\views.py:435
+#: .\mail_job\views.py:439
 msgid "You can only do a mail test on the mail job created by you."
 msgstr "你只能為自己建立的 mail job 發測試信。"
 
-#: .\mail_job\views.py:453
+#: .\mail_job\views.py:457
 msgid "The test mail has been sent."
 msgstr "已送出測試信。"
