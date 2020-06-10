@@ -28,10 +28,12 @@
     <div class="row justify-content-center">
         <div class="col-auto">
             <div class="text-right p-4">
+                <input type="text" id="filter-mail-job" onkeyup="myFunction()" placeholder="Filter for table..">
                 <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
                     style="width: 8rem; border-radius: 2rem;">{% trans 'Add'%} +</a>
             </div>
-            <table class="table table-bordered table-striped table-responsive mail-job">
+            <table class="table table-bordered border-light table-hover table-responsive mail-job"
+                id="table-mail-job">
                 <thead>
                     <tr>
                         <th>{% trans 'Action' %}</th>
@@ -51,13 +53,18 @@
                     <tr>
                         <td>
                             <div class="dropdown show">
-                                <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     {% trans 'Choose' %}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{% url 'mail_job:change' seq=row.seq %}">{% trans 'Change' %}</a>
-                                    <a class="dropdown-item" href="{% url 'mail_job:delete' seq=row.seq %}">{% trans 'Delete' %}</a>
-                                    <a class="dropdown-item" href="{% url 'mail_job:mail_test' seq=row.seq %}">{% trans 'Mail test' %}</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'mail_job:change' seq=row.seq %}">{% trans 'Change' %}</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'mail_job:delete' seq=row.seq %}">{% trans 'Delete' %}</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'mail_job:mail_test' seq=row.seq %}">{% trans 'Mail test' %}</a>
                                 </div>
                             </div>
                         </td>
@@ -78,4 +85,28 @@
     </div>
     <div class="row" style="height: 8rem"></div>
 </div>
+{% endblock %}
+
+{% block extrajs %}
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("filter-mail-job");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table-mail-job");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 {% endblock %}

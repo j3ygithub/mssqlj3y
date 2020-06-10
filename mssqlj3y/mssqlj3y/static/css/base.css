@@ -9,6 +9,14 @@ table.mail-job th, table.mail-job td {
     word-wrap: break-word;
 }
 
+table.mail-job tbody tr:nth-of-type(even) {
+    background-color: rgba(233, 228, 238, .5);
+}
+
+table.mail-job tbody tr:hover {
+    background-color: rgba(233, 228, 238, 1);
+}
+
 .border-j3y-theme-1 {
     border: 1px solid rgba(233, 228, 238, .25);
 }
