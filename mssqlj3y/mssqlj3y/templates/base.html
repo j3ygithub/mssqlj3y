@@ -27,7 +27,7 @@
 <body>
     {% block nav %}
     <nav class="navbar navbar-expand-md navbar-light j3y-bg-blue-4">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand pb-2" href="/">
             <svg class="bi bi-bell" width="1.5rem" height="1.5rem" viewBox="0 0 16 16" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
@@ -43,6 +43,18 @@
         </button>
         <div class="collapse navbar-collapse" id="togglerTarget">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {% trans 'Mail Job' %}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'mail_job:change_list' %}">{% trans 'View List' %}</a>
+                        <a class="dropdown-item" href="{% url 'mail_job:add' %}">{% trans 'Add' %}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'mail_job:change_list' %}?show_history=true">{% trans 'History' %}</a>
+                    </div>
+                </li>
                 <a class="nav-itrm nav-link" data-toggle="modal" href="#" data-target="#modalHelp">
                     {% trans 'Help' %}
                 </a>

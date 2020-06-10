@@ -98,7 +98,6 @@ def change_list(request):
                 df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'        
         context['df'] = df
     except Exception as e:
-        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     return render(request, 'mail_job/change_list.html', context)
 
