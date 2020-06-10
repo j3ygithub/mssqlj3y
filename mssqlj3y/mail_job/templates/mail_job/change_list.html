@@ -43,6 +43,7 @@
                         <th>{% trans 'Mail content' %}</th>
                         <th>{% trans 'Recipients' %}</th>
                         <th>{% trans 'Created by' %}</th>
+                        <th>{% trans 'Created date' %}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,12 +63,13 @@
                         </td>
                         <td>{{ row.event_type }}</td>
                         <td>{{ row.event }}</td>
-                        <td>{{ row.start_from }}</td>
+                        <td>{{ row.start_from|date:"Y-m-d" }}</td>
                         <td>{{ row.period_readable }}</td>
                         <td>{{ row.mail_subject }}</td>
                         <td>{{ row.mail_content }}</td>
                         <td>{{ row.recipients }}</td>
                         <td>{{ row.created_by }}</td>
+                        <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

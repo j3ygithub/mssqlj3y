@@ -7,6 +7,15 @@ from django.contrib import messages
 import pandas
 from .mssql_sp import sp_show_mail_job, sp_show_mail_job_1, sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime
 from .forms import MailJobForm
+import time
+
+
+def mssql_datetime_to_pandas_to_python_serializer(mssql_datetime):
+    try:
+        t = mssql_datetime.timetuple()
+        return int(time.mktime(t))
+    except ValueError:
+        return None
 
 
 def change_list(request):
@@ -17,7 +26,7 @@ def change_list(request):
         'df': None
     }
     try:
-        response_show = sp_show_mail_job()
+        response_show = sp_show_mail_job_1()
         df = pandas.DataFrame(tuple(row) for row in response_show)
         df.columns = [
             'result', # 查詢結果
@@ -37,8 +46,9 @@ def change_list(request):
             'updated_by', # 修改者
             'updated_date', # 修改日期
         ]
+        df.fillna('-', inplace=True)
+        df = df.sort_values(by=['created_by'], ascending=False)
         for index, row in df.iterrows():
-            df.loc[index, 'updated_date'] = str(row['updated_date'])
             if row['period'] == '每日' and row['weekend_flag'] == 'T':
                 df.loc[index, 'period_readable'] = _('Each weekday')
             else:
@@ -90,7 +100,6 @@ def change_list(request):
                         df.loc[index, 'period_readable'] = choice_tuple[1]
             if len(row['mail_content']) > 50:
                 df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'
-            df = df.sort_values(by=['created_by'], ascending=False)
         context['df'] = df
     except Exception as e:
         print(e)
