@@ -26,7 +26,10 @@ def change_list(request):
         'df': None
     }
     try:
-        response_show = sp_show_mail_job_1()
+        if request.GET.get('show_history') == 'true':
+            response_show = sp_show_mail_job_1()
+        else:
+            response_show = sp_show_mail_job()
         df = pandas.DataFrame(tuple(row) for row in response_show)
         df.columns = [
             'result', # 查詢結果
@@ -46,8 +49,10 @@ def change_list(request):
             'updated_by', # 修改者
             'updated_date', # 修改日期
         ]
+        departments = [request.user.profile.department]
+        df = df[df['department'].isin(departments)]
         df.fillna('-', inplace=True)
-        df = df.sort_values(by=['created_by'], ascending=False)
+        df = df.sort_values(by=['created_date'], ascending=False)
         for index, row in df.iterrows():
             if row['period'] == '每日' and row['weekend_flag'] == 'T':
                 df.loc[index, 'period_readable'] = _('Each weekday')
@@ -99,7 +104,7 @@ def change_list(request):
                     if row['period'] == choice_tuple[0]:
                         df.loc[index, 'period_readable'] = choice_tuple[1]
             if len(row['mail_content']) > 50:
-                df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'
+                df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'        
         context['df'] = df
     except Exception as e:
         print(e)
