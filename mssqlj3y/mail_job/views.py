@@ -7,15 +7,6 @@ from django.contrib import messages
 import pandas
 from .mssql_sp import sp_show_mail_job, sp_show_mail_job_1, sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime
 from .forms import MailJobForm
-import time
-
-
-def mssql_datetime_to_pandas_to_python_serializer(mssql_datetime):
-    try:
-        t = mssql_datetime.timetuple()
-        return int(time.mktime(t))
-    except ValueError:
-        return None
 
 
 def change_list(request):
