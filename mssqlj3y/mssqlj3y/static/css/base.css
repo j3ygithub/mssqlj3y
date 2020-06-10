@@ -3,56 +3,32 @@
     color: #343A40;
 }
 
-.j3y-table th {
-    width: 4.5rem;
-}
-
-.j3y-df td, th {
-    max-width: 9rem;
+table.mail-job th, table.mail-job td {
+    min-width: 7rem;
+    max-width: 10rem;
     word-wrap: break-word;
 }
 
-.j3y-border-1 {
-    border: 1px solid rgba(0,0,0,.1);
-    border-radius: .5rem;
+.border-j3y-theme-1 {
+    border: 1px solid rgba(233, 228, 238, .25);
 }
 
-.j3y-border-2 {
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .5rem;
+.border-j3y-theme-2 {
+    border: 1px solid rgba(233, 228, 238, .5);
 }
 
-.j3y-border-3 {
-    border: 1px solid rgba(0,0,0,.3);
-    border-radius: .5rem;
+.bg-j3y-theme-1 {
+    background-color: rgba(233, 228, 238, .25);
 }
 
-.j3y-border-4 {
-    border: 1px solid rgba(0,0,0,.4);
-    border-radius: .5rem;
+.bg-j3y-theme-2 {
+    background-color: rgba(233, 228, 238, .5);
 }
 
-.j3y-border-5 {
-    border: 1px solid rgba(0,0,0,.5);
-    border-radius: .5rem;
+.bg-j3y-theme-3 {
+    background-color: rgba(233, 228, 238, .75);
 }
 
-.j3y-bg-blue-1 {
-    background-color: rgba(232, 228, 238, .2);
-}
-
-.j3y-bg-blue-2 {
-    background-color: rgba(232, 228, 238, .4);
-}
-
-.j3y-bg-blue-3 {
-    background-color: rgba(232, 228, 238, .6);
-}
-
-.j3y-bg-blue-4 {
-    background-color: rgba(232, 228, 238, .8);
-}
-
-.j3y-bg-blue-5 {
-    background-color: rgba(232, 228, 238, 1);
+.bg-j3y-theme-4 {
+    background-color: rgba(233, 228, 238, 1);
 }
