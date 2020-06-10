@@ -9,9 +9,6 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row" style="height: 4rem"></div>
-    {% if htmls %}
-    {% for key, value in htmls.items %}
-    {% if key == 'change_list' %}
     <div class="row justify-content-center">
         <div class="col-auto">
             <div class="text-center">
@@ -34,14 +31,49 @@
                 <a class="btn btn-secondary" href="{% url 'mail_job:add' %}"
                     style="width: 8rem; border-radius: 2rem;">{% trans 'Add'%} +</a>
             </div>
-            <div>
-                {{ value|safe }}
-            </div>
+            <table class="dataframe j3y-df table table-light table-bordered table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th>{% trans 'Action' %}</th>
+                        <th>{% trans 'Event type' %}</th>
+                        <th>{% trans 'Event' %}</th>
+                        <th>{% trans 'Start from' %}</th>
+                        <th>{% trans 'Period' %}</th>
+                        <th>{% trans 'Mail subject' %}</th>
+                        <th>{% trans 'Mail content' %}</th>
+                        <th>{% trans 'Recipients' %}</th>
+                        <th>{% trans 'Created by' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, row in df.iterrows %}
+                    <tr>
+                        <td>
+                            <div class="dropdown show">
+                                <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans 'Choose' %}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'mail_job:change' seq=row.seq %}">{% trans 'Change' %}</a>
+                                    <a class="dropdown-item" href="{% url 'mail_job:delete' seq=row.seq %}">{% trans 'Delete' %}</a>
+                                    <a class="dropdown-item" href="{% url 'mail_job:mail_test' seq=row.seq %}">{% trans 'Mail Test' %}</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ row.event_type }}</td>
+                        <td>{{ row.event }}</td>
+                        <td>{{ row.start_from }}</td>
+                        <td>{{ row.period_readable }}</td>
+                        <td>{{ row.mail_subject }}</td>
+                        <td>{{ row.mail_content }}</td>
+                        <td>{{ row.recipients }}</td>
+                        <td>{{ row.created_by }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
     <div class="row" style="height: 8rem"></div>
 </div>
 {% endblock %}

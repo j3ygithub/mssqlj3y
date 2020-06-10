@@ -1,12 +1,12 @@
 from django.urls import path, include
 from django.views.generic import RedirectView
-from .views import change_list, change_list_new, add, change, delete, mail_test
+from .views import change_list, add, change, delete, mail_test
 
 
 app_name = 'mail_job'
 
 urlpatterns = [
-    path('', change_list_new, name='change_list'),
+    path('', change_list, name='change_list'),
     path('add/', add, name='add'),
     path('<int:seq>/change/', change, name='change'),
     path('<int:seq>/delete/', delete, name='delete'),

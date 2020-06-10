@@ -9,7 +9,7 @@ from .mssql_sp import sp_show_mail_job, sp_show_mail_job_1, sp_insert_mail_job, 
 from .forms import MailJobForm
 
 
-def change_list_new(request):
+def change_list(request):
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
@@ -21,7 +21,7 @@ def change_list_new(request):
         df = pandas.DataFrame(tuple(row) for row in response_show)
         df.columns = [
             'result', # 查詢結果
-            'serial', # 項次
+            'seq', # 項次
             'department', # 部門
             'event_type', # 事件類型
             'event', # 事件
@@ -37,56 +37,11 @@ def change_list_new(request):
             'updated_by', # 修改者
             'updated_date', # 修改日期
         ]
-        context['df'] = df
-    except:
-        context['tips'] += [_('Unknown error. The data cannot be returned.')]
-    return render(request, 'mail_job/change_list_new.html', context)
-
-def change_list(request):
-    if not request.user.is_authenticated:
-        return redirect(reverse('login'))
-    context = {
-        'tips': [],
-        'htmls': {},
-    }
-    try:
-        response_show = sp_show_mail_job()
-        if response_show[0][0] == '查詢成功':
-            df = pandas.DataFrame(tuple(row) for row in response_show)
-            df.columns = [
-                'result', # 查詢結果
-                _('Serial'), # 項次
-                _('Dep.'), # 部門
-                _('Event type'), # 事件類型
-                _('Event'), # 事件
-                _('Start from'), # 通知起始日
-                _('Period'), # 週期
-                'weekend_flag', # 假日除外
-                _('Mail subject'), # 郵件主旨
-                _('Mail content'), # 郵件內容
-                _('Recipients'), # 收件人
-                _('Created date'), # 建立時間
-                'stop_date', # 規則終止日
-                _('Created by'), # 建立者
-                'update_by', # 修改者
-                'update_date', # 修改日期
-            ]
-            for index, row in df.iterrows():
-                items = [
-                    f'<a class="dropdown-item" href="{reverse("mail_job:change", kwargs={"seq": row[_("Serial")]})}">{_("Change")}</a>',
-                    f'<a class="dropdown-item" href="{reverse("mail_job:delete", kwargs={"seq": row[_("Serial")]})}">{_("Delete")}</a>',
-                    f'<a class="dropdown-item" href="{reverse("mail_job:mail_test", kwargs={"seq": row[_("Serial")]})}">{_("Mail Test")}</a>',
-                ]
-                html_button_dropdown = '<div class="dropdown show">'
-                html_button_dropdown += '<button class="btn btn-light bg-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
-                html_button_dropdown += _('Choose')
-                html_button_dropdown += '</button>'
-                html_button_dropdown += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">'
-                html_button_dropdown += f'{"".join(items)}'
-                html_button_dropdown += '</div>'
-                html_button_dropdown += '</div>'
-                df.loc[index, _('Action')] = html_button_dropdown
-                # merge the period and the weekend flag
+        for index, row in df.iterrows():
+            df.loc[index, 'updated_date'] = str(row['updated_date'])
+            if row['period'] == '每日' and row['weekend_flag'] == 'T':
+                df.loc[index, 'period_readable'] = _('Each weekday')
+            else:
                 choices_period = [
                     ('單次', _('Once')),
                     ('每日', _('Daily')),
@@ -130,39 +85,15 @@ def change_list(request):
                     ('每月30號', _('30th of every month')),
                     ('每月31號', _('31th of every month')),
                 ]
-                if row[_('Period')] == '每日' and row['weekend_flag'] == 'T':
-                    df.loc[index, _('Period')] = _('Each weekday')
-                else:
-                    for t in choices_period:
-                        if row[_('Period')] == t[0]:
-                            df.loc[index, _('Period')] = t[1]
-                if len(row[_('Mail content')]) > 50:
-                    df.loc[index, _('Mail content')] = row[_('Mail content')][:50] + '......'
-            df = df[[
-                _('Action'), # 動作
-                _('Dep.'), # 部門
-                _('Event type'), # 事件類型
-                _('Event'), # 事件
-                _('Start from'), # 通知起始日
-                _('Period'), # 週期
-                _('Mail subject'), # 郵件主旨
-                _('Mail content'), # 郵件內容
-                _('Recipients'), # 收件人
-                _('Created by'), # 建立者
-                _('Created date'), # 建立時間
-            ]]
-            df = df.sort_values(by=[_('Created date')], ascending=False)
-            df.index = pandas.RangeIndex(start=1, stop=len(df) + 1, step=1)
-            df_html = df.to_html(
-                justify='left',
-                classes=
-                'j3y-df table table-light table-bordered table-striped table-responsive',
-                escape=False,
-            )
-            context['htmls']['change_list'] = df_html
-        else:
-            context['tips'] += [_('Unknown error. The format of the returned data is not correct.')]
-    except:
+                for choice_tuple in choices_period:
+                    if row['period'] == choice_tuple[0]:
+                        df.loc[index, 'period_readable'] = choice_tuple[1]
+            if len(row['mail_content']) > 50:
+                df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'
+            df = df.sort_values(by=['created_by'], ascending=False)
+        context['df'] = df
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     return render(request, 'mail_job/change_list.html', context)
 
