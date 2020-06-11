@@ -25,16 +25,24 @@
             </div>
         </div>
     </div>
+    <div class="row" style="height: 4rem"></div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <div class="text-right p-4 d-flex justify-content-between">
-                <input type="text" style="width: 6rem;" class="form-control" id="filter-mail-job" placeholder="{% trans 'Filter for table..' %}">
-                <a class="btn btn-secondary rounded" href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
+            <div class="text-right px-1 py-2 d-flex">
+                <input type="text" style="max-width: 18rem;" class="form-control mx-1" id="filter-mail-job"
+                    placeholder="{% trans 'Search..' %}">
+                <select style="max-width: 12rem;" class="form-control mx-1" id="field-controller-mail-job">
+                    <option value="basic_field">{% trans 'Basic fields' %}</option>
+                    <option value="all_field">{% trans 'All fields' %}</option>
+                </select>
+                <a class="btn btn-secondary rounded mx-1 ml-auto" style="width: 6rem;"
+                    href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
             </div>
             <table class="table table-bordered border-light table-hover table-responsive mail-job" id="table-mail-job">
                 <thead>
                     <tr>
                         <th>{% trans 'Action' %}</th>
+                        <th>{% trans 'Dep.' %}</th>
                         <th>{% trans 'Event type' %}</th>
                         <th>{% trans 'Event' %}</th>
                         <th>{% trans 'Start from' %}</th>
@@ -66,6 +74,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td>{{ row.department }}</td>
                         <td>{{ row.event_type }}</td>
                         <td>{{ row.event }}</td>
                         <td>{{ row.start_from|date:"Y-m-d" }}</td>
@@ -93,6 +102,22 @@
             $("#table-mail-job tbody tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
+        });
+    });
+    $(document).ready(function () {
+        $("#field-controller-mail-job").on("change", function () {
+            var value = $(this).val();
+            var basic_field = ["department"]
+            if (value == "basic_field") {
+                $("#table-mail-job thead th").filter(function () {
+                    $(this).toggle($(this).text() == "department")
+                });
+            }
+            else {
+                $("#table-mail-job thead th").filter(function () {
+                    $(this).toggle($(this).text() != "department")
+                });
+            }
         });
     });
 </script>
