@@ -48,7 +48,7 @@ class MailJobForm(forms.Form):
                 'type':'date',
             },
         ),
-        label=_('Start on'),
+        label=_('Start date'),
         initial=today,
     )
     choices_period = [

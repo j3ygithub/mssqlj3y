@@ -28,7 +28,7 @@ def change_list(request):
             'department', # 部門
             'event_type', # 事件類型
             'event', # 事件
-            'start_from', # 通知起始日
+            'start_date', # 通知起始日
             'period', # 週期
             'weekend_flag', # 假日除外
             'mail_subject', # 郵件主旨

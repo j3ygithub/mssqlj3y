@@ -3,24 +3,9 @@
     color: #343A40;
 }
 
-table.mail-job th, table.mail-job td {
-    min-width: 7rem;
-    max-width: 10rem;
-    word-wrap: break-word;
+nav .nav-link {
+    font-weight: 500;
 }
-
-table.mail-job tbody tr:nth-of-type(even) {
-    background-color: rgba(233, 228, 238, .5);
-}
-
-table.mail-job tbody tr:hover {
-    background-color: rgba(233, 228, 238, 1);
-}
-
-table.mail-job .advanced-field {
-    display: none;
-}
-
 
 .border-j3y-theme-1 {
     border: 1px solid rgba(233, 228, 238, .25);
@@ -44,4 +29,26 @@ table.mail-job .advanced-field {
 
 .bg-j3y-theme-4 {
     background-color: rgba(233, 228, 238, 1);
+}
+
+table.mail-job {
+    max-width: 100rem;
+}
+
+table.mail-job th, table.mail-job td {
+    min-width: 7rem;
+    max-width: 10rem;
+    word-wrap: break-word;
+}
+
+table.mail-job tbody tr:nth-of-type(even) {
+    background-color: rgba(233, 228, 238, .5);
+}
+
+table.mail-job tbody tr:hover {
+    background-color: rgba(233, 228, 238, 1);
+}
+
+table.mail-job .advanced-field {
+    display: none;
 }

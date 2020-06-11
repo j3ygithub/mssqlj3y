@@ -29,13 +29,13 @@
     <div class="row justify-content-center">
         <div class="col-auto">
             <div class="text-right px-1 py-2 d-flex">
-                <input type="text" style="max-width: 18rem;" class="form-control mx-1" id="filter-mail-job"
+                <input type="text" style="max-width: 18rem;" class="form-control mx-1 mr-auto" id="filter-mail-job"
                     placeholder="{% trans 'Search..' %}">
                 <select style="max-width: 12rem;" class="form-control mx-1" id="field-controller-mail-job">
                     <option value="basic_field">{% trans 'Basic fields' %}</option>
                     <option value="all_field">{% trans 'All fields' %}</option>
                 </select>
-                <a class="btn btn-secondary rounded mx-1 ml-auto" style="width: 6rem;"
+                <a class="btn btn-secondary rounded mx-1" style="width: 6rem;"
                     href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
             </div>
             <table class="table table-bordered border-light table-hover table-responsive mail-job" id="table-mail-job">
@@ -45,7 +45,7 @@
                         <th class="advanced-field">{% trans 'Dep.' %}</th>
                         <th>{% trans 'Event type' %}</th>
                         <th>{% trans 'Event' %}</th>
-                        <th>{% trans 'Start from' %}</th>
+                        <th>{% trans 'Start date' %}</th>
                         <th class="advanced-field">{% trans 'Stop date' %}</th>
                         <th>{% trans 'Period' %}</th>
                         <th>{% trans 'Mail subject' %}</th>
@@ -80,7 +80,7 @@
                         <td class="advanced-field">{{ row.department }}</td>
                         <td>{{ row.event_type }}</td>
                         <td>{{ row.event }}</td>
-                        <td>{{ row.start_from|date:"Y-m-d" }}</td>
+                        <td>{{ row.start_date|date:"Y-m-d" }}</td>
                         <td class="advanced-field">{{ row.stop_date|date:"Y-m-d" }}</td>
                         <td>{{ row.period_readable }}</td>
                         <td>{{ row.mail_subject }}</td>
@@ -89,7 +89,8 @@
                         <td>{{ row.created_by }}</td>
                         <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
                         <td class="advanced-field">{{ row.updated_by }}</th>
-                        <td class="advanced-field">{{ row.updated_date|date:"Y-m-d" }} {{ row.updated_date|time:"H:i:s" }}</th>
+                        <td class="advanced-field">{{ row.updated_date|date:"Y-m-d" }}
+                            {{ row.updated_date|time:"H:i:s" }}</th>
                     </tr>
                     {% endfor %}
                 </tbody>

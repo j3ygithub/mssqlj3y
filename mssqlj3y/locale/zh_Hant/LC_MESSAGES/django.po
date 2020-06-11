@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-11 13:23+0800\n"
+"POT-Creation-Date: 2020-06-11 15:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,8 @@ msgid "T32"
 msgstr ""
 
 #: .\accounts\forms.py:45 .\accounts\forms.py:102 .\accounts\models.py:14
-#: .\mail_job\forms.py:13 .\mssqlj3y\templates\modal_help.html:36
+#: .\mail_job\forms.py:13 .\mail_job\templates\mail_job\change_list.html:45
+#: .\mssqlj3y\templates\modal_help.html:36
 msgid "Dep."
 msgstr "部門"
 
@@ -79,7 +80,7 @@ msgstr "Email 必須以「@Chief.com.tw」結尾。"
 msgid "The Email has already been used."
 msgstr "Email 已被使用。"
 
-#: .\accounts\forms.py:88 .\mail_job\templates\mail_job\change_list.html:57
+#: .\accounts\forms.py:88 .\mail_job\templates\mail_job\change_list.html:68
 msgid "Choose"
 msgstr "選擇"
 
@@ -240,7 +241,7 @@ msgstr "個人檔案"
 #: .\accounts\templates\registration\profile_change.html:56
 #: .\mail_job\templates\mail_job\change.html:19
 #: .\mail_job\templates\mail_job\change.html:36
-#: .\mail_job\templates\mail_job\change_list.html:61
+#: .\mail_job\templates\mail_job\change_list.html:72
 msgid "Change"
 msgstr "修改"
 
@@ -274,7 +275,7 @@ msgstr "已修改成功。"
 msgid "ex. Expiration of certificates"
 msgstr "例如：憑證到期"
 
-#: .\mail_job\forms.py:32 .\mail_job\templates\mail_job\change_list.html:38
+#: .\mail_job\forms.py:32 .\mail_job\templates\mail_job\change_list.html:46
 #: .\mssqlj3y\templates\modal_help.html:40
 msgid "Event type"
 msgstr "事件類型"
@@ -283,13 +284,13 @@ msgstr "事件類型"
 msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期"
 
-#: .\mail_job\forms.py:42 .\mail_job\templates\mail_job\change_list.html:39
+#: .\mail_job\forms.py:42 .\mail_job\templates\mail_job\change_list.html:47
 #: .\mssqlj3y\templates\modal_help.html:44
 msgid "Event"
 msgstr "事件描述"
 
-#: .\mail_job\forms.py:51 .\mssqlj3y\templates\modal_help.html:48
-msgid "Start on"
+#: .\mail_job\forms.py:51 .\mail_job\templates\mail_job\change_list.html:48
+msgid "Start date"
 msgstr "通知起始日"
 
 #: .\mail_job\forms.py:55 .\mail_job\views.py:52
@@ -456,7 +457,7 @@ msgstr "每月30號"
 msgid "31th of every month"
 msgstr "每月31號"
 
-#: .\mail_job\forms.py:99 .\mail_job\templates\mail_job\change_list.html:41
+#: .\mail_job\forms.py:99 .\mail_job\templates\mail_job\change_list.html:50
 #: .\mssqlj3y\templates\modal_help.html:53
 msgid "Period"
 msgstr "週期"
@@ -465,7 +466,7 @@ msgstr "週期"
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:110 .\mail_job\templates\mail_job\change_list.html:42
+#: .\mail_job\forms.py:110 .\mail_job\templates\mail_job\change_list.html:51
 #: .\mssqlj3y\templates\modal_help.html:57
 msgid "Mail subject"
 msgstr "郵件主旨"
@@ -478,7 +479,7 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:120 .\mail_job\templates\mail_job\change_list.html:43
+#: .\mail_job\forms.py:120 .\mail_job\templates\mail_job\change_list.html:52
 #: .\mssqlj3y\templates\modal_help.html:61
 msgid "Mail content"
 msgstr "郵件內容"
@@ -495,7 +496,7 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:130 .\mail_job\templates\mail_job\change_list.html:44
+#: .\mail_job\forms.py:130 .\mail_job\templates\mail_job\change_list.html:53
 #: .\mssqlj3y\templates\modal_help.html:65
 msgid "Recipients"
 msgstr "收件人"
@@ -506,13 +507,13 @@ msgstr "使用「;」分隔多個收件者。"
 
 #: .\mail_job\templates\mail_job\add.html:17
 #: .\mail_job\templates\mail_job\add.html:42
-#: .\mail_job\templates\mail_job\change_list.html:32
+#: .\mail_job\templates\mail_job\change_list.html:39
 #: .\mssqlj3y\templates\base.html:53 .\mssqlj3y\templates\modal_help.html:20
 msgid "Add"
 msgstr "新增"
 
 #: .\mail_job\templates\mail_job\change.html:39
-#: .\mail_job\templates\mail_job\change_list.html:63
+#: .\mail_job\templates\mail_job\change_list.html:74
 #: .\mail_job\templates\mail_job\delete.html:22
 msgid "Delete"
 msgstr "註銷"
@@ -521,29 +522,45 @@ msgstr "註銷"
 msgid "Mail Test"
 msgstr "發測試信"
 
-#: .\mail_job\templates\mail_job\change_list.html:31
+#: .\mail_job\templates\mail_job\change_list.html:33
 msgid "Search.."
 msgstr "搜尋.."
 
-#: .\mail_job\templates\mail_job\change_list.html:37
+#: .\mail_job\templates\mail_job\change_list.html:35
+msgid "Basic fields"
+msgstr "基本欄位"
+
+#: .\mail_job\templates\mail_job\change_list.html:36
+msgid "All fields"
+msgstr "所有欄位"
+
+#: .\mail_job\templates\mail_job\change_list.html:44
 msgid "Action"
 msgstr "動作"
 
-#: .\mail_job\templates\mail_job\change_list.html:40
-msgid "Start from"
-msgstr "通知起始日"
+#: .\mail_job\templates\mail_job\change_list.html:49
+msgid "Stop date"
+msgstr "通知終止日"
 
-#: .\mail_job\templates\mail_job\change_list.html:45
+#: .\mail_job\templates\mail_job\change_list.html:54
 #: .\mssqlj3y\templates\modal_help.html:69
 msgid "Created by"
 msgstr "建立者"
 
-#: .\mail_job\templates\mail_job\change_list.html:46
+#: .\mail_job\templates\mail_job\change_list.html:55
 #: .\mssqlj3y\templates\modal_help.html:73
 msgid "Created date"
 msgstr "建立時間"
 
-#: .\mail_job\templates\mail_job\change_list.html:65
+#: .\mail_job\templates\mail_job\change_list.html:56
+msgid "Updated by"
+msgstr "修改者"
+
+#: .\mail_job\templates\mail_job\change_list.html:57
+msgid "Updated date"
+msgstr "修改時間"
+
+#: .\mail_job\templates\mail_job\change_list.html:76
 msgid "Mail test"
 msgstr "發測試信"
 
@@ -702,6 +719,10 @@ msgstr "讓你識別這條 Mail Job 是為了哪個事件的簡單分類。"
 msgid "More detail about the event here."
 msgstr "更多關於該事件的細節與描述。"
 
+#: .\mssqlj3y\templates\modal_help.html:48
+msgid "Start on"
+msgstr "通知起始日"
+
 #: .\mssqlj3y\templates\modal_help.html:49
 msgid "The date on which mail job starts sending the notification by email."
 msgstr "Mail Job 啟動，開始發送通知信件的日期。"
@@ -729,3 +750,6 @@ msgstr "建立這條 Mail Job 的人。"
 #: .\mssqlj3y\templates\modal_help.html:74
 msgid "The date this mail job created."
 msgstr "這條 Mail Job 建立的日期。"
+
+#~ msgid "Start from"
+#~ msgstr "通知起始日"
