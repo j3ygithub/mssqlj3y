@@ -750,6 +750,3 @@ msgstr "建立這條 Mail Job 的人。"
 #: .\mssqlj3y\templates\modal_help.html:74
 msgid "The date this mail job created."
 msgstr "這條 Mail Job 建立的日期。"
-
-#~ msgid "Start from"
-#~ msgstr "通知起始日"
