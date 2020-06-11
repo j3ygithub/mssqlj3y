@@ -30,6 +30,18 @@ def profile_change(request):
     }
     return render(request, 'registration/profile_change.html', context)
 
+def set_role(request, role):
+    """
+    A set role view.
+    """
+    if not request.user.is_authenticated:
+        return redirect(reverse('login'))
+    if role not in [ dep.name for dep in request.user.profile.department.all() ]:
+        messages.add_message(request, messages.ERROR, _('You have no access to this role.'))
+        return redirect(reverse('index'))
+    request.session['role'] = role
+    return redirect(reverse('index'))
+
 def sign_up(request):
     """
     A lobby view of sign-up view.

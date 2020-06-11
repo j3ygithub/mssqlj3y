@@ -40,7 +40,8 @@ def change_list(request):
             'updated_by', # 修改者
             'updated_date', # 修改日期
         ]
-        departments = [request.user.profile.department]
+        default_role = request.user.profile.department.all()[0].name
+        departments = [request.session.get('role', default_role)]
         df = df[df['department'].isin(departments)]
         df.fillna('', inplace=True)
         df = df.sort_values(by=['created_date'], ascending=False)
@@ -97,7 +98,8 @@ def change_list(request):
             if len(row['mail_content']) > 50:
                 df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'        
         context['df'] = df
-    except:
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     return render(request, 'mail_job/change_list.html', context)
 

@@ -87,10 +87,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        {{ user.profile.department }}
+                        {% with default_role=request.user.profile.department.all.0.name %}
+                        {{ request.session.role|default:default_role }}
+                        {% endwith %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">{{ user.profile.department }}</a>
+                        {% for dep in user.profile.department.all %}
+                        <a class="dropdown-item" href="{% url 'set_role' role=dep.name %}">{{ dep.name }}</a>
+                        {% endfor %}
                     </div>
                 </li>
                 <li class="nav-item dropdown">

@@ -5,7 +5,7 @@ from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,
     PasswordResetCompleteView)
 from django.utils.translation import gettext_lazy as _
-from .views import sign_up, sign_up_with_account_password, sign_up_with_chief_email, profile_change
+from .views import sign_up, sign_up_with_account_password, sign_up_with_chief_email, profile_change, set_role
 from .forms import EmailValidationOnForgotPassword
 
 
@@ -28,4 +28,5 @@ urlpatterns += [
     path('sign-up/with-account-password/', sign_up_with_account_password, name='sign_up_with_account_password'), # not shown directly on web interface
     path('sign-up/with-chief-email/', sign_up_with_chief_email, name='sign_up_with_chief_email'),
     path('profile/', profile_change, name='profile_change'),
+    path('set-role/<str:role>/', set_role, name='set_role')
 ]

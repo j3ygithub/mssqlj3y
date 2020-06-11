@@ -4,14 +4,15 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Profile(models.Model):
+    
     user = models.OneToOneField(
         verbose_name=_('User'),
         to=User,
         on_delete=models.CASCADE,
     )
 
-    department = models.CharField(
-        verbose_name=_('Dep.'),
+    department = models.ManyToManyField(
+        to='Department',
         max_length=64,
         blank=True,
     )
@@ -21,3 +22,14 @@ class Profile(models.Model):
         max_length=32,
         blank=True,
     )
+
+class Department(models.Model):
+    
+    name = models.CharField(
+        verbose_name=_('Name'),
+        blank=True,
+        max_length=32,
+    )
+
+    def __str__(self):
+        return self.name
