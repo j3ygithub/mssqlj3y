@@ -42,22 +42,25 @@
                 <thead>
                     <tr>
                         <th>{% trans 'Action' %}</th>
-                        <th>{% trans 'Dep.' %}</th>
+                        <th class="advanced-field">{% trans 'Dep.' %}</th>
                         <th>{% trans 'Event type' %}</th>
                         <th>{% trans 'Event' %}</th>
                         <th>{% trans 'Start from' %}</th>
+                        <th class="advanced-field">{% trans 'Stop date' %}</th>
                         <th>{% trans 'Period' %}</th>
                         <th>{% trans 'Mail subject' %}</th>
                         <th>{% trans 'Mail content' %}</th>
                         <th>{% trans 'Recipients' %}</th>
                         <th>{% trans 'Created by' %}</th>
                         <th>{% trans 'Created date' %}</th>
+                        <th class="advanced-field">{% trans 'Updated by' %}</th>
+                        <th class="advanced-field">{% trans 'Updated date' %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for index, row in df.iterrows %}
                     <tr>
-                        <td>
+                        <td id='td-action-mail-job'>
                             <div class="dropdown show">
                                 <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -74,16 +77,19 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ row.department }}</td>
+                        <td class="advanced-field">{{ row.department }}</td>
                         <td>{{ row.event_type }}</td>
                         <td>{{ row.event }}</td>
                         <td>{{ row.start_from|date:"Y-m-d" }}</td>
+                        <td class="advanced-field">{{ row.stop_date|date:"Y-m-d" }}</td>
                         <td>{{ row.period_readable }}</td>
                         <td>{{ row.mail_subject }}</td>
                         <td>{{ row.mail_content }}</td>
                         <td>{{ row.recipients }}</td>
                         <td>{{ row.created_by }}</td>
                         <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
+                        <td class="advanced-field">{{ row.updated_by }}</th>
+                        <td class="advanced-field">{{ row.updated_date|date:"Y-m-d" }} {{ row.updated_date|time:"H:i:s" }}</th>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -107,16 +113,11 @@
     $(document).ready(function () {
         $("#field-controller-mail-job").on("change", function () {
             var value = $(this).val();
-            var basic_field = ["department"]
             if (value == "basic_field") {
-                $("#table-mail-job thead th").filter(function () {
-                    $(this).toggle($(this).text() == "department")
-                });
+                $('#table-mail-job .advanced-field').hide();
             }
             else {
-                $("#table-mail-job thead th").filter(function () {
-                    $(this).toggle($(this).text() != "department")
-                });
+                $('#table-mail-job .advanced-field').show();
             }
         });
     });

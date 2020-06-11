@@ -17,6 +17,11 @@ table.mail-job tbody tr:hover {
     background-color: rgba(233, 228, 238, 1);
 }
 
+table.mail-job .advanced-field {
+    display: none;
+}
+
+
 .border-j3y-theme-1 {
     border: 1px solid rgba(233, 228, 238, .25);
 }

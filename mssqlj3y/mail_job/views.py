@@ -42,7 +42,7 @@ def change_list(request):
         ]
         departments = [request.user.profile.department]
         df = df[df['department'].isin(departments)]
-        df.fillna('-', inplace=True)
+        df.fillna('', inplace=True)
         df = df.sort_values(by=['created_date'], ascending=False)
         for index, row in df.iterrows():
             if row['period'] == '每日' and row['weekend_flag'] == 'T':
