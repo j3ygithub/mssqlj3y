@@ -27,58 +27,60 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <div class="text-right p-4">
-                <input type="text" id="filter-mail-job" placeholder="{% trans 'Filter for table..' %}">
-                <a class="btn btn-secondary rounded" href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
-            </div>
-            <table class="table table-bordered border-light table-hover table-responsive mail-job" id="table-mail-job">
-                <thead>
-                    <tr>
-                        <th>{% trans 'Action' %}</th>
-                        <th>{% trans 'Event type' %}</th>
-                        <th>{% trans 'Event' %}</th>
-                        <th>{% trans 'Start from' %}</th>
-                        <th>{% trans 'Period' %}</th>
-                        <th>{% trans 'Mail subject' %}</th>
-                        <th>{% trans 'Mail content' %}</th>
-                        <th>{% trans 'Recipients' %}</th>
-                        <th>{% trans 'Created by' %}</th>
-                        <th>{% trans 'Created date' %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for index, row in df.iterrows %}
-                    <tr>
-                        <td>
-                            <div class="dropdown show">
-                                <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
-                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    {% trans 'Choose' %}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item"
-                                        href="{% url 'mail_job:change' seq=row.seq %}">{% trans 'Change' %}</a>
-                                    <a class="dropdown-item"
-                                        href="{% url 'mail_job:delete' seq=row.seq %}">{% trans 'Delete' %}</a>
-                                    <a class="dropdown-item"
-                                        href="{% url 'mail_job:mail_test' seq=row.seq %}">{% trans 'Mail test' %}</a>
+            <div class="table-container">
+                <div class="table-toolbar ">
+                    <input type="text" id="filter-mail-job" placeholder="{% trans 'Filter for table..' %}" style="max-width: 20rem;">
+                    <a class="btn btn-secondary rounded" href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
+                </div>
+                <table class="table table-bordered border-light table-hover table-responsive mail-job" id="table-mail-job">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'Action' %}</th>
+                            <th>{% trans 'Event type' %}</th>
+                            <th>{% trans 'Event' %}</th>
+                            <th>{% trans 'Start from' %}</th>
+                            <th>{% trans 'Period' %}</th>
+                            <th>{% trans 'Mail subject' %}</th>
+                            <th>{% trans 'Mail content' %}</th>
+                            <th>{% trans 'Recipients' %}</th>
+                            <th>{% trans 'Created by' %}</th>
+                            <th>{% trans 'Created date' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for index, row in df.iterrows %}
+                        <tr>
+                            <td>
+                                <div class="dropdown show">
+                                    <button class="btn btn-light bg-light dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        {% trans 'Choose' %}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            href="{% url 'mail_job:change' seq=row.seq %}">{% trans 'Change' %}</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'mail_job:delete' seq=row.seq %}">{% trans 'Delete' %}</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'mail_job:mail_test' seq=row.seq %}">{% trans 'Mail test' %}</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>{{ row.event_type }}</td>
-                        <td>{{ row.event }}</td>
-                        <td>{{ row.start_from|date:"Y-m-d" }}</td>
-                        <td>{{ row.period_readable }}</td>
-                        <td>{{ row.mail_subject }}</td>
-                        <td>{{ row.mail_content }}</td>
-                        <td>{{ row.recipients }}</td>
-                        <td>{{ row.created_by }}</td>
-                        <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                            </td>
+                            <td>{{ row.event_type }}</td>
+                            <td>{{ row.event }}</td>
+                            <td>{{ row.start_from|date:"Y-m-d" }}</td>
+                            <td>{{ row.period_readable }}</td>
+                            <td>{{ row.mail_subject }}</td>
+                            <td>{{ row.mail_content }}</td>
+                            <td>{{ row.recipients }}</td>
+                            <td>{{ row.created_by }}</td>
+                            <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="row" style="height: 8rem"></div>
