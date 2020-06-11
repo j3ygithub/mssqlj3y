@@ -27,8 +27,8 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <div class="text-right p-4">
-                <input type="text" id="filter-mail-job" placeholder="{% trans 'Filter for table..' %}">
+            <div class="text-right p-4 d-flex justify-content-between">
+                <input type="text" style="width: 6rem;" class="form-control" id="filter-mail-job" placeholder="{% trans 'Filter for table..' %}">
                 <a class="btn btn-secondary rounded" href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
             </div>
             <table class="table table-bordered border-light table-hover table-responsive mail-job" id="table-mail-job">
