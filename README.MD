@@ -1,6 +1,13 @@
 # Reminder
 
-A website remind those you may miss by mail.
+A MSSQL-using, Django-based, task-reminding system for those you may miss.
+
+## TODO
+
+* Create user profile when a user sign up.
+* Sending Email with content using i18n.
+* Put JavaScript things together & more readable.
+* Writing test.
 
 ## Getting Started
 
@@ -85,10 +92,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
-
-## TODO
-
-* Create user profile when a user sign up.
-* Sending Email with content using i18n.
-* Put JavaScript things together & more readable.
-* Writing test.
