@@ -36,6 +36,7 @@ table.mail-job {
 }
 
 table.mail-job th, table.mail-job td {
+    vertical-align: text-top;
     min-width: 7rem;
     max-width: 10rem;
     word-wrap: break-word;
