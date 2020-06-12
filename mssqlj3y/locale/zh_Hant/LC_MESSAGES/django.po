@@ -24,7 +24,7 @@ msgstr "沒有以這個 Email 註冊的使用者。"
 
 #: .\accounts\forms.py:21 .\accounts\forms.py:25
 msgid "Chief Email"
-msgstr "Chief Email"
+msgstr "是方電子信箱"
 
 #: .\accounts\forms.py:31
 msgid "Choose Department"

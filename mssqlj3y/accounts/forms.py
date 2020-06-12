@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from .models import Profile
+from .models import Profile, Department
 
 
 class EmailValidationOnForgotPassword(PasswordResetForm):
@@ -26,25 +26,11 @@ class ChiefUserSignUpForm(forms.ModelForm):
             },
         ),
     )
-
-    choice_department = [
-        ('', _('Choose Department')),
-        ('D11', _('D11')),
-        ('D21', _('D21')),
-        ('D31', _('D31')),
-        ('T00', _('T00')),
-        ('T11', _('T11')),
-        ('T21', _('T21')),
-        ('T22', _('T22')),
-        ('T31', _('T31')),
-        ('T32', _('T32')),
-    ]
-
-    department = forms.CharField(
-        widget=forms.Select(choices=choice_department),
+    # the m2m formfields
+    department = forms.ModelMultipleChoiceField(
         label=_('Dep.'),
-        max_length=64,
         required=True,
+        queryset=Department.objects.all(),
     )
 
     class Meta:
@@ -77,37 +63,23 @@ class ChiefUserSignUpForm(forms.ModelForm):
         if not Profile.objects.filter(user=self.instance.pk).exists():
             profile = Profile.objects.create(user=instance)
             profile.save()
-        instance.profile.department = self.cleaned_data['department']
+        instance.profile.department.set(self.cleaned_data['department'])
         instance.profile.save()
         return instance
 
 class UserProfileForm(forms.ModelForm):
 
-    # from reverse-one-to-one formfield
-    choice_department = [
-        ('', _('Choose')),
-        ('D11', _('D11')),
-        ('D21', _('D21')),
-        ('D31', _('D31')),
-        ('T00', _('T00')),
-        ('T11', _('T11')),
-        ('T21', _('T21')),
-        ('T22', _('T22')),
-        ('T31', _('T31')),
-        ('T32', _('T32')),
-    ]
-
-    department = forms.CharField(
-        widget=forms.Select(choices=choice_department),
-        label=_('Dep.'),
-        max_length=64,
-        required=True,
-    )
-
     phone_number = forms.CharField(
         label=_('Phone number'),
         max_length=32,
         required=False,
+    )
+
+    # the m2m formfields
+    department = forms.ModelMultipleChoiceField(
+        label=_('Dep.'),
+        required=True,
+        queryset=Department.objects.all(),
     )
 
     class Meta:
@@ -120,7 +92,7 @@ class UserProfileForm(forms.ModelForm):
             if Profile.objects.filter(user=self.instance.pk).exists():
                 self.fields['email'].disabled = True
                 self.fields['department'].disabled = True
-                self.fields['department'].initial = self.instance.profile.department
+                self.fields['department'].initial = self.instance.profile.department.all()
                 self.fields['phone_number'].initial = self.instance.profile.phone_number
             else:
                 self.fields['email'].disabled = False
@@ -132,7 +104,7 @@ class UserProfileForm(forms.ModelForm):
         if not Profile.objects.filter(user=self.instance.pk).exists():
             profile = Profile.objects.create(user=instance)
             profile.save()
-        instance.profile.department = self.cleaned_data['department']
         instance.profile.phone_number = self.cleaned_data['phone_number']
+        instance.profile.department.set(self.cleaned_data['department'])
         instance.profile.save()
         return instance
