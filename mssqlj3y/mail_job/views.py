@@ -8,17 +8,7 @@ from django.core.mail import send_mail
 import pandas
 from .mssql_sp import sp_show_mail_job, sp_show_mail_job_1, sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime
 from .forms import MailJobForm
-
-
-def get_role(request):
-    """
-    Not a view. This function get the role for a given request.
-    It detects the role set in session of the request. If there's not one,
-    use the first result of profile-department of user.
-    """
-    default_role = request.user.profile.department.all()[0].name
-    role = request.session.get('role', default_role)
-    return role
+from accounts.views import get_role
 
 
 def change_list(request):

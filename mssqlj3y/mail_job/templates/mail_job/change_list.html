@@ -31,7 +31,11 @@
             <div class="text-right px-1 py-2 d-flex">
                 <input type="text" style="max-width: 18rem;" class="form-control mx-1 mr-auto" id="filter-mail-job"
                     placeholder="{% trans 'Search..' %}">
-                <select style="max-width: 12rem;" class="form-control mx-1" id="field-controller-mail-job">
+                <select style="max-width: 8rem;" class="form-control mx-1" id="show-all-controller-mail-job">
+                    <option value="personal">{% trans 'Personal' %}</option>
+                    <option value="all">{% trans 'All' %}</option>
+                </select>
+                <select style="max-width: 8rem;" class="form-control mx-1" id="field-controller-mail-job">
                     <option value="basic_field">{% trans 'Basic fields' %}</option>
                     <option value="all_field">{% trans 'All fields' %}</option>
                 </select>
@@ -119,6 +123,16 @@
             }
             else {
                 $('#table-mail-job .advanced-field').show();
+            }
+        });
+    });
+    $(document).ready(function () {
+        $("#filter-mail-job").on("change", function () {
+            var value = $(this).val();
+            if (value == "personal") {
+                $("#table-mail-job tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) = "{{ user.name }}")
+            });
             }
         });
     });
