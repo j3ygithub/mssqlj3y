@@ -127,11 +127,12 @@
         });
     });
     $(document).ready(function () {
-        $("#filter-mail-job").on("change", function () {
+        $("#show-all-controller-mail-job").on("change", function () {
             var value = $(this).val();
+            var role = "{{ user.name }}"
             if (value == "personal") {
                 $("#table-mail-job tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) = "{{ user.name }}")
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) == role)
             });
             }
         });
