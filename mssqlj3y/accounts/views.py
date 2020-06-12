@@ -121,6 +121,24 @@ def sign_up_with_chief_email(request):
                 recipient_list=[email],
                 fail_silently=False,
             )
+            department_emails = [ dep.email for dep in user.profile.department.all() ]
+            # Send notification to departments the user joined.
+            subject = f'[Reminder] {user.first_name} {user.last_name} has joined the group of you on Reminder.'
+            message = (
+                f'Hi there,\n'
+                '\n'
+                f'{user.first_name} {user.last_name} has joined the group of you on Reminder.\n'
+                '\n'
+                'Sincerely,\n'
+                'Reminder\n'
+            )
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=department_emails,
+                fail_silently=False,
+            )
             return redirect(reverse('password_reset_done'))
     else: 
         form = ChiefUserSignUpForm()

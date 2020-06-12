@@ -31,5 +31,10 @@ class Department(models.Model):
         max_length=32,
     )
 
+    email = models.EmailField(
+        verbose_name=_('email address'),
+        blank=True,
+    )
+
     def __str__(self):
         return self.name

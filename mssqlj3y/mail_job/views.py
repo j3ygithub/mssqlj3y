@@ -4,12 +4,27 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.contrib import messages
+from django.core.mail import send_mail
 import pandas
 from .mssql_sp import sp_show_mail_job, sp_show_mail_job_1, sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime
 from .forms import MailJobForm
 
 
+def get_role(request):
+    """
+    Not a view. This function get the role for a given request.
+    It detects the role set in session of the request. If there's not one,
+    use the first result of profile-department of user.
+    """
+    default_role = request.user.profile.department.all()[0].name
+    role = request.session.get('role', default_role)
+    return role
+
+
 def change_list(request):
+    """
+    A View of Mail Job change list.
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
@@ -40,8 +55,7 @@ def change_list(request):
             'updated_by', # 修改者
             'updated_date', # 修改日期
         ]
-        default_role = request.user.profile.department.all()[0].name
-        departments = [request.session.get('role', default_role)]
+        departments = [get_role(request)]
         df = df[df['department'].isin(departments)]
         df.fillna('', inplace=True)
         df = df.sort_values(by=['created_date'], ascending=False)
@@ -98,8 +112,7 @@ def change_list(request):
             if len(row['mail_content']) > 50:
                 df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'        
         context['df'] = df
-    except Exception as e:
-        print(e)
+    except:
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     return render(request, 'mail_job/change_list.html', context)
 
@@ -107,6 +120,7 @@ def change_list(request):
 def add(request):
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
+    default_role = request.user.profile.department.all()[0].name
     context = {
         'tips': [],
         'form': None,
@@ -205,8 +219,7 @@ def change(request, seq):
             print(response_update)
             if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Changed successfully.'))
-        except Exception as e:
-            print(e)
+        except:
             messages.add_message(request, messages.ERROR, _('Unknown error. The format of the return value is not correct.'))
         return redirect(reverse('mail_job:change_list'))
     else:
