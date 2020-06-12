@@ -35,7 +35,7 @@
                     <option value="personal">{% trans 'Personal' %}</option>
                     <option value="all">{% trans 'All' %}</option>
                 </select>
-                <select style="max-width: 8rem;" class="form-control mx-1" id="field-controller-mail-job">
+                <select style="max-width: 10rem;" class="form-control mx-1" id="field-controller-mail-job">
                     <option value="basic_field">{% trans 'Basic fields' %}</option>
                     <option value="all_field">{% trans 'All fields' %}</option>
                 </select>
@@ -90,7 +90,7 @@
                         <td>{{ row.mail_subject }}</td>
                         <td>{{ row.mail_content }}</td>
                         <td>{{ row.recipients }}</td>
-                        <td>{{ row.created_by }}</td>
+                        <td id="field-created-by-mail-job">{{ row.created_by }}</td>
                         <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
                         <td class="advanced-field">{{ row.updated_by }}</th>
                         <td class="advanced-field">{{ row.updated_date|date:"Y-m-d" }}
@@ -129,19 +129,23 @@
     $(document).ready(function () {
         $("#show-all-controller-mail-job").on("change", function () {
             var value = $(this).val();
-            var role = "{{ user.name }}"
+            var role = "{{ user }}"
             if (value == "personal") {
                 $("#table-mail-job tbody tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) == role)
+                    $(this).toggle($(this).text().indexOf(role) > -1)
                 });
             }
-            // working..
             else {
-                $("#table-mail-job tbody tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) == role)
-                });
+                $("#table-mail-job tbody tr").show()
             }
         });
     });
+    var showAllMailJob = $("#show-all-controller-mail-job").val();
+    var role = "{{ user }}"
+    if (showAllMailJob == 'personal') {
+        $("#table-mail-job tbody tr").filter(function () {
+            $(this).toggle($(this).text().indexOf(role) > -1)
+        });
+    }
 </script>
 {% endblock %}
