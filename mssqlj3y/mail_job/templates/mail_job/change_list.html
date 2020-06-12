@@ -132,8 +132,13 @@
             var role = "{{ user.name }}"
             if (value == "personal") {
                 $("#table-mail-job tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) == role)
-            });
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) == role)
+                });
+            }
+            else {
+                $("#table-mail-job tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) == role)
+                });
             }
         });
     });
