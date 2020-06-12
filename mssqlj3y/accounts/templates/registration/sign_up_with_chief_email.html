@@ -42,8 +42,14 @@
                     <div class="form-group col">
                         {% if not field.errors %}
                         {% render_field field class+='form-control' %}
+                        {% if field.help_text %}
+                        <small class="d-block text-muted">{{ field.help_text }}</small>
+                        {% endif %}
                         {% else %}
                         {% render_field field class+='form-control border-danger' %}
+                        {% if field.help_text %}
+                        <small class="d-block text-muted">{{ field.help_text }}</small>
+                        {% endif %}
                         {% for error in field.errors %}
                         <small class="text-danger d-block">{{ error }}</small>
                         {% endfor %}

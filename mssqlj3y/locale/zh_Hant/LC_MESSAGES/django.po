@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-11 15:00+0800\n"
+"POT-Creation-Date: 2020-06-12 11:35+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,78 +26,49 @@ msgstr "沒有以這個 Email 註冊的使用者。"
 msgid "Chief Email"
 msgstr "是方電子信箱"
 
-#: .\accounts\forms.py:31
-msgid "Choose Department"
-msgstr "選擇部門"
-
-#: .\accounts\forms.py:32 .\accounts\forms.py:89
-msgid "D11"
-msgstr ""
-
-#: .\accounts\forms.py:33 .\accounts\forms.py:90
-msgid "D21"
-msgstr ""
-
-#: .\accounts\forms.py:34 .\accounts\forms.py:91
-msgid "D31"
-msgstr ""
-
-#: .\accounts\forms.py:35 .\accounts\forms.py:92
-msgid "T00"
-msgstr ""
-
-#: .\accounts\forms.py:36 .\accounts\forms.py:93
-msgid "T11"
-msgstr ""
-
-#: .\accounts\forms.py:37 .\accounts\forms.py:94
-msgid "T21"
-msgstr ""
-
-#: .\accounts\forms.py:38 .\accounts\forms.py:95
-msgid "T22"
-msgstr ""
-
-#: .\accounts\forms.py:39 .\accounts\forms.py:96
-msgid "T31"
-msgstr ""
-
-#: .\accounts\forms.py:40 .\accounts\forms.py:97
-msgid "T32"
-msgstr ""
-
-#: .\accounts\forms.py:45 .\accounts\forms.py:102 .\accounts\models.py:14
-#: .\mail_job\forms.py:13 .\mail_job\templates\mail_job\change_list.html:45
+#: .\accounts\forms.py:31 .\accounts\forms.py:81
+#: .\mail_job\templates\mail_job\change_list.html:45
 #: .\mssqlj3y\templates\modal_help.html:36
 msgid "Dep."
 msgstr "部門"
 
-#: .\accounts\forms.py:60
+#: .\accounts\forms.py:34
+msgid ""
+"The Departments you belong to. You could choose multiple ones with \"ctrl + "
+"left-click\"."
+msgstr "你所屬的部門，你可以使用 ctrl + 左鍵選取多個部門。"
+
+#: .\accounts\forms.py:47
 msgid "The Email address must end with \"@chief.com.tw\"."
 msgstr "Email 必須以「@Chief.com.tw」結尾。"
 
-#: .\accounts\forms.py:68
+#: .\accounts\forms.py:55
 msgid "The Email has already been used."
 msgstr "Email 已被使用。"
 
-#: .\accounts\forms.py:88 .\mail_job\templates\mail_job\change_list.html:68
-msgid "Choose"
-msgstr "選擇"
-
-#: .\accounts\forms.py:108 .\accounts\models.py:20
+#: .\accounts\forms.py:74 .\accounts\models.py:21
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\models.py:8
+#: .\accounts\models.py:9
 msgid "User"
 msgstr "使用者"
+
+#: .\accounts\models.py:29
+msgid "Name"
+msgstr ""
+
+#: .\accounts\models.py:35
+msgid "email address"
+msgstr ""
 
 #: .\accounts\templates\registration\login.html:20
 #: .\accounts\templates\registration\sign_up.html:20
 #: .\accounts\templates\registration\sign_up_with_account_password.html:20
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:20
 #: .\mail_job\templates\mail_job\change_list.html:23
-#: .\mssqlj3y\templates\base.html:23 .\mssqlj3y\templates\base.html:37
+#: .\mssqlj3y\templates\base.html:26 .\mssqlj3y\templates\base.html:41
+#: .\mssqlj3y\templates\base.html:124
 msgid "Reminder"
 msgstr "Reminder"
 
@@ -143,7 +114,7 @@ msgstr "請修正以下的錯誤。"
 #: .\accounts\templates\registration\password_reset_done.html:30
 #: .\accounts\templates\registration\sign_up_with_account_password.html:29
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:29
-#: .\mssqlj3y\templates\base.html:78
+#: .\mssqlj3y\templates\base.html:82
 msgid "Login"
 msgstr "登入"
 
@@ -167,7 +138,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:21
-#: .\mssqlj3y\templates\base.html:76
+#: .\mssqlj3y\templates\base.html:80
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -220,7 +191,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:21
-#: .\mssqlj3y\templates\base.html:80
+#: .\mssqlj3y\templates\base.html:84
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -234,7 +205,7 @@ msgid "Reset"
 msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:21
-#: .\mssqlj3y\templates\base.html:75
+#: .\mssqlj3y\templates\base.html:79
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -258,8 +229,8 @@ msgid "Already have an account? "
 msgstr "已經有帳號了嗎？"
 
 #: .\accounts\templates\registration\sign_up_with_account_password.html:58
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:56
-#: .\mssqlj3y\templates\base.html:79
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:62
+#: .\mssqlj3y\templates\base.html:83
 msgid "Sign up"
 msgstr "註冊"
 
@@ -267,211 +238,215 @@ msgstr "註冊"
 msgid "Already got an account? "
 msgstr "已經有帳號了嗎？"
 
-#: .\accounts\views.py:24 .\mail_job\views.py:205
+#: .\accounts\views.py:24 .\mail_job\views.py:221
 msgid "Changed successfully."
 msgstr "已修改成功。"
 
-#: .\mail_job\forms.py:29
+#: .\accounts\views.py:40
+msgid "You have no access to this role."
+msgstr ""
+
+#: .\mail_job\forms.py:15
 msgid "ex. Expiration of certificates"
 msgstr "例如：憑證到期"
 
-#: .\mail_job\forms.py:32 .\mail_job\templates\mail_job\change_list.html:46
+#: .\mail_job\forms.py:18 .\mail_job\templates\mail_job\change_list.html:46
 #: .\mssqlj3y\templates\modal_help.html:40
 msgid "Event type"
 msgstr "事件類型"
 
-#: .\mail_job\forms.py:38
+#: .\mail_job\forms.py:24
 msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期"
 
-#: .\mail_job\forms.py:42 .\mail_job\templates\mail_job\change_list.html:47
+#: .\mail_job\forms.py:28 .\mail_job\templates\mail_job\change_list.html:47
 #: .\mssqlj3y\templates\modal_help.html:44
 msgid "Event"
 msgstr "事件描述"
 
-#: .\mail_job\forms.py:51 .\mail_job\templates\mail_job\change_list.html:48
+#: .\mail_job\forms.py:37 .\mail_job\templates\mail_job\change_list.html:48
 msgid "Start date"
 msgstr "通知起始日"
 
-#: .\mail_job\forms.py:55 .\mail_job\views.py:52
+#: .\mail_job\forms.py:41 .\mail_job\views.py:67
 msgid "Once"
 msgstr "單次"
 
-#: .\mail_job\forms.py:56 .\mail_job\views.py:53
+#: .\mail_job\forms.py:42 .\mail_job\views.py:68
 msgid "Daily"
 msgstr "每日"
 
-#: .\mail_job\forms.py:57 .\mail_job\views.py:49 .\mail_job\views.py:54
+#: .\mail_job\forms.py:43 .\mail_job\views.py:64 .\mail_job\views.py:69
 msgid "Each weekday"
 msgstr "平日"
 
-#: .\mail_job\forms.py:58 .\mail_job\views.py:55
+#: .\mail_job\forms.py:44 .\mail_job\views.py:70
 msgid "Each Monday"
 msgstr "每週一"
 
-#: .\mail_job\forms.py:59 .\mail_job\views.py:56
+#: .\mail_job\forms.py:45 .\mail_job\views.py:71
 msgid "Each Tuesday"
 msgstr "每週二"
 
-#: .\mail_job\forms.py:60 .\mail_job\views.py:57
+#: .\mail_job\forms.py:46 .\mail_job\views.py:72
 msgid "Each Wednesday "
 msgstr "每週三"
 
-#: .\mail_job\forms.py:61 .\mail_job\views.py:58
+#: .\mail_job\forms.py:47 .\mail_job\views.py:73
 msgid "Each Thursday "
 msgstr "每週四"
 
-#: .\mail_job\forms.py:62 .\mail_job\views.py:59
+#: .\mail_job\forms.py:48 .\mail_job\views.py:74
 msgid "Each Friday "
 msgstr "每週五"
 
-#: .\mail_job\forms.py:63 .\mail_job\views.py:60
+#: .\mail_job\forms.py:49 .\mail_job\views.py:75
 msgid "Each Saturday "
 msgstr "每週六"
 
-#: .\mail_job\forms.py:64 .\mail_job\views.py:61
+#: .\mail_job\forms.py:50 .\mail_job\views.py:76
 msgid "Each Sunday"
 msgstr "每週日"
 
-#: .\mail_job\forms.py:65 .\mail_job\views.py:62
+#: .\mail_job\forms.py:51 .\mail_job\views.py:77
 msgid "1st of every month"
 msgstr "每月1號"
 
-#: .\mail_job\forms.py:66 .\mail_job\views.py:63
+#: .\mail_job\forms.py:52 .\mail_job\views.py:78
 msgid "2nd of every month"
 msgstr "每月2號"
 
-#: .\mail_job\forms.py:67 .\mail_job\views.py:64
+#: .\mail_job\forms.py:53 .\mail_job\views.py:79
 msgid "3rd of every month"
 msgstr "每月3號"
 
-#: .\mail_job\forms.py:68 .\mail_job\views.py:65
+#: .\mail_job\forms.py:54 .\mail_job\views.py:80
 msgid "4th of every month"
 msgstr "每月4號"
 
-#: .\mail_job\forms.py:69 .\mail_job\views.py:66
+#: .\mail_job\forms.py:55 .\mail_job\views.py:81
 msgid "5th of every month"
 msgstr "每月5號"
 
-#: .\mail_job\forms.py:70 .\mail_job\views.py:67
+#: .\mail_job\forms.py:56 .\mail_job\views.py:82
 msgid "6th of every month"
 msgstr "每月6號"
 
-#: .\mail_job\forms.py:71 .\mail_job\views.py:68
+#: .\mail_job\forms.py:57 .\mail_job\views.py:83
 msgid "7th of every month"
 msgstr "每月7號"
 
-#: .\mail_job\forms.py:72 .\mail_job\views.py:69
+#: .\mail_job\forms.py:58 .\mail_job\views.py:84
 msgid "8th of every month"
 msgstr "每月8號"
 
-#: .\mail_job\forms.py:73 .\mail_job\views.py:70
+#: .\mail_job\forms.py:59 .\mail_job\views.py:85
 msgid "9th of every month"
 msgstr "每月9號"
 
-#: .\mail_job\forms.py:74 .\mail_job\views.py:71
+#: .\mail_job\forms.py:60 .\mail_job\views.py:86
 msgid "10th of every month"
 msgstr "每月10號"
 
-#: .\mail_job\forms.py:75 .\mail_job\views.py:72
+#: .\mail_job\forms.py:61 .\mail_job\views.py:87
 msgid "11th of every month"
 msgstr "每月11號"
 
-#: .\mail_job\forms.py:76 .\mail_job\views.py:73
+#: .\mail_job\forms.py:62 .\mail_job\views.py:88
 msgid "12th of every month"
 msgstr "每月12號"
 
-#: .\mail_job\forms.py:77 .\mail_job\views.py:74
+#: .\mail_job\forms.py:63 .\mail_job\views.py:89
 msgid "13th of every month"
 msgstr "每月13號"
 
-#: .\mail_job\forms.py:78 .\mail_job\views.py:75
+#: .\mail_job\forms.py:64 .\mail_job\views.py:90
 msgid "14th of every month"
 msgstr "每月14號"
 
-#: .\mail_job\forms.py:79 .\mail_job\views.py:76
+#: .\mail_job\forms.py:65 .\mail_job\views.py:91
 msgid "15th of every month"
 msgstr "每月15號"
 
-#: .\mail_job\forms.py:80 .\mail_job\views.py:77
+#: .\mail_job\forms.py:66 .\mail_job\views.py:92
 msgid "16th of every month"
 msgstr "每月16號"
 
-#: .\mail_job\forms.py:81 .\mail_job\views.py:78
+#: .\mail_job\forms.py:67 .\mail_job\views.py:93
 msgid "17th of every month"
 msgstr "每月17號"
 
-#: .\mail_job\forms.py:82 .\mail_job\views.py:79
+#: .\mail_job\forms.py:68 .\mail_job\views.py:94
 msgid "18th of every month"
 msgstr "每月18號"
 
-#: .\mail_job\forms.py:83 .\mail_job\views.py:80
+#: .\mail_job\forms.py:69 .\mail_job\views.py:95
 msgid "19th of every month"
 msgstr "每月19號"
 
-#: .\mail_job\forms.py:84 .\mail_job\views.py:81
+#: .\mail_job\forms.py:70 .\mail_job\views.py:96
 msgid "20th of every month"
 msgstr "每月20號"
 
-#: .\mail_job\forms.py:85 .\mail_job\views.py:82
+#: .\mail_job\forms.py:71 .\mail_job\views.py:97
 msgid "21th of every month"
 msgstr "每月21號"
 
-#: .\mail_job\forms.py:86 .\mail_job\views.py:83
+#: .\mail_job\forms.py:72 .\mail_job\views.py:98
 msgid "22th of every month"
 msgstr "每月22號"
 
-#: .\mail_job\forms.py:87 .\mail_job\views.py:84
+#: .\mail_job\forms.py:73 .\mail_job\views.py:99
 msgid "23th of every month"
 msgstr "每月23號"
 
-#: .\mail_job\forms.py:88 .\mail_job\views.py:85
+#: .\mail_job\forms.py:74 .\mail_job\views.py:100
 msgid "24th of every month"
 msgstr "每月24號"
 
-#: .\mail_job\forms.py:89 .\mail_job\views.py:86
+#: .\mail_job\forms.py:75 .\mail_job\views.py:101
 msgid "25th of every month"
 msgstr "每月25號"
 
-#: .\mail_job\forms.py:90 .\mail_job\views.py:87
+#: .\mail_job\forms.py:76 .\mail_job\views.py:102
 msgid "26th of every month"
 msgstr "每月26號"
 
-#: .\mail_job\forms.py:91 .\mail_job\views.py:88
+#: .\mail_job\forms.py:77 .\mail_job\views.py:103
 msgid "27th of every month"
 msgstr "每月27號"
 
-#: .\mail_job\forms.py:92 .\mail_job\views.py:89
+#: .\mail_job\forms.py:78 .\mail_job\views.py:104
 msgid "28th of every month"
 msgstr "每月28號"
 
-#: .\mail_job\forms.py:93 .\mail_job\views.py:90
+#: .\mail_job\forms.py:79 .\mail_job\views.py:105
 msgid "29th of every month"
 msgstr "每月29號"
 
-#: .\mail_job\forms.py:94 .\mail_job\views.py:91
+#: .\mail_job\forms.py:80 .\mail_job\views.py:106
 msgid "30th of every month"
 msgstr "每月30號"
 
-#: .\mail_job\forms.py:95 .\mail_job\views.py:92
+#: .\mail_job\forms.py:81 .\mail_job\views.py:107
 msgid "31th of every month"
 msgstr "每月31號"
 
-#: .\mail_job\forms.py:99 .\mail_job\templates\mail_job\change_list.html:50
+#: .\mail_job\forms.py:85 .\mail_job\templates\mail_job\change_list.html:50
 #: .\mssqlj3y\templates\modal_help.html:53
 msgid "Period"
 msgstr "週期"
 
-#: .\mail_job\forms.py:106
+#: .\mail_job\forms.py:92
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:110 .\mail_job\templates\mail_job\change_list.html:51
+#: .\mail_job\forms.py:96 .\mail_job\templates\mail_job\change_list.html:51
 #: .\mssqlj3y\templates\modal_help.html:57
 msgid "Mail subject"
 msgstr "郵件主旨"
 
-#: .\mail_job\forms.py:116
+#: .\mail_job\forms.py:102
 msgid ""
 "ex.\n"
 "The Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please "
@@ -479,12 +454,12 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:120 .\mail_job\templates\mail_job\change_list.html:52
+#: .\mail_job\forms.py:106 .\mail_job\templates\mail_job\change_list.html:52
 #: .\mssqlj3y\templates\modal_help.html:61
 msgid "Mail content"
 msgstr "郵件內容"
 
-#: .\mail_job\forms.py:126
+#: .\mail_job\forms.py:112
 msgid ""
 "ex.\n"
 "jimmy_lin@chief.com.tw;\n"
@@ -496,19 +471,19 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:130 .\mail_job\templates\mail_job\change_list.html:53
+#: .\mail_job\forms.py:116 .\mail_job\templates\mail_job\change_list.html:53
 #: .\mssqlj3y\templates\modal_help.html:65
 msgid "Recipients"
 msgstr "收件人"
 
-#: .\mail_job\forms.py:131
+#: .\mail_job\forms.py:117
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用「;」分隔多個收件者。"
 
 #: .\mail_job\templates\mail_job\add.html:17
 #: .\mail_job\templates\mail_job\add.html:42
 #: .\mail_job\templates\mail_job\change_list.html:39
-#: .\mssqlj3y\templates\base.html:53 .\mssqlj3y\templates\modal_help.html:20
+#: .\mssqlj3y\templates\base.html:56 .\mssqlj3y\templates\modal_help.html:20
 msgid "Add"
 msgstr "新增"
 
@@ -560,6 +535,10 @@ msgstr "修改者"
 msgid "Updated date"
 msgstr "修改時間"
 
+#: .\mail_job\templates\mail_job\change_list.html:68
+msgid "Choose"
+msgstr "選擇"
+
 #: .\mail_job\templates\mail_job\change_list.html:76
 msgid "Mail test"
 msgstr "發測試信"
@@ -570,94 +549,95 @@ msgid "Are you sure?"
 msgstr "你確定嗎？"
 
 #: .\mail_job\templates\mail_job\delete.html:17
-msgid "Are you sure you want to delete this mail job?"
-msgstr "你確定要註銷這筆 mail job 嗎"
+msgid "Are you sure you want to delete this Mail Job?"
+msgstr "你確定要註銷這筆 Mail Job 嗎"
 
 #: .\mail_job\templates\mail_job\mail_test.html:17
-msgid "Are you sure you want to send the test mail of this mail job?"
-msgstr "你確定要送出這筆 mail job 的測試信嗎？"
+msgid "Are you sure you want to send the test mail of this Mail Job?"
+msgstr "你確定要送出這筆 Mail Job 的測試信嗎？"
 
 #: .\mail_job\templates\mail_job\mail_test.html:22
 msgid "Send"
 msgstr "送出"
 
-#: .\mail_job\views.py:101 .\mail_job\views.py:214 .\mail_job\views.py:276
-#: .\mail_job\views.py:307 .\mail_job\views.py:336 .\mail_job\views.py:367
+#: .\mail_job\views.py:116 .\mail_job\views.py:229 .\mail_job\views.py:291
+#: .\mail_job\views.py:322 .\mail_job\views.py:351 .\mail_job\views.py:382
 msgid "Unknown error. The data cannot be returned."
 msgstr "未知的錯誤，無法返回資料。"
 
-#: .\mail_job\views.py:114
+#: .\mail_job\views.py:130
 msgid "Fill in the following form to create a new mail job."
 msgstr "填寫以下表格以新增 mail job。"
 
-#: .\mail_job\views.py:152
+#: .\mail_job\views.py:168
 msgid "Added successfully."
 msgstr "已新增成功。"
 
-#: .\mail_job\views.py:155
+#: .\mail_job\views.py:171
 msgid "Failed to add. The data is duplicate with the existing."
 msgstr "新增失敗，資料與既有的重複。"
 
-#: .\mail_job\views.py:157 .\mail_job\views.py:159 .\mail_job\views.py:208
+#: .\mail_job\views.py:173 .\mail_job\views.py:175 .\mail_job\views.py:223
 msgid "Unknown error. The format of the return value is not correct."
 msgstr "未知的錯誤，返回的資料格式不正確。"
 
-#: .\mail_job\views.py:240
+#: .\mail_job\views.py:255
 msgid "You can only change the mail job created by you."
 msgstr "你只能修改自己建立的 mail job。"
 
-#: .\mail_job\views.py:258
+#: .\mail_job\views.py:273
 msgid ""
 "The following is the current setting. Please fill in the part you want to "
 "modify and then submit."
 msgstr "以下為目前的設置，請填入欲修改的部分後送出。"
 
-#: .\mail_job\views.py:260 .\mail_job\views.py:319
+#: .\mail_job\views.py:275 .\mail_job\views.py:334
 msgid ""
 "The mail job is not available. Please confirm whether it has been deleted."
 msgstr "查無資料，請確認該 mail job 是否已被刪除。"
 
-#: .\mail_job\views.py:262 .\mail_job\views.py:321
+#: .\mail_job\views.py:277 .\mail_job\views.py:336
 msgid "Unknown error, data cannot return."
 msgstr "未知的錯誤，無法返回資料。"
 
-#: .\mail_job\views.py:302
+#: .\mail_job\views.py:317
 msgid "You can only delete the mail job created by you."
 msgstr "你只能註銷自己建立的 mail job。"
 
-#: .\mail_job\views.py:317
+#: .\mail_job\views.py:332
 msgid "Deleted successfully."
 msgstr "已註銷成功。"
 
-#: .\mail_job\views.py:362
+#: .\mail_job\views.py:377
 msgid "You can only do a mail test on the mail job created by you."
 msgstr "你只能為自己建立的 mail job 發測試信。"
 
-#: .\mail_job\views.py:373
+#: .\mail_job\views.py:388
 msgid "The test mail has been sent."
 msgstr "已送出測試信。"
 
-#: .\mssqlj3y\templates\base.html:49
+#: .\mssqlj3y\templates\base.html:52
 msgid "Mail Job"
 msgstr "Mail Job"
 
-#: .\mssqlj3y\templates\base.html:52
+#: .\mssqlj3y\templates\base.html:55
 msgid "View List"
 msgstr "檢視列表"
 
-#: .\mssqlj3y\templates\base.html:55
+#: .\mssqlj3y\templates\base.html:59
 msgid "History"
 msgstr "歷史紀錄"
 
-#: .\mssqlj3y\templates\base.html:59 .\mssqlj3y\templates\modal_help.html:7
+#: .\mssqlj3y\templates\base.html:63 .\mssqlj3y\templates\modal_help.html:7
 msgid "Help"
 msgstr "使用說明"
 
-#: .\mssqlj3y\templates\base.html:63 .\mssqlj3y\templates\modal_about.html:8
+#: .\mssqlj3y\templates\base.html:67 .\mssqlj3y\templates\base.html:133
+#: .\mssqlj3y\templates\modal_about.html:8
 msgid "About"
 msgstr "關於"
 
-#: .\mssqlj3y\templates\base.html:74
+#: .\mssqlj3y\templates\base.html:78
 msgid "Logout"
 msgstr "登出"
 

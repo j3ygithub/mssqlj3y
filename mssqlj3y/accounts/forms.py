@@ -31,6 +31,7 @@ class ChiefUserSignUpForm(forms.ModelForm):
         label=_('Dep.'),
         required=True,
         queryset=Department.objects.all(),
+        help_text=_('The Departments you belong to. You could choose multiple ones with "ctrl + left-click".')
     )
 
     class Meta:
