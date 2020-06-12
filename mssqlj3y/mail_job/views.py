@@ -120,7 +120,6 @@ def change_list(request):
 def add(request):
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
-    role = get_role(request)
     context = {
         'tips': [],
         'form': None,
@@ -134,7 +133,7 @@ def add(request):
         form = MailJobForm(request.POST)
         context['form'] = form
         if form.is_valid():
-            department = role
+            department = get_role(request)
             event_class = form.cleaned_data['event_class']
             event = form.cleaned_data['event']
             note_date = form.cleaned_data['note_date']
@@ -188,7 +187,7 @@ def change(request, seq):
         form = MailJobForm(request.POST)
         context['form'] = form
         if form.is_valid():
-            department = form.cleaned_data['department']
+            department = get_role(request)
             event_class = form.cleaned_data['event_class']
             event = form.cleaned_data['event']
             note_date = form.cleaned_data['note_date']
