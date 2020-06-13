@@ -104,8 +104,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         {% for language in languages %}
-                        <a class="dropdown-item" href="#"
-                            onclick="setLanguage('{{ language.code }}')">{{ language.code }}</a>
+                        <a class="dropdown-item set-language-item" href="#">{{ language.code }}</a>
                         {% endfor %}
                     </div>
                 </li>
@@ -140,10 +139,10 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{ LANGUAGE_CODE }}
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right"
+                        aria-labelledby="navbarDropdown">
                         {% for language in languages %}
-                        <a class="dropdown-item" href="#"
-                            onclick="setLanguage('{{ language.code }}')">{{ language.code }}</a>
+                        <a class="dropdown-item set-language-item" href="#">{{ language.code }}</a>
                         {% endfor %}
                     </div>
                 </li>
@@ -193,19 +192,24 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
         </script>
     <script>
-        function setLanguage(language) {
-            $.ajax({
-                type: "POST",
-                url: "{% url 'set_language' %}",
-                data: {
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                    language: language,
-                },
-                success: function () {
-                    location.reload();
-                }
+        $(document).ready(function () {
+            $("a.set-language-item").on("click", function () {
+                var csrfmiddlewaretoken = "{{ csrf_token }}"
+                var url = "{% url 'set_language' %}"
+                var language = $(this).text();
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        csrfmiddlewaretoken: csrfmiddlewaretoken,
+                        language: language,
+                    },
+                    success: function () {
+                        location.reload();
+                    }
+                });
             });
-        };
+        });
     </script>
     {% endblock %}
     {% block extrajs %}
