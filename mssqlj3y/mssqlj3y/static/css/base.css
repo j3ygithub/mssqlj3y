@@ -3,6 +3,19 @@
     color: #343A40;
 }
 
+.fadeIn {
+    animation: fadeInAni .5s steps(120, end) forwards;
+    opacity: 1;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@keyframes fadeInAni {
+    from {
+        opacity: .5;
+    }
+}
+
 nav .nav-link {
     font-weight: 500;
 }
@@ -35,7 +48,8 @@ table.mail-job {
     max-width: 100rem;
 }
 
-table.mail-job th, table.mail-job td {
+table.mail-job th,
+table.mail-job td {
     vertical-align: text-top;
     min-width: 7rem;
     max-width: 10rem;

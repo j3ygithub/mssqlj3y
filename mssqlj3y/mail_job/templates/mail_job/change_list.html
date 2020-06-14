@@ -11,16 +11,18 @@
     <div class="row" style="height: 4rem"></div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <div class="text-center">
+            <div class="text-center fadeIn">
                 <p>
-                    <svg class="bi bi-bell" width="8rem" height="8rem" viewBox="0 0 16 16" fill="currentColor"
+                    <a href="{% url 'index' %}">
+                        <svg class="bi bi-bell" width="8rem" height="8rem" viewBox="0 0 16 16" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
                         <path fill-rule="evenodd"
                             d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                     </svg>
+                    </a>
                 </p>
-                <h1>{% trans 'Reminder' %}</h1>
+                <h1 class="type">{% trans 'Reminder' %}</h1>
                 <p class="text-secondary">{% trans 'For those you may miss.' %}</p>
             </div>
         </div>
@@ -28,19 +30,30 @@
     <div class="row" style="height: 4rem"></div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <div class="text-right px-1 py-2 d-flex">
-                <input type="text" style="max-width: 18rem;" class="form-control mx-1 mr-auto" id="filter-mail-job"
-                    placeholder="{% trans 'Search..' %}">
-                <select style="max-width: 8rem;" class="form-control mx-1" id="show-all-controller-mail-job">
-                    <option value="personal">{% trans 'Personal' %}</option>
-                    <option value="all">{% trans 'All' %}</option>
-                </select>
-                <select style="max-width: 10rem;" class="form-control mx-1" id="field-controller-mail-job">
-                    <option value="basic_field">{% trans 'Basic fields' %}</option>
-                    <option value="all_field">{% trans 'All fields' %}</option>
-                </select>
-                <a class="btn btn-secondary rounded mx-1" style="width: 6rem;"
-                    href="{% url 'mail_job:add' %}">{% trans 'Add' %} +</a>
+            <div class="row my-0 mx-1">
+                <div class="py-2 px-1 ml-auto">
+                    <a class="btn btn-dark btn-block" style="width: 8rem; border-radius: .5rem" href="{% url 'mail_job:add' %}">{% trans 'Add' %}{% trans '+' %}</a>
+                </div>
+            </div>
+            <div class="row my-0 mx-1" style="height: .25rem;">
+            </div>
+            <div class="row my-0 mx-1">
+                <div class="py-2 px-1 mr-auto">
+                    <input type="text" class="form-control" id="filter-mail-job"
+                        placeholder="{% trans 'Search..' %}">
+                </div>
+                <div class="py-2 px-1">
+                    <select class="form-control" id="show-all-controller-mail-job">
+                        <option value="personal">{% trans 'Personal' %}</option>
+                        <option value="all">{% trans 'All' %}</option>
+                    </select>
+                </div>
+                <div class="py-2 px-1">
+                    <select class="form-control" id="field-controller-mail-job">
+                        <option value="basic_field">{% trans 'Basic fields' %}</option>
+                        <option value="all_field">{% trans 'All fields' %}</option>
+                    </select>
+                </div>
             </div>
             <table class="table table-bordered border-light table-hover table-responsive mail-job" id="table-mail-job">
                 <thead>

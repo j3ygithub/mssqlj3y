@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 20:29+0800\n"
+"POT-Creation-Date: 2020-06-14 10:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "Chief Email"
 msgstr "是方電子信箱"
 
 #: .\accounts\forms.py:31 .\accounts\forms.py:81
-#: .\mail_job\templates\mail_job\change_list.html:49
+#: .\mail_job\templates\mail_job\change_list.html:60
 #: .\mssqlj3y\templates\modal_help.html:36
 msgid "Dep."
 msgstr "部門"
@@ -67,7 +67,7 @@ msgstr "電子信箱"
 #: .\accounts\templates\registration\sign_up_with_account_password.html:20
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:20
 #: .\mail_job\templates\mail_job\change_list.html:23
-#: .\mssqlj3y\templates\base.html:26 .\mssqlj3y\templates\base.html:41
+#: .\mssqlj3y\templates\base.html:27 .\mssqlj3y\templates\base.html:42
 #: .\mssqlj3y\templates\base.html:124
 msgid "Reminder"
 msgstr "Reminder"
@@ -114,7 +114,7 @@ msgstr "請修正以下的錯誤。"
 #: .\accounts\templates\registration\password_reset_done.html:30
 #: .\accounts\templates\registration\sign_up_with_account_password.html:29
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:29
-#: .\mssqlj3y\templates\base.html:82
+#: .\mssqlj3y\templates\base.html:83
 msgid "Login"
 msgstr "登入"
 
@@ -138,7 +138,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:21
-#: .\mssqlj3y\templates\base.html:80
+#: .\mssqlj3y\templates\base.html:81
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -191,7 +191,7 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:21
-#: .\mssqlj3y\templates\base.html:84
+#: .\mssqlj3y\templates\base.html:85
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -205,14 +205,14 @@ msgid "Reset"
 msgstr "重置"
 
 #: .\accounts\templates\registration\profile_change.html:21
-#: .\mssqlj3y\templates\base.html:79
+#: .\mssqlj3y\templates\base.html:80
 msgid "Profile"
 msgstr "個人檔案"
 
 #: .\accounts\templates\registration\profile_change.html:56
 #: .\mail_job\templates\mail_job\change.html:19
 #: .\mail_job\templates\mail_job\change.html:36
-#: .\mail_job\templates\mail_job\change_list.html:76
+#: .\mail_job\templates\mail_job\change_list.html:87
 msgid "Change"
 msgstr "修改"
 
@@ -230,7 +230,7 @@ msgstr "已經有帳號了嗎？"
 
 #: .\accounts\templates\registration\sign_up_with_account_password.html:58
 #: .\accounts\templates\registration\sign_up_with_chief_email.html:62
-#: .\mssqlj3y\templates\base.html:83
+#: .\mssqlj3y\templates\base.html:84
 msgid "Sign up"
 msgstr "註冊"
 
@@ -250,7 +250,7 @@ msgstr "已修改成功。"
 msgid "ex. Expiration of certificates"
 msgstr "例如：憑證到期"
 
-#: .\mail_job\forms.py:18 .\mail_job\templates\mail_job\change_list.html:50
+#: .\mail_job\forms.py:18 .\mail_job\templates\mail_job\change_list.html:61
 #: .\mssqlj3y\templates\modal_help.html:40
 msgid "Event type"
 msgstr "事件類型"
@@ -259,12 +259,12 @@ msgstr "事件類型"
 msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期"
 
-#: .\mail_job\forms.py:28 .\mail_job\templates\mail_job\change_list.html:51
+#: .\mail_job\forms.py:28 .\mail_job\templates\mail_job\change_list.html:62
 #: .\mssqlj3y\templates\modal_help.html:44
 msgid "Event"
 msgstr "事件描述"
 
-#: .\mail_job\forms.py:37 .\mail_job\templates\mail_job\change_list.html:52
+#: .\mail_job\forms.py:37 .\mail_job\templates\mail_job\change_list.html:63
 msgid "Start date"
 msgstr "通知起始日"
 
@@ -432,7 +432,7 @@ msgstr "每月30號"
 msgid "31th of every month"
 msgstr "每月31號"
 
-#: .\mail_job\forms.py:85 .\mail_job\templates\mail_job\change_list.html:54
+#: .\mail_job\forms.py:85 .\mail_job\templates\mail_job\change_list.html:65
 #: .\mssqlj3y\templates\modal_help.html:53
 msgid "Period"
 msgstr "週期"
@@ -441,7 +441,7 @@ msgstr "週期"
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:96 .\mail_job\templates\mail_job\change_list.html:55
+#: .\mail_job\forms.py:96 .\mail_job\templates\mail_job\change_list.html:66
 #: .\mssqlj3y\templates\modal_help.html:57
 msgid "Mail subject"
 msgstr "郵件主旨"
@@ -454,7 +454,7 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:106 .\mail_job\templates\mail_job\change_list.html:56
+#: .\mail_job\forms.py:106 .\mail_job\templates\mail_job\change_list.html:67
 #: .\mssqlj3y\templates\modal_help.html:61
 msgid "Mail content"
 msgstr "郵件內容"
@@ -471,7 +471,7 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:116 .\mail_job\templates\mail_job\change_list.html:57
+#: .\mail_job\forms.py:116 .\mail_job\templates\mail_job\change_list.html:68
 #: .\mssqlj3y\templates\modal_help.html:65
 msgid "Recipients"
 msgstr "收件人"
@@ -481,14 +481,13 @@ msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用「;」分隔多個收件者。"
 
 #: .\mail_job\templates\mail_job\add.html:17
-#: .\mail_job\templates\mail_job\add.html:42
-#: .\mail_job\templates\mail_job\change_list.html:43
-#: .\mssqlj3y\templates\base.html:56 .\mssqlj3y\templates\modal_help.html:20
+#: .\mail_job\templates\mail_job\add.html:42 .\mssqlj3y\templates\base.html:57
+#: .\mssqlj3y\templates\modal_help.html:20
 msgid "Add"
 msgstr "新增"
 
 #: .\mail_job\templates\mail_job\change.html:39
-#: .\mail_job\templates\mail_job\change_list.html:78
+#: .\mail_job\templates\mail_job\change_list.html:89
 #: .\mail_job\templates\mail_job\delete.html:22
 msgid "Delete"
 msgstr "註銷"
@@ -498,56 +497,60 @@ msgid "Mail Test"
 msgstr "發測試信"
 
 #: .\mail_job\templates\mail_job\change_list.html:33
+msgid "Add Mail Job"
+msgstr "新增 Mail Job"
+
+#: .\mail_job\templates\mail_job\change_list.html:41
 msgid "Search.."
 msgstr "搜尋.."
 
-#: .\mail_job\templates\mail_job\change_list.html:35
+#: .\mail_job\templates\mail_job\change_list.html:45
 msgid "Personal"
 msgstr "個人"
 
-#: .\mail_job\templates\mail_job\change_list.html:36
+#: .\mail_job\templates\mail_job\change_list.html:46
 msgid "All"
 msgstr "全部"
 
-#: .\mail_job\templates\mail_job\change_list.html:39
+#: .\mail_job\templates\mail_job\change_list.html:51
 msgid "Basic fields"
 msgstr "基本欄位"
 
-#: .\mail_job\templates\mail_job\change_list.html:40
+#: .\mail_job\templates\mail_job\change_list.html:52
 msgid "All fields"
 msgstr "所有欄位"
 
-#: .\mail_job\templates\mail_job\change_list.html:48
+#: .\mail_job\templates\mail_job\change_list.html:59
 msgid "Action"
 msgstr "動作"
 
-#: .\mail_job\templates\mail_job\change_list.html:53
+#: .\mail_job\templates\mail_job\change_list.html:64
 msgid "Stop date"
 msgstr "通知終止日"
 
-#: .\mail_job\templates\mail_job\change_list.html:58
+#: .\mail_job\templates\mail_job\change_list.html:69
 #: .\mssqlj3y\templates\modal_help.html:69
 msgid "Created by"
 msgstr "建立者"
 
-#: .\mail_job\templates\mail_job\change_list.html:59
+#: .\mail_job\templates\mail_job\change_list.html:70
 #: .\mssqlj3y\templates\modal_help.html:73
 msgid "Created date"
 msgstr "建立時間"
 
-#: .\mail_job\templates\mail_job\change_list.html:60
+#: .\mail_job\templates\mail_job\change_list.html:71
 msgid "Updated by"
 msgstr "修改者"
 
-#: .\mail_job\templates\mail_job\change_list.html:61
+#: .\mail_job\templates\mail_job\change_list.html:72
 msgid "Updated date"
 msgstr "修改時間"
 
-#: .\mail_job\templates\mail_job\change_list.html:72
+#: .\mail_job\templates\mail_job\change_list.html:83
 msgid "Choose"
 msgstr "選擇"
 
-#: .\mail_job\templates\mail_job\change_list.html:80
+#: .\mail_job\templates\mail_job\change_list.html:91
 msgid "Mail test"
 msgstr "發測試信"
 
@@ -624,28 +627,28 @@ msgstr "你只能為自己建立的 mail job 發測試信。"
 msgid "The test mail has been sent."
 msgstr "已送出測試信。"
 
-#: .\mssqlj3y\templates\base.html:52
+#: .\mssqlj3y\templates\base.html:53
 msgid "Mail Job"
 msgstr "Mail Job"
 
-#: .\mssqlj3y\templates\base.html:55
+#: .\mssqlj3y\templates\base.html:56
 msgid "View List"
 msgstr "檢視列表"
 
-#: .\mssqlj3y\templates\base.html:59
+#: .\mssqlj3y\templates\base.html:60
 msgid "History"
 msgstr "歷史紀錄"
 
-#: .\mssqlj3y\templates\base.html:63 .\mssqlj3y\templates\modal_help.html:7
+#: .\mssqlj3y\templates\base.html:64 .\mssqlj3y\templates\modal_help.html:7
 msgid "Help"
 msgstr "使用說明"
 
-#: .\mssqlj3y\templates\base.html:67 .\mssqlj3y\templates\base.html:133
+#: .\mssqlj3y\templates\base.html:68 .\mssqlj3y\templates\base.html:133
 #: .\mssqlj3y\templates\modal_about.html:8
 msgid "About"
 msgstr "關於"
 
-#: .\mssqlj3y\templates\base.html:78
+#: .\mssqlj3y\templates\base.html:79
 msgid "Logout"
 msgstr "登出"
 
