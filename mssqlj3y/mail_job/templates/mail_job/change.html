@@ -34,12 +34,20 @@
                         <button type="submit" class="btn btn-primary btn-block">{% trans 'Change' %}</button>
                     </div>
                     <div class="form-group col">
-                        <a href="{% url 'mail_job:delete' seq=seq %}" class="btn btn-danger btn-block">{% trans 'Delete' %}</a>
+                        <a href="{% url 'mail_job:change_list' %}"
+                            class="btn btn-secondary btn-block">{% trans 'Get back' %}</a>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <a href="{% url 'mail_job:mail_test' seq=seq %}" class="btn btn-success btn-block">{% trans 'Mail Test' %}</a>
+                        <a href="{% url 'mail_job:mail_test' seq=seq %}"
+                            class="btn btn-success btn-block">{% trans 'Mail Test' %}</a>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <a href="{% url 'mail_job:delete' seq=seq %}"
+                            class="btn btn-danger btn-block">{% trans 'Delete' %}</a>
                     </div>
                 </div>
             </form>

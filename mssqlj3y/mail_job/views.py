@@ -13,7 +13,7 @@ from accounts.views import get_role
 
 def change_list(request):
     """
-    A View of Mail Job change list.
+    A view of Mail Job change list.
     """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
@@ -108,6 +108,9 @@ def change_list(request):
 
 
 def add(request):
+    """
+    A view of adding Mail Job.
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
@@ -166,6 +169,9 @@ def add(request):
 
 
 def change(request, seq):
+    """
+    A view of changing Mail Job.
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
@@ -268,6 +274,9 @@ def change(request, seq):
 
 
 def delete(request, seq):
+    """
+    A view of deleting Mail Job.
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {
@@ -329,6 +338,9 @@ def delete(request, seq):
 
 
 def mail_test(request, seq):
+    """
+    A view of mail testing Mail Job.
+    """
     if not request.user.is_authenticated:
         return redirect(reverse('login'))
     context = {

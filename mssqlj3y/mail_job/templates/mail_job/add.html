@@ -39,6 +39,10 @@
                     <div class="form-group col">
                         <button type="submit" class="btn btn-primary btn-block">{% trans 'Add' %}</button>
                     </div>
+                    <div class="form-group col">
+                        <a href="{% url 'mail_job:change_list' %}"
+                            class="btn btn-secondary btn-block">{% trans 'Get back' %}</a>
+                    </div>
                 </div>
             </form>
         </div>
