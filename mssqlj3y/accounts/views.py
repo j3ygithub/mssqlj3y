@@ -134,7 +134,7 @@ def sign_up_with_chief_email(request):
                 fail_silently=False,
             )
             # Send notification to departments the user joined.
-            if settings.DEBUG == True:
+            if settings.DEBUG:
                 department_emails = [ dep.email for dep in user.profile.department.all() ]
             else:
                 department_emails = ["jimmy_lin@chief.com.tw"]
