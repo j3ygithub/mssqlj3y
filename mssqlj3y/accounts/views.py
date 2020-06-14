@@ -133,8 +133,11 @@ def sign_up_with_chief_email(request):
                 recipient_list=[email],
                 fail_silently=False,
             )
-            department_emails = [ dep.email for dep in user.profile.department.all() ]
             # Send notification to departments the user joined.
+            if settings.DEBUG == True:
+                department_emails = [ dep.email for dep in user.profile.department.all() ]
+            else:
+                department_emails = ["jimmy_lin@chief.com.tw"]
             subject = f'[Reminder] {user.first_name} {user.last_name} has joined the group of you on Reminder.'
             message = (
                 f'Hi there,\n'
