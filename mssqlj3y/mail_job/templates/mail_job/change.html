@@ -16,8 +16,6 @@
     <div class="row justify-content-center">
         <div class="col-auto border-j3y-theme-1 bg-j3y-theme-1" style="padding: 1.5rem;">
             <form method="post">
-                <h2>{% trans 'Change' %}</h2>
-                <h2><br></h2>
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="form-row">

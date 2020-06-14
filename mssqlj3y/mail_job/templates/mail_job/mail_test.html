@@ -12,9 +12,10 @@
     {% if request.method == 'GET' %}
     <div class="row justify-content-center">
         <div class="col-auto border-j3y-theme-2 rounded" style="padding: 1.5rem; width: 24rem;">
-            <h2>{% trans 'Are you sure?' %}</h2>
-            <h2><br></h2>
-            <p>{% trans 'Are you sure you want to send the test mail of this Mail Job?' %}</p>
+            <p><h1>{% trans 'Are you sure?' %}</h1></p>
+            <br>
+            <p><h6>{% trans 'Are you sure you want to send the test mail of this Mail Job?' %}</h6></p>
+            <br>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-row">

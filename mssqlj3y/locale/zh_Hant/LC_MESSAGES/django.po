@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-14 10:27+0800\n"
+"POT-Creation-Date: 2020-06-14 14:47+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "Chief Email"
 msgstr "是方電子信箱"
 
 #: .\accounts\forms.py:31 .\accounts\forms.py:81
-#: .\mail_job\templates\mail_job\change_list.html:60
+#: .\mail_job\templates\mail_job\change_list.html:53
 #: .\mssqlj3y\templates\modal_help.html:36
 msgid "Dep."
 msgstr "部門"
@@ -62,179 +62,179 @@ msgstr "名稱"
 msgid "email address"
 msgstr "電子信箱"
 
-#: .\accounts\templates\registration\login.html:20
-#: .\accounts\templates\registration\sign_up.html:20
-#: .\accounts\templates\registration\sign_up_with_account_password.html:20
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:20
-#: .\mail_job\templates\mail_job\change_list.html:23
+#: .\accounts\templates\registration\login.html:13
+#: .\accounts\templates\registration\sign_up.html:13
+#: .\accounts\templates\registration\sign_up_with_account_password.html:13
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:13
+#: .\mail_job\templates\mail_job\change_list.html:16
 #: .\mssqlj3y\templates\base.html:27 .\mssqlj3y\templates\base.html:42
-#: .\mssqlj3y\templates\base.html:124
+#: .\mssqlj3y\templates\base.html:119
+#: .\mssqlj3y\templates\brand_nav_icon.html:10
 msgid "Reminder"
 msgstr "Reminder"
 
-#: .\accounts\templates\registration\login.html:21
-#: .\accounts\templates\registration\sign_up.html:21
-#: .\accounts\templates\registration\sign_up_with_account_password.html:21
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:21
-#: .\mail_job\templates\mail_job\change_list.html:24
+#: .\accounts\templates\registration\login.html:14
+#: .\accounts\templates\registration\sign_up.html:14
+#: .\accounts\templates\registration\sign_up_with_account_password.html:14
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:14
+#: .\mail_job\templates\mail_job\change_list.html:17
 msgid "For those you may miss."
 msgstr "替你記憶那些瑣事"
 
-#: .\accounts\templates\registration\login.html:28
+#: .\accounts\templates\registration\login.html:21
 msgid "No account? "
 msgstr "沒有帳號？"
 
-#: .\accounts\templates\registration\login.html:28
+#: .\accounts\templates\registration\login.html:21
 msgid "Create one"
 msgstr "建立"
 
-#: .\accounts\templates\registration\login.html:33
-#: .\accounts\templates\registration\password_change_form.html:33
-#: .\accounts\templates\registration\password_reset_confirm.html:34
-#: .\accounts\templates\registration\password_reset_form.html:33
-#: .\accounts\templates\registration\profile_change.html:32
-#: .\accounts\templates\registration\sign_up_with_account_password.html:34
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:33
+#: .\accounts\templates\registration\login.html:26
+#: .\accounts\templates\registration\password_change_form.html:26
+#: .\accounts\templates\registration\password_reset_confirm.html:27
+#: .\accounts\templates\registration\password_reset_form.html:26
+#: .\accounts\templates\registration\profile_change.html:25
+#: .\accounts\templates\registration\sign_up_with_account_password.html:27
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:26
 msgid "Please correct the error below."
 msgstr "請修正以下的錯誤。"
 
-#: .\accounts\templates\registration\login.html:35
-#: .\accounts\templates\registration\password_change_form.html:35
-#: .\accounts\templates\registration\password_reset_confirm.html:36
-#: .\accounts\templates\registration\password_reset_form.html:35
-#: .\accounts\templates\registration\profile_change.html:34
-#: .\accounts\templates\registration\sign_up_with_account_password.html:36
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:35
+#: .\accounts\templates\registration\login.html:28
+#: .\accounts\templates\registration\password_change_form.html:28
+#: .\accounts\templates\registration\password_reset_confirm.html:29
+#: .\accounts\templates\registration\password_reset_form.html:28
+#: .\accounts\templates\registration\profile_change.html:27
+#: .\accounts\templates\registration\sign_up_with_account_password.html:29
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:28
 msgid "Please correct the errors below."
 msgstr "請修正以下的錯誤。"
 
-#: .\accounts\templates\registration\login.html:57
-#: .\accounts\templates\registration\password_change_done.html:30
-#: .\accounts\templates\registration\password_reset_complete.html:30
-#: .\accounts\templates\registration\password_reset_done.html:30
-#: .\accounts\templates\registration\sign_up_with_account_password.html:29
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:29
+#: .\accounts\templates\registration\login.html:50
+#: .\accounts\templates\registration\password_change_done.html:23
+#: .\accounts\templates\registration\password_reset_complete.html:23
+#: .\accounts\templates\registration\password_reset_done.html:23
+#: .\accounts\templates\registration\sign_up_with_account_password.html:22
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:22
 #: .\mssqlj3y\templates\base.html:83
 msgid "Login"
 msgstr "登入"
 
-#: .\accounts\templates\registration\login.html:61
+#: .\accounts\templates\registration\login.html:54
 msgid "Forgot your password?"
 msgstr "忘記你的密碼？"
 
-#: .\accounts\templates\registration\password_change_done.html:21
-#: .\accounts\templates\registration\password_reset_complete.html:21
+#: .\accounts\templates\registration\password_change_done.html:14
+#: .\accounts\templates\registration\password_reset_complete.html:14
 msgid "Done"
 msgstr "完成"
 
-#: .\accounts\templates\registration\password_change_done.html:29
+#: .\accounts\templates\registration\password_change_done.html:22
 msgid "Your password was successfully changed."
 msgstr "你的密碼已成功變更！"
 
-#: .\accounts\templates\registration\password_change_done.html:31
-#: .\accounts\templates\registration\password_reset_complete.html:31
-#: .\accounts\templates\registration\password_reset_done.html:32
+#: .\accounts\templates\registration\password_change_done.html:24
+#: .\accounts\templates\registration\password_reset_complete.html:24
+#: .\accounts\templates\registration\password_reset_done.html:25
 msgid "Back to the homepage."
 msgstr "返回首頁"
 
-#: .\accounts\templates\registration\password_change_form.html:21
+#: .\accounts\templates\registration\password_change_form.html:14
 #: .\mssqlj3y\templates\base.html:81
 msgid "Password change"
 msgstr "密碼變更"
 
-#: .\accounts\templates\registration\password_change_form.html:29
+#: .\accounts\templates\registration\password_change_form.html:22
 msgid ""
 "Please enter your old password, and then enter your new password twice to "
 "change it correctly!"
 msgstr "請輸入你的舊密碼，然後輸入新密碼兩次以正確地變更密碼。"
 
-#: .\accounts\templates\registration\password_change_form.html:56
+#: .\accounts\templates\registration\password_change_form.html:49
 msgid "Change my password"
 msgstr "變更我的密碼"
 
-#: .\accounts\templates\registration\password_reset_complete.html:29
+#: .\accounts\templates\registration\password_reset_complete.html:22
 msgid "Your password has been set."
 msgstr "你的密碼已成功設置"
 
-#: .\accounts\templates\registration\password_reset_confirm.html:21
+#: .\accounts\templates\registration\password_reset_confirm.html:14
 msgid "Set a new password"
 msgstr "設置一個新的密碼"
 
-#: .\accounts\templates\registration\password_reset_confirm.html:30
+#: .\accounts\templates\registration\password_reset_confirm.html:23
 msgid "Enter your new password."
 msgstr "輸入你的新密碼"
 
-#: .\accounts\templates\registration\password_reset_confirm.html:57
+#: .\accounts\templates\registration\password_reset_confirm.html:50
 msgid "Change password"
 msgstr "修改密碼"
 
-#: .\accounts\templates\registration\password_reset_confirm.html:62
+#: .\accounts\templates\registration\password_reset_confirm.html:55
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr "密碼重置的連結已失效，因為它已經被使用過了，請重做密碼重置。"
 
-#: .\accounts\templates\registration\password_reset_done.html:21
+#: .\accounts\templates\registration\password_reset_done.html:14
 msgid "Check your inbox."
 msgstr "檢查你的信箱"
 
-#: .\accounts\templates\registration\password_reset_done.html:29
+#: .\accounts\templates\registration\password_reset_done.html:22
 msgid "We've emailed you instructions."
 msgstr "我們已將相關指示寄給你，"
 
-#: .\accounts\templates\registration\password_reset_done.html:29
+#: .\accounts\templates\registration\password_reset_done.html:22
 msgid "You may check them for following setting."
 msgstr "你可以用他們完成接下來的設定。"
 
-#: .\accounts\templates\registration\password_reset_done.html:31
+#: .\accounts\templates\registration\password_reset_done.html:24
 msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
-#: .\accounts\templates\registration\password_reset_form.html:21
+#: .\accounts\templates\registration\password_reset_form.html:14
 #: .\mssqlj3y\templates\base.html:85
 msgid "Password reset"
 msgstr "密碼重置"
 
-#: .\accounts\templates\registration\password_reset_form.html:29
+#: .\accounts\templates\registration\password_reset_form.html:22
 msgid ""
 "Enter your email address, and we'll email instructions for setting a new one."
 msgstr "輸入你的信箱地址，我們會把重設密碼的指示寄給你。"
 
-#: .\accounts\templates\registration\password_reset_form.html:56
+#: .\accounts\templates\registration\password_reset_form.html:49
 msgid "Reset"
 msgstr "重置"
 
-#: .\accounts\templates\registration\profile_change.html:21
+#: .\accounts\templates\registration\profile_change.html:14
 #: .\mssqlj3y\templates\base.html:80
 msgid "Profile"
 msgstr "個人檔案"
 
-#: .\accounts\templates\registration\profile_change.html:56
-#: .\mail_job\templates\mail_job\change.html:19
-#: .\mail_job\templates\mail_job\change.html:36
-#: .\mail_job\templates\mail_job\change_list.html:87
+#: .\accounts\templates\registration\profile_change.html:49
+#: .\mail_job\templates\mail_job\change.html:34
+#: .\mail_job\templates\mail_job\change_list.html:80
 msgid "Change"
 msgstr "修改"
 
-#: .\accounts\templates\registration\sign_up.html:28
+#: .\accounts\templates\registration\sign_up.html:21
 msgid "Sign up with Cheif Email."
 msgstr "以 Cheif Email 註冊"
 
-#: .\accounts\templates\registration\sign_up.html:29
+#: .\accounts\templates\registration\sign_up.html:22
 msgid "My Cheif Email has been used."
 msgstr "我的 Chief Email 已被使用"
 
-#: .\accounts\templates\registration\sign_up_with_account_password.html:28
+#: .\accounts\templates\registration\sign_up_with_account_password.html:21
 msgid "Already have an account? "
 msgstr "已經有帳號了嗎？"
 
-#: .\accounts\templates\registration\sign_up_with_account_password.html:58
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:62
+#: .\accounts\templates\registration\sign_up_with_account_password.html:51
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:55
 #: .\mssqlj3y\templates\base.html:84
 msgid "Sign up"
 msgstr "註冊"
 
-#: .\accounts\templates\registration\sign_up_with_chief_email.html:28
+#: .\accounts\templates\registration\sign_up_with_chief_email.html:21
 msgid "Already got an account? "
 msgstr "已經有帳號了嗎？"
 
@@ -250,7 +250,7 @@ msgstr "已修改成功。"
 msgid "ex. Expiration of certificates"
 msgstr "例如：憑證到期"
 
-#: .\mail_job\forms.py:18 .\mail_job\templates\mail_job\change_list.html:61
+#: .\mail_job\forms.py:18 .\mail_job\templates\mail_job\change_list.html:54
 #: .\mssqlj3y\templates\modal_help.html:40
 msgid "Event type"
 msgstr "事件類型"
@@ -259,12 +259,12 @@ msgstr "事件類型"
 msgid "ex. Expiration of the certificate on jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期"
 
-#: .\mail_job\forms.py:28 .\mail_job\templates\mail_job\change_list.html:62
+#: .\mail_job\forms.py:28 .\mail_job\templates\mail_job\change_list.html:55
 #: .\mssqlj3y\templates\modal_help.html:44
 msgid "Event"
 msgstr "事件描述"
 
-#: .\mail_job\forms.py:37 .\mail_job\templates\mail_job\change_list.html:63
+#: .\mail_job\forms.py:37 .\mail_job\templates\mail_job\change_list.html:56
 msgid "Start date"
 msgstr "通知起始日"
 
@@ -432,7 +432,7 @@ msgstr "每月30號"
 msgid "31th of every month"
 msgstr "每月31號"
 
-#: .\mail_job\forms.py:85 .\mail_job\templates\mail_job\change_list.html:65
+#: .\mail_job\forms.py:85 .\mail_job\templates\mail_job\change_list.html:58
 #: .\mssqlj3y\templates\modal_help.html:53
 msgid "Period"
 msgstr "週期"
@@ -441,7 +441,7 @@ msgstr "週期"
 msgid "ex. Notification - Certificate Expiration - jimmylin.chief.net.tw"
 msgstr "例如： jimmylin.chief.net.tw 憑證到期通知"
 
-#: .\mail_job\forms.py:96 .\mail_job\templates\mail_job\change_list.html:66
+#: .\mail_job\forms.py:96 .\mail_job\templates\mail_job\change_list.html:59
 #: .\mssqlj3y\templates\modal_help.html:57
 msgid "Mail subject"
 msgstr "郵件主旨"
@@ -454,7 +454,7 @@ msgid ""
 msgstr ""
 "例如： jimmylin.chief.net.tw 憑證將於 2020/06/06 到期，請辦理更換新憑證。"
 
-#: .\mail_job\forms.py:106 .\mail_job\templates\mail_job\change_list.html:67
+#: .\mail_job\forms.py:106 .\mail_job\templates\mail_job\change_list.html:60
 #: .\mssqlj3y\templates\modal_help.html:61
 msgid "Mail content"
 msgstr "郵件內容"
@@ -471,7 +471,7 @@ msgstr ""
 "t32@chief.com.tw;\n"
 "cathy_sung@chief.com.tw;"
 
-#: .\mail_job\forms.py:116 .\mail_job\templates\mail_job\change_list.html:68
+#: .\mail_job\forms.py:116 .\mail_job\templates\mail_job\change_list.html:61
 #: .\mssqlj3y\templates\modal_help.html:65
 msgid "Recipients"
 msgstr "收件人"
@@ -480,77 +480,77 @@ msgstr "收件人"
 msgid "Use \";\" to seperate multiple recipient."
 msgstr "使用「;」分隔多個收件者。"
 
-#: .\mail_job\templates\mail_job\add.html:17
-#: .\mail_job\templates\mail_job\add.html:42 .\mssqlj3y\templates\base.html:57
-#: .\mssqlj3y\templates\modal_help.html:20
+#: .\mail_job\templates\mail_job\add.html:40
+#: .\mail_job\templates\mail_job\change_list.html:26
+#: .\mssqlj3y\templates\base.html:57 .\mssqlj3y\templates\modal_help.html:20
 msgid "Add"
 msgstr "新增"
 
-#: .\mail_job\templates\mail_job\change.html:39
-#: .\mail_job\templates\mail_job\change_list.html:89
-#: .\mail_job\templates\mail_job\delete.html:22
+#: .\mail_job\templates\mail_job\change.html:37
+#: .\mail_job\templates\mail_job\change_list.html:82
+#: .\mail_job\templates\mail_job\delete.html:23
 msgid "Delete"
 msgstr "註銷"
 
-#: .\mail_job\templates\mail_job\change.html:44
+#: .\mail_job\templates\mail_job\change.html:42
 msgid "Mail Test"
 msgstr "發測試信"
 
-#: .\mail_job\templates\mail_job\change_list.html:33
-msgid "Add Mail Job"
-msgstr "新增 Mail Job"
+#: .\mail_job\templates\mail_job\change_list.html:26
+msgid "+"
+msgstr ""
 
-#: .\mail_job\templates\mail_job\change_list.html:41
+#: .\mail_job\templates\mail_job\change_list.html:34
 msgid "Search.."
 msgstr "搜尋.."
 
-#: .\mail_job\templates\mail_job\change_list.html:45
+#: .\mail_job\templates\mail_job\change_list.html:38
 msgid "Personal"
 msgstr "個人"
 
-#: .\mail_job\templates\mail_job\change_list.html:46
+#: .\mail_job\templates\mail_job\change_list.html:39
 msgid "All"
 msgstr "全部"
 
-#: .\mail_job\templates\mail_job\change_list.html:51
+#: .\mail_job\templates\mail_job\change_list.html:44
 msgid "Basic fields"
 msgstr "基本欄位"
 
-#: .\mail_job\templates\mail_job\change_list.html:52
+#: .\mail_job\templates\mail_job\change_list.html:45
 msgid "All fields"
 msgstr "所有欄位"
 
-#: .\mail_job\templates\mail_job\change_list.html:59
+#: .\mail_job\templates\mail_job\change_list.html:52
 msgid "Action"
 msgstr "動作"
 
-#: .\mail_job\templates\mail_job\change_list.html:64
+#: .\mail_job\templates\mail_job\change_list.html:57
 msgid "Stop date"
 msgstr "通知終止日"
 
-#: .\mail_job\templates\mail_job\change_list.html:69
+#: .\mail_job\templates\mail_job\change_list.html:62
 #: .\mssqlj3y\templates\modal_help.html:69
 msgid "Created by"
 msgstr "建立者"
 
-#: .\mail_job\templates\mail_job\change_list.html:70
+#: .\mail_job\templates\mail_job\change_list.html:63
 #: .\mssqlj3y\templates\modal_help.html:73
 msgid "Created date"
 msgstr "建立時間"
 
-#: .\mail_job\templates\mail_job\change_list.html:71
+#: .\mail_job\templates\mail_job\change_list.html:64
 msgid "Updated by"
 msgstr "修改者"
 
-#: .\mail_job\templates\mail_job\change_list.html:72
+#: .\mail_job\templates\mail_job\change_list.html:65
 msgid "Updated date"
 msgstr "修改時間"
 
-#: .\mail_job\templates\mail_job\change_list.html:83
+#: .\mail_job\templates\mail_job\change_list.html:76
 msgid "Choose"
 msgstr "選擇"
 
-#: .\mail_job\templates\mail_job\change_list.html:91
+#: .\mail_job\templates\mail_job\change_list.html:84
 msgid "Mail test"
 msgstr "發測試信"
 
@@ -561,13 +561,13 @@ msgstr "你確定嗎？"
 
 #: .\mail_job\templates\mail_job\delete.html:17
 msgid "Are you sure you want to delete this Mail Job?"
-msgstr "你確定要註銷這筆 Mail Job 嗎"
+msgstr "你確定要註銷這筆 Mail Job 嗎？"
 
 #: .\mail_job\templates\mail_job\mail_test.html:17
 msgid "Are you sure you want to send the test mail of this Mail Job?"
 msgstr "你確定要送出這筆 Mail Job 的測試信嗎？"
 
-#: .\mail_job\templates\mail_job\mail_test.html:22
+#: .\mail_job\templates\mail_job\mail_test.html:23
 msgid "Send"
 msgstr "送出"
 
@@ -643,7 +643,7 @@ msgstr "歷史紀錄"
 msgid "Help"
 msgstr "使用說明"
 
-#: .\mssqlj3y\templates\base.html:68 .\mssqlj3y\templates\base.html:133
+#: .\mssqlj3y\templates\base.html:68 .\mssqlj3y\templates\base.html:128
 #: .\mssqlj3y\templates\modal_about.html:8
 msgid "About"
 msgstr "關於"

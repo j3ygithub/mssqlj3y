@@ -31,11 +31,14 @@
 <body>
     {% block nav %}
     {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand-md navbar-light bg-j3y-theme-4">
-        {% include 'brand_nav_icon.html' %}
+    <nav class="navbar navbar-expand-md navbar-light bg-j3y-theme-4" style="padding-left: 2rem; padding-right: 2rem;">
+        <a class="navbar-brand pt-0" href="{% url 'index' %}">
+            {% include 'brand_nav_icon.html' %}
+            {% trans 'Reminder' %}
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#togglerTarget"
             aria-controls="togglerTarget" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon" style="padding-left: 2rem;"></span>
         </button>
         <div class="collapse navbar-collapse" id="togglerTarget">
             <ul class="navbar-nav mr-auto">
@@ -72,7 +75,6 @@
                         <a class="dropdown-item" href="{% url 'profile_change' %}">{% trans 'Profile' %}</a>
                         <a class="dropdown-item" href="{% url 'password_change' %}">{% trans 'Password change' %}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'login' %}">{% trans 'Login' %}</a>
                         <a class="dropdown-item" href="{% url 'sign_up' %}">{% trans 'Sign up' %}</a>
                         <a class="dropdown-item" href="{% url 'password_reset' %}">{% trans 'Password reset' %}</a>
                     </div>
@@ -105,8 +107,8 @@
         </div>
     </nav>
     {% else %}
-    <nav class="navbar navbar-expand-md navbar-light bg-j3y-theme-4">
-        <a class="navbar-brand pb-2" href="/">
+    <nav class="navbar navbar-expand-md navbar-light bg-j3y-theme-4" style="padding-left: 2rem; padding-right: 2rem;">
+        <a class="navbar-brand pt-0" href="{% url 'index' %}">
             {% include 'brand_nav_icon.html' %}
             {% trans 'Reminder' %}
         </a>
@@ -138,6 +140,8 @@
     </nav>
     {% endif %}
     {% endblock %}
+
+
 
     {% block message %}
     {% if messages %}
