@@ -108,5 +108,8 @@
 {% endblock %}
 
 {% block extrajs %}
+<script>
+    var role = "{{ user }}";
+</script>
 <script type="text/javascript" src="{% static 'js/mail_job/change_list.js' %}"></script>
 {% endblock %}

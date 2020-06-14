@@ -16,21 +16,18 @@ $(document).ready(function () {
     });
     $("#show-all-controller-mail-job").on("change", function () {
         var value = $(this).val();
-        var role = "{{ user }}"
         if (value == "personal") {
             $("#table-mail-job tbody tr").filter(function () {
                 $(this).toggle($(this).text().indexOf(role) > -1)
             });
         }
         else {
-            $("#table-mail-job tbody tr").show()
-        }
-        var showAllMailJob = $("#show-all-controller-mail-job").val();
-        var role = "{{ user }}"
-        if (showAllMailJob == 'personal') {
-            $("#table-mail-job tbody tr").filter(function () {
-                $(this).toggle($(this).text().indexOf(role) > -1)
-            });
+            $("#table-mail-job tbody tr").show();
         }
     });
+    if ($("#show-all-controller-mail-job").val() == 'personal') {
+        $("#table-mail-job tbody tr").filter(function () {
+            $(this).toggle($(this).text().indexOf(role) > -1)
+        });
+    }
 });
