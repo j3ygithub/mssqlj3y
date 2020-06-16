@@ -7,10 +7,12 @@
 <html>
 
 <head>
+    
     {% block meta %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% endblock %}
+
     {% block css %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -26,9 +28,11 @@
     {% block title %}
     <title>{% trans 'Reminder' %}</title>
     {% endblock title %}
+
 </head>
 
 <body>
+
     {% block nav %}
     {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-md navbar-light bg-j3y-theme-4" style="padding-left: 2rem; padding-right: 2rem;">
@@ -140,8 +144,6 @@
     </nav>
     {% endif %}
     {% endblock %}
-
-
 
     {% block message %}
     {% if messages %}
