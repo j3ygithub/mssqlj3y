@@ -19,9 +19,6 @@ db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
 
-# VSCode things
-.vscode/settings.json
-
 # IIS things
 web.config
 
