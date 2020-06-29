@@ -1,5 +1,4 @@
-from django.urls import path, include
-from django.views.generic import RedirectView
+from django.urls import path
 from .views import change_list, add, change, delete, mail_test
 
 

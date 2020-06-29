@@ -61,6 +61,7 @@
                         <th>{% trans 'Created date' %}</th>
                         <th class="advanced-field">{% trans 'Updated by' %}</th>
                         <th class="advanced-field">{% trans 'Updated date' %}</th>
+                        <th class="advanced-field">{% trans 'Executed times' %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,9 +95,10 @@
                         <td>{{ row.recipients }}</td>
                         <td id="field-created-by-mail-job">{{ row.created_by }}</td>
                         <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
-                        <td class="advanced-field">{{ row.updated_by }}</th>
+                        <td class="advanced-field">{{ row.updated_by }}</td>
                         <td class="advanced-field">{{ row.updated_date|date:"Y-m-d" }}
-                            {{ row.updated_date|time:"H:i:s" }}</th>
+                            {{ row.updated_date|time:"H:i:s" }}</td>
+                        <td class="advanced-field">{{ row.exe_times|floatformat:"0" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

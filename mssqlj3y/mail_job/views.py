@@ -4,9 +4,10 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.contrib import messages
-from django.core.mail import send_mail
 import pandas
-from .mssql_sp import sp_show_mail_job, sp_show_mail_job_1, sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime
+from .mssql_sp import (
+    exec_query, sp_show_mail_job, sp_show_mail_job_1,
+    sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime)
 from .forms import MailJobForm
 from accounts.views import get_role
 
@@ -26,29 +27,40 @@ def change_list(request):
             response_show = sp_show_mail_job_1()
         else:
             response_show = sp_show_mail_job()
+        # test
         df = pandas.DataFrame(tuple(row) for row in response_show)
         df.columns = [
-            'result', # 查詢結果
-            'seq', # 項次
-            'department', # 部門
-            'event_type', # 事件類型
-            'event', # 事件
-            'start_date', # 通知起始日
-            'period', # 週期
-            'weekend_flag', # 假日除外
-            'mail_subject', # 郵件主旨
-            'mail_content', # 郵件內容
-            'recipients', # 收件人
-            'created_date', # 建立時間
-            'stop_date', # 規則終止日
-            'created_by', # 建立者
-            'updated_by', # 修改者
-            'updated_date', # 修改日期
+            'result',  # 查詢結果
+            'seq',  # 項次
+            'department',  # 部門
+            'event_type',  # 事件類型
+            'event',  # 事件
+            'start_date',  # 通知起始日
+            'period',  # 週期
+            'weekend_flag',  # 假日除外
+            'mail_subject',  # 郵件主旨
+            'mail_content',  # 郵件內容
+            'recipients',  # 收件人
+            'created_date',  # 建立時間
+            'stop_date',  # 規則終止日
+            'created_by',  # 建立者
+            'updated_by',  # 修改者
+            'updated_date',  # 修改日期
         ]
         departments = [get_role(request)]
         df = df[df['department'].isin(departments)]
         df.fillna('', inplace=True)
         df = df.sort_values(by=['created_date'], ascending=False)
+        # sum action log
+        response_mail_job_action_log = exec_query(
+            query_string="SELECT action_job_seq FROM mail_job_action_log where mail_test = 0;"
+        )
+        results = [str(row_as_tuple[0]).split(',') for row_as_tuple in response_mail_job_action_log]
+        result_dct = {}
+        for result in results:
+            for seq_string in result:
+                times = result_dct.get(seq_string, 0)
+                result_dct[seq_string] = times + 1
         for index, row in df.iterrows():
             if row['period'] == '每日' and row['weekend_flag'] == 'T':
                 df.loc[index, 'period_readable'] = _('Each weekday')
@@ -100,9 +112,11 @@ def change_list(request):
                     if row['period'] == choice_tuple[0]:
                         df.loc[index, 'period_readable'] = choice_tuple[1]
             if len(row['mail_content']) > 50:
-                df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'        
+                df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'
+            df.loc[index, 'exe_times'] = result_dct.get(str(row['seq']), 0)
         context['df'] = df
-    except:
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     return render(request, 'mail_job/change_list.html', context)
 
@@ -160,9 +174,11 @@ def add(request):
                 messages.add_message(request, messages.SUCCESS, _('Added successfully.'))
                 return redirect(reverse('mail_job:change_list'))
             elif response_insert[0][0] == '新增失敗，資料重覆，請確認':
-                messages.add_message(request, messages.ERROR, _('Failed to add. The data is duplicate with the existing.'))
+                messages.add_message(request, messages.ERROR, _(
+                    'Failed to add. The data is duplicate with the existing.'))
             else:
-                messages.add_message(request, messages.ERROR, _('Unknown error. The format of the return value is not correct.'))
+                messages.add_message(request, messages.ERROR, _(
+                    'Unknown error. The format of the return value is not correct.'))
         except:
             context['tips'] += [_('Unknown error. The format of the return value is not correct.')]
         return render(request, 'mail_job/add.html', context)
@@ -211,16 +227,17 @@ def change(request, seq):
                 recipient=recipient,
                 updated_by=updated_by,
             )
-            print(response_update)
             if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Changed successfully.'))
         except:
-            messages.add_message(request, messages.ERROR, _('Unknown error. The format of the return value is not correct.'))
+            messages.add_message(request, messages.ERROR, _(
+                'Unknown error. The format of the return value is not correct.'))
         return redirect(reverse('mail_job:change_list'))
     else:
         try:
             response_show = sp_show_mail_job(seq=seq)
-        except:
+        except Exception as e:
+            print(e)
             messages.add_message(request, messages.ERROR, _('Unknown error. The data cannot be returned.'))
         try:
             df = pandas.DataFrame(tuple(row) for row in response_show)
@@ -247,7 +264,8 @@ def change(request, seq):
                 for index, row in df.iterrows():
                     try:
                         if not str(request.user) == row['建立者'] and not request.user.is_staff:
-                            messages.add_message(request, messages.ERROR, _('You can only change the mail job created by you.'))
+                            messages.add_message(request, messages.ERROR, _(
+                                'You can only change the mail job created by you.'))
                             return redirect(reverse('mail_job:change_list'))
                     except:
                         pass
@@ -265,7 +283,9 @@ def change(request, seq):
                     'recipient': df.loc[0, '收件人'],
                 }, )
                 context['form'] = form
-                context['tips'] += [_('The following is the current setting. Please fill in the part you want to modify and then submit.')]
+                context['tips'] += [
+                    _('The following is the current setting. Please fill in the part you want to modify and then submit.')
+                ]
             else:
                 context['tips'] += [_('The mail job is not available. Please confirm whether it has been deleted.')]
         except:
@@ -312,7 +332,8 @@ def delete(request, seq):
                 try:
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
-                        messages.add_message(request, messages.ERROR, _('You can only delete the mail job created by you.'))
+                        messages.add_message(request, messages.ERROR, _(
+                            'You can only delete the mail job created by you.'))
                         return redirect(reverse('mail_job:change_list'))
                 except:
                     pass
@@ -329,7 +350,8 @@ def delete(request, seq):
             if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Deleted successfully.'))
             else:
-                messages.add_message(request, messages.ERROR, _('The mail job is not available. Please confirm whether it has been deleted.'))            
+                messages.add_message(request, messages.ERROR, _(
+                    'The mail job is not available. Please confirm whether it has been deleted.'))
         except:
             context['messages']['delete'] = _('Unknown error, data cannot return.')
         return redirect(reverse('mail_job:change_list'))
@@ -375,7 +397,8 @@ def mail_test(request, seq):
                 try:
                     if not str(request.user
                                ) == row['建立者'] and not request.user.is_staff:
-                        messages.add_message(request, messages.ERROR, _('You can only do a mail test on the mail job created by you.'))
+                        messages.add_message(request, messages.ERROR, _(
+                            'You can only do a mail test on the mail job created by you.'))
                         return redirect(reverse('mail_job:change_list'))
                 except:
                     pass
