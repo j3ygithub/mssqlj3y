@@ -8,7 +8,8 @@ import pandas
 from .mssql_sp import (
     exec_query, sp_show_mail_job, sp_show_mail_job_1,
     sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime,
-    sp_insert_mail_job_1, sp_update_mail_job_1, sp_show_mail_job_2
+    sp_insert_mail_job_1, sp_update_mail_job_1, sp_show_mail_job_2,
+    sp_do_mail_job_onetime_1
 )
 from .forms import MailJobForm
 from accounts.views import get_role
@@ -219,7 +220,7 @@ def change(request, seq):
             else:
                 weekend_flag = 'F'
         try:
-            response_update = sp_update_mail_job(
+            response_update = sp_update_mail_job_1(
                 seq=seq,
                 department=department,
                 event_class=event_class,
@@ -230,7 +231,11 @@ def change(request, seq):
                 subject=subject,
                 body=body,
                 recipient=recipient,
+                stop_date='',
                 updated_by=updated_by,
+                mail_count='',
+                mode_send='',
+                recipient_add='',
             )
             if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Changed successfully.'))
@@ -418,7 +423,7 @@ def mail_test(request, seq):
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     if request.method == 'POST':
         try:
-            sp_do_mail_job_onetime(seq=seq)
+            sp_do_mail_job_onetime_1(seq=seq)
         except Exception as e:
             print(e)
         messages.add_message(request, messages.SUCCESS, _('The test mail has been sent.'))

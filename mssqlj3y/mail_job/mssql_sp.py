@@ -173,9 +173,9 @@ def sp_update_mail_job_1(
         f"@body='{body}', "
         f"@recipient='{recipient}', "
         f"@stop_date='{stop_date}', "
-        f"@update_by='{updated_by}' "
-        f"@mail_count='{mail_count}' "
-        f"@mode_send='{mode_send}' "
+        f"@update_by='{updated_by}', "
+        f"@mail_count='{mail_count}', "
+        f"@mode_send='{mode_send}', "
         f"@recipient_add='{recipient_add}' "
         ";"
     )
@@ -188,3 +188,14 @@ def sp_show_mail_job_2(seq='', created_by=''):
     query_string = f"exec mail_job.dbo.show_mail_job_2 @seq='{seq}', @create_by='{created_by}' ;"
     response_query_all = exec_query(query_string=query_string)
     return response_query_all
+
+
+def sp_do_mail_job_onetime_1(seq=''):
+
+    query_string = (
+        "exec mail_job.dbo.do_mail_job_onetime_1 "
+        f"@seq_action='{seq}' "
+        ";"
+    )
+    response_do_test = exec_query(query_string=query_string)
+    return response_do_test
