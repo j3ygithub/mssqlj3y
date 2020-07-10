@@ -22,7 +22,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _('ex. Expiration of the certificate on jimmylin.chief.net.tw'),
-                'rows':2,
+                'rows': 2,
             },
         ),
         label=_('Event'),
@@ -90,7 +90,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _('ex. Notification - Certificate Expiration - jimmylin.chief.net.tw'),
-                'rows':2,
+                'rows': 2,
             },
         ),
         label=_('Mail subject'),
@@ -100,7 +100,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _('ex.\nThe Certificate on jimmylin.chief.net.tw will expire on 2020/06/06. Please update it.'),
-                'rows':16,
+                'rows': 16,
             },
         ),
         label=_('Mail content'),
@@ -110,7 +110,7 @@ class MailJobForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'placeholder': _('ex.\njimmy_lin@chief.com.tw;\nt32@chief.com.tw;\ncathy_sung@chief.com.tw;'),
-                'rows':8,
+                'rows': 8,
             },
         ),
         label=_('Recipients'),
