@@ -183,7 +183,8 @@ def add(request):
             else:
                 messages.add_message(request, messages.ERROR, _(
                     'Unknown error. The format of the return value is not correct.'))
-        except:
+        except Exception as e:
+            print(e)
             context['tips'] += [_('Unknown error. The format of the return value is not correct.')]
         return render(request, 'mail_job/add.html', context)
 
@@ -233,7 +234,8 @@ def change(request, seq):
             )
             if response_update[0][0] == '修改成功':
                 messages.add_message(request, messages.SUCCESS, _('Changed successfully.'))
-        except:
+        except Exception as e:
+            print(e)
             messages.add_message(request, messages.ERROR, _(
                 'Unknown error. The format of the return value is not correct.'))
         return redirect(reverse('mail_job:change_list'))
@@ -271,8 +273,8 @@ def change(request, seq):
                             messages.add_message(request, messages.ERROR, _(
                                 'You can only change the mail job created by you.'))
                             return redirect(reverse('mail_job:change_list'))
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     if row['週期'] == '每日' and row['假日除外'] == 'T':
                         df.loc[index, '週期'] = '平日'
                 df = df.sort_values(by=['建立時間'], ascending=False)
@@ -292,7 +294,8 @@ def change(request, seq):
                 ]
             else:
                 context['tips'] += [_('The mail job is not available. Please confirm whether it has been deleted.')]
-        except:
+        except Exception as e:
+            print(e)
             context['tips'] += [_('Unknown error, data cannot return.')]
         return render(request, 'mail_job/change.html', context)
 
@@ -309,7 +312,8 @@ def delete(request, seq):
     }
     try:
         response_show = sp_show_mail_job(seq=seq)
-    except:
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     try:
         df = pandas.DataFrame(tuple(row) for row in response_show)
@@ -339,9 +343,10 @@ def delete(request, seq):
                         messages.add_message(request, messages.ERROR, _(
                             'You can only delete the mail job created by you.'))
                         return redirect(reverse('mail_job:change_list'))
-                except:
-                    pass
-    except:
+                except Exception as e:
+                    print(e)
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     if request.method == 'POST':
         updated_by = request.user
@@ -356,7 +361,8 @@ def delete(request, seq):
             else:
                 messages.add_message(request, messages.ERROR, _(
                     'The mail job is not available. Please confirm whether it has been deleted.'))
-        except:
+        except Exception as e:
+            print(e)
             context['messages']['delete'] = _('Unknown error, data cannot return.')
         return redirect(reverse('mail_job:change_list'))
     else:
@@ -374,7 +380,8 @@ def mail_test(request, seq):
     }
     try:
         response_show = sp_show_mail_job(seq=seq)
-    except:
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     try:
         df = pandas.DataFrame(tuple(row) for row in response_show)
@@ -404,15 +411,16 @@ def mail_test(request, seq):
                         messages.add_message(request, messages.ERROR, _(
                             'You can only do a mail test on the mail job created by you.'))
                         return redirect(reverse('mail_job:change_list'))
-                except:
-                    pass
-    except:
+                except Exception as e:
+                    print(e)
+    except Exception as e:
+        print(e)
         context['tips'] += [_('Unknown error. The data cannot be returned.')]
     if request.method == 'POST':
         try:
-            response_do_test = sp_do_mail_job_onetime(seq=seq)
-        except:
-            pass
+            sp_do_mail_job_onetime(seq=seq)
+        except Exception as e:
+            print(e)
         messages.add_message(request, messages.SUCCESS, _('The test mail has been sent.'))
         return redirect(reverse('mail_job:change_list'))
     else:
