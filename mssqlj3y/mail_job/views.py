@@ -54,7 +54,7 @@ def change_list(request):
         df = df[df['department'].isin(departments)]
         # Filter of show_history.
         if not show_history:
-            df = df[df['stop_date'].isin([''])]
+            df = df[df['stop_date'].isin(['']) | (df['stop_date'] > df['start_date'])]
         df.fillna('', inplace=True)
         df = df.sort_values(by=['start_date'], ascending=False)
         for index, row in df.iterrows():
