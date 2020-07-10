@@ -1,6 +1,7 @@
 from django import forms
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 def today():
@@ -238,3 +239,12 @@ class MailJobUpdateForm(forms.Form):
         help_text=_('Use ";" to seperate multiple recipient.'),
         max_length=256,
     )
+
+    def clean_stop_date(self):
+        stop_date = self.cleaned_data['stop_date']
+        print(stop_date)
+        print(timezone.localtime(timezone.now()).date())
+        print(stop_date > timezone.localtime(timezone.now()).date())
+        if stop_date <= timezone.localtime(timezone.now()).date():
+            raise ValidationError('Stop date can not be earlier than today')
+        return stop_date
