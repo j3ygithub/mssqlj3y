@@ -126,8 +126,8 @@ def sp_insert_mail_job_1(
         f"@subject='{subject}', "
         f"@body='{body}', "
         f"@recipient='{recipient}', "
-        f"@create_by='{created_by}' "
-        f"@stop_date='{stop_date}' "
+        f"@create_by='{created_by}', "
+        f"@stop_date='{stop_date}', "
         f"@recipient_add='{recipient_add} '"
         ";"
     )

@@ -11,7 +11,7 @@ from .mssql_sp import (
     sp_insert_mail_job_1, sp_update_mail_job_1, sp_show_mail_job_2,
     sp_do_mail_job_onetime_1
 )
-from .forms import MailJobForm
+from .forms import MailJobAddForm, MailJobUpdateForm
 from accounts.views import get_role
 
 
@@ -55,7 +55,7 @@ def change_list(request):
         df = df[df['department'].isin(departments)]
         # Filter of show_history.
         if not show_history:
-            df = df[df['stop_date'].isin(['']) | (df['stop_date'] > df['start_date'])]
+            df = df[df['stop_date'].isin(['']) | (df['stop_date'] > str(timezone.localtime(timezone.now()).date()))]
         df.fillna('', inplace=True)
         df = df.sort_values(by=['start_date'], ascending=False)
         for index, row in df.iterrows():
@@ -137,12 +137,12 @@ def add(request):
         'form': None,
     }
     if request.method != 'POST':
-        form = MailJobForm()
+        form = MailJobAddForm()
         context['tips'] += [_('Fill in the following form to create a new mail job.')]
         context['form'] = form
         return render(request, 'mail_job/add.html', context)
     elif request.method == 'POST':
-        form = MailJobForm(request.POST)
+        form = MailJobAddForm(request.POST)
         context['form'] = form
         if form.is_valid():
             department = get_role(request)
@@ -202,13 +202,14 @@ def change(request, seq):
         'form': None,
     }
     if request.method == 'POST':
-        form = MailJobForm(request.POST)
+        form = MailJobUpdateForm(request.POST)
         context['form'] = form
         if form.is_valid():
             department = get_role(request)
             event_class = form.cleaned_data['event_class']
             event = form.cleaned_data['event']
             note_date = form.cleaned_data['note_date']
+            stop_date = form.cleaned_data['stop_date']
             period = form.cleaned_data['period']
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
@@ -231,7 +232,7 @@ def change(request, seq):
                 subject=subject,
                 body=body,
                 recipient=recipient,
-                stop_date='',
+                stop_date=stop_date,
                 updated_by=updated_by,
                 mail_count='',
                 mode_send='',
@@ -283,7 +284,7 @@ def change(request, seq):
                     if row['週期'] == '每日' and row['假日除外'] == 'T':
                         df.loc[index, '週期'] = '平日'
                 df = df.sort_values(by=['建立時間'], ascending=False)
-                form = MailJobForm(initial={
+                form = MailJobUpdateForm(initial={
                     'department': df.loc[0, '部門'],
                     'event_class': df.loc[0, '事件類型'],
                     'event': df.loc[0, '事件描述'],
