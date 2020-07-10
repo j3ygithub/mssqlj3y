@@ -8,7 +8,7 @@ def today():
 
 
 class MailJobForm(forms.Form):
-    
+
     event_class = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -31,7 +31,7 @@ class MailJobForm(forms.Form):
     note_date = forms.DateField(
         widget=forms.DateInput(
             attrs={
-                'type':'date',
+                'type': 'date',
             },
         ),
         label=_('Start date'),
