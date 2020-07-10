@@ -7,7 +7,9 @@ from django.contrib import messages
 import pandas
 from .mssql_sp import (
     exec_query, sp_show_mail_job, sp_show_mail_job_1,
-    sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime)
+    sp_insert_mail_job, sp_update_mail_job, sp_do_mail_job_onetime,
+    sp_insert_mail_job_1, sp_update_mail_job_1, sp_show_mail_job_2
+)
 from .forms import MailJobForm
 from accounts.views import get_role
 
@@ -22,46 +24,45 @@ def change_list(request):
         'tips': [],
         'df': None
     }
+    show_history = request.GET.get('show_history', '') == 'true'
     try:
-        if request.GET.get('show_history') == 'true':
-            response_show = sp_show_mail_job_1()
-        else:
-            response_show = sp_show_mail_job()
-        # test
+        response_show = sp_show_mail_job_2()
         df = pandas.DataFrame(tuple(row) for row in response_show)
         df.columns = [
             'result',  # 查詢結果
             'seq',  # 項次
+            'mode_send',  # 寄送模式
             'department',  # 部門
-            'event_type',  # 事件類型
+            'event_class',  # 事件類型
             'event',  # 事件
-            'start_date',  # 通知起始日
+            'note_date',  # 通知起始日
             'period',  # 週期
             'weekend_flag',  # 假日除外
-            'mail_subject',  # 郵件主旨
-            'mail_content',  # 郵件內容
-            'recipients',  # 收件人
-            'created_date',  # 建立時間
+            'subject',  # 郵件主旨
+            'body',  # 郵件內容
+            'recipient_add',  # 額外內容
+            'recipient',  # 收件人
+            'start_date',  # 建立時間
             'stop_date',  # 規則終止日
-            'created_by',  # 建立者
-            'updated_by',  # 修改者
-            'updated_date',  # 修改日期
+            'create_by',  # 建立者
+            'update_by',  # 修改者
+            'update_date',  # 修改日期
+            'mail_count',  # 寄件次數
         ]
         departments = [get_role(request)]
+        # Filter of department.
         df = df[df['department'].isin(departments)]
+        # Filter of show_history.
+        if not show_history:
+            df = df[df['stop_date'].isin([''])]
         df.fillna('', inplace=True)
-        df = df.sort_values(by=['created_date'], ascending=False)
-        # sum action log
-        response_mail_job_action_log = exec_query(
-            query_string="SELECT action_job_seq FROM mail_job_action_log where mail_test = 0;"
-        )
-        results = [str(row_as_tuple[0]).split(',') for row_as_tuple in response_mail_job_action_log]
-        result_dct = {}
-        for result in results:
-            for seq_string in result:
-                times = result_dct.get(seq_string, 0)
-                result_dct[seq_string] = times + 1
+        df = df.sort_values(by=['start_date'], ascending=False)
         for index, row in df.iterrows():
+            print(row['stop_date'] == '')
+            if row['mode_send'] == 0:
+                df.loc[index, 'mode_send_readable'] = _('General')
+            else:
+                df.loc[index, 'mode_send_readable'] = _('Special')
             if row['period'] == '每日' and row['weekend_flag'] == 'T':
                 df.loc[index, 'period_readable'] = _('Each weekday')
             else:
@@ -111,9 +112,12 @@ def change_list(request):
                 for choice_tuple in choices_period:
                     if row['period'] == choice_tuple[0]:
                         df.loc[index, 'period_readable'] = choice_tuple[1]
-            if len(row['mail_content']) > 50:
-                df.loc[index, 'mail_content'] = row['mail_content'][:50] + '......'
-            df.loc[index, 'exe_times'] = result_dct.get(str(row['seq']), 0)
+            # Cut the body longer than 50.
+            if len(row['body']) > 50:
+                df.loc[index, 'body'] = row['body'][:50] + '...'
+            # Cut the recipient longer than 50.
+            if len(row['recipient']) > 50:
+                df.loc[index, 'recipient'] = row['recipient'][:50] + '...'
         context['df'] = df
     except Exception as e:
         print(e)

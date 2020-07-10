@@ -51,11 +51,13 @@
                         <th class="advanced-field">{% trans 'Dep.' %}</th>
                         <th>{% trans 'Event type' %}</th>
                         <th>{% trans 'Event' %}</th>
+                        <th>{% trans 'Mode' %}</th>
                         <th>{% trans 'Start date' %}</th>
                         <th class="advanced-field">{% trans 'Stop date' %}</th>
                         <th>{% trans 'Period' %}</th>
                         <th>{% trans 'Mail subject' %}</th>
                         <th>{% trans 'Mail content' %}</th>
+                        <th>{% trans 'Extra content' %}</th>
                         <th>{% trans 'Recipients' %}</th>
                         <th>{% trans 'Created by' %}</th>
                         <th>{% trans 'Created date' %}</th>
@@ -85,20 +87,22 @@
                             </div>
                         </td>
                         <td class="advanced-field">{{ row.department }}</td>
-                        <td>{{ row.event_type }}</td>
+                        <td>{{ row.event_class }}</td>
                         <td>{{ row.event }}</td>
-                        <td>{{ row.start_date|date:"Y-m-d" }}</td>
+                        <td>{{ row.mode_send_readable }}</td>
+                        <td>{{ row.note_date|date:"Y-m-d" }}</td>
                         <td class="advanced-field">{{ row.stop_date|date:"Y-m-d" }}</td>
                         <td>{{ row.period_readable }}</td>
-                        <td>{{ row.mail_subject }}</td>
-                        <td>{{ row.mail_content }}</td>
-                        <td>{{ row.recipients }}</td>
-                        <td id="field-created-by-mail-job">{{ row.created_by }}</td>
-                        <td>{{ row.created_date|date:"Y-m-d" }} {{ row.created_date|time:"H:i:s" }}</td>
-                        <td class="advanced-field">{{ row.updated_by }}</td>
-                        <td class="advanced-field">{{ row.updated_date|date:"Y-m-d" }}
-                            {{ row.updated_date|time:"H:i:s" }}</td>
-                        <td class="advanced-field">{{ row.exe_times|floatformat:"0" }}</td>
+                        <td>{{ row.subject }}</td>
+                        <td class"text-break">{{ row.body }}</td>
+                        <td>{{ row.recipient_add }}</td>
+                        <td>{{ row.recipient }}</td>
+                        <td id="field-created-by-mail-job">{{ row.create_by }}</td>
+                        <td>{{ row.start_date|date:"Y-m-d" }} {{ row.start_date|time:"H:i:s" }}</td>
+                        <td class="advanced-field">{{ row.update_by }}</td>
+                        <td class="advanced-field">{{ row.update_date|date:"Y-m-d" }}
+                            {{ row.update_date|time:"H:i:s" }}</td>
+                        <td class="advanced-field">{{ row.mail_count|floatformat:"0" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
