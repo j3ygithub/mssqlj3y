@@ -58,60 +58,60 @@ def change_list(request):
         df.fillna('', inplace=True)
         df = df.sort_values(by=['start_date'], ascending=False)
         for index, row in df.iterrows():
-            print(row['stop_date'] == '')
-            if row['mode_send'] == 0:
-                df.loc[index, 'mode_send_readable'] = _('General')
-            else:
-                df.loc[index, 'mode_send_readable'] = _('Special')
+            # mode_send readable choices
+            choices_mode_send = {
+                0: _('General'),
+                1: _('Special'),
+            }
+            df.loc[index, 'mode_send_readable'] = choices_mode_send.get(row['mode_send'], 'Unknown')
+            # period, weekend_flag() readable choices
             if row['period'] == '每日' and row['weekend_flag'] == 'T':
                 df.loc[index, 'period_readable'] = _('Each weekday')
             else:
-                choices_period = [
-                    ('單次', _('Once')),
-                    ('每日', _('Daily')),
-                    ('平日', _('Each weekday')),
-                    ('每週一', _('Each Monday')),
-                    ('每週二', _('Each Tuesday')),
-                    ('每週三', _('Each Wednesday ')),
-                    ('每週四', _('Each Thursday ')),
-                    ('每週五', _('Each Friday ')),
-                    ('每週六', _('Each Saturday ')),
-                    ('每週日', _('Each Sunday')),
-                    ('每月1號', _('1st of every month')),
-                    ('每月2號', _('2nd of every month')),
-                    ('每月3號', _('3rd of every month')),
-                    ('每月4號', _('4th of every month')),
-                    ('每月5號', _('5th of every month')),
-                    ('每月6號', _('6th of every month')),
-                    ('每月7號', _('7th of every month')),
-                    ('每月8號', _('8th of every month')),
-                    ('每月9號', _('9th of every month')),
-                    ('每月10號', _('10th of every month')),
-                    ('每月11號', _('11th of every month')),
-                    ('每月12號', _('12th of every month')),
-                    ('每月13號', _('13th of every month')),
-                    ('每月14號', _('14th of every month')),
-                    ('每月15號', _('15th of every month')),
-                    ('每月16號', _('16th of every month')),
-                    ('每月17號', _('17th of every month')),
-                    ('每月18號', _('18th of every month')),
-                    ('每月19號', _('19th of every month')),
-                    ('每月20號', _('20th of every month')),
-                    ('每月21號', _('21th of every month')),
-                    ('每月22號', _('22th of every month')),
-                    ('每月23號', _('23th of every month')),
-                    ('每月24號', _('24th of every month')),
-                    ('每月25號', _('25th of every month')),
-                    ('每月26號', _('26th of every month')),
-                    ('每月27號', _('27th of every month')),
-                    ('每月28號', _('28th of every month')),
-                    ('每月29號', _('29th of every month')),
-                    ('每月30號', _('30th of every month')),
-                    ('每月31號', _('31th of every month')),
-                ]
-                for choice_tuple in choices_period:
-                    if row['period'] == choice_tuple[0]:
-                        df.loc[index, 'period_readable'] = choice_tuple[1]
+                choices_period = {
+                    '單次': _('Once'),
+                    '每日': _('Daily'),
+                    '平日': _('Each weekday'),
+                    '每週一': _('Each Monday'),
+                    '每週二': _('Each Tuesday'),
+                    '每週三': _('Each Wednesday '),
+                    '每週四': _('Each Thursday '),
+                    '每週五': _('Each Friday '),
+                    '每週六': _('Each Saturday '),
+                    '每週日': _('Each Sunday'),
+                    '每月1號': _('1st of every month'),
+                    '每月2號': _('2nd of every month'),
+                    '每月3號': _('3rd of every month'),
+                    '每月4號': _('4th of every month'),
+                    '每月5號': _('5th of every month'),
+                    '每月6號': _('6th of every month'),
+                    '每月7號': _('7th of every month'),
+                    '每月8號': _('8th of every month'),
+                    '每月9號': _('9th of every month'),
+                    '每月10號': _('10th of every month'),
+                    '每月11號': _('11th of every month'),
+                    '每月12號': _('12th of every month'),
+                    '每月13號': _('13th of every month'),
+                    '每月14號': _('14th of every month'),
+                    '每月15號': _('15th of every month'),
+                    '每月16號': _('16th of every month'),
+                    '每月17號': _('17th of every month'),
+                    '每月18號': _('18th of every month'),
+                    '每月19號': _('19th of every month'),
+                    '每月20號': _('20th of every month'),
+                    '每月21號': _('21th of every month'),
+                    '每月22號': _('22th of every month'),
+                    '每月23號': _('23th of every month'),
+                    '每月24號': _('24th of every month'),
+                    '每月25號': _('25th of every month'),
+                    '每月26號': _('26th of every month'),
+                    '每月27號': _('27th of every month'),
+                    '每月28號': _('28th of every month'),
+                    '每月29號': _('29th of every month'),
+                    '每月30號': _('30th of every month'),
+                    '每月31號': _('31th of every month'),
+                }
+                df.loc[index, 'period_readable'] = choices_period.get(row['period'], _('Unknown'))
             # Cut the body longer than 50.
             if len(row['body']) > 50:
                 df.loc[index, 'body'] = row['body'][:50] + '...'
