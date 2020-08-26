@@ -97,6 +97,7 @@ class MailJobAddForm(forms.Form):
         label=_('Mail subject'),
         max_length=64,
     )
+    # To be updated to longer
     body = forms.CharField(
         widget=forms.Textarea(
             attrs={
