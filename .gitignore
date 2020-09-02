@@ -1,16 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
-# Distribution / packaging
-/lib/
-
-# Some python script files
-/bin/
-/Scripts/
-
-# Virtual environment config file
-/pyvenv.cfg
-
 # Mac things
 .DS_Store
 
@@ -23,11 +13,8 @@ db.sqlite3
 web.config
 
 # for this project only
-/mssqlj3y/secret/
-/mssqlj3y/static/
-/mssqlj3y/nginx/
-/mssqlj3y/uwsgi/
+/secret/
+/static/
+/nginx/
+/uwsgi/
 
-# ubuntu 20.04 things
-share/python-wheels/ 
-/lib64
