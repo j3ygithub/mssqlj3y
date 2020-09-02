@@ -1,9 +1,8 @@
 # mssqlj3y
-A reminder system based on MSSQL with pyodbc and django.
+A reminder system, based on MSSQL, pyodbc, pandas and django.
 
 
 ## Overview
-Login page
 
 <div float="left">
   <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot1.png?" width="30%">
@@ -11,19 +10,22 @@ Login page
   <br>
 <div>
 
-Built with i18n.
+> Built with i18n, English and Chinese are built-in.
 
 <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot3.png?" width="60%">
 <br>
 <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot4.png?" width="60%">
 <br>
 
-Schedule and view your mail job easily.
+> Schedule and view your mail job.
 
 <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot5.png?" width="60%">
 <br>
 <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot6.png?" width="60%">
 <br>
+
+> Add a mail job easily.
+
 <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot7.png?" width="60%">
 <br>
 <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot8.png?" width="60%">
