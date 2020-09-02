@@ -1,23 +1,33 @@
 # mssqlj3y
 A reminder system based on MSSQL with pyodbc and django.
 
+
+## Overview
+Login page
+
 <div float="left">
   <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot1.png?" width="30%">
   <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot2.png?" width="30%">
   <br>
-  <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot3.png?" width="60%">
-  <br>
-  <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot4.png?" width="60%">
-  <br>
-  <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot5.png?" width="60%">
-  <br>
-  <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot6.png?" width="60%">
-  <br>
-  <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot7.png?" width="60%">
-  <br>
-  <img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot8.png?" width="60%">
-  <br>
-</div>
+<div>
+
+Built with i18n.
+
+<img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot3.png?" width="60%">
+<br>
+<img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot4.png?" width="60%">
+<br>
+
+Schedule and view your mail job easily.
+
+<img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot5.png?" width="60%">
+<br>
+<img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot6.png?" width="60%">
+<br>
+<img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot7.png?" width="60%">
+<br>
+<img src="https://github.com/j3ygithub/mssqlj3y/blob/master/docs/images/screenshot8.png?" width="60%">
+<br>
 
 ## Installation
 
