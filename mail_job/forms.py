@@ -106,7 +106,7 @@ class MailJobAddForm(forms.Form):
             },
         ),
         label=_('Mail content'),
-        max_length=512,
+        max_length=2047,
     )
     recipient = forms.CharField(
         widget=forms.Textarea(
@@ -227,7 +227,7 @@ class MailJobUpdateForm(forms.Form):
             },
         ),
         label=_('Mail content'),
-        max_length=512,
+        max_length=2047,
     )
     recipient = forms.CharField(
         widget=forms.Textarea(
